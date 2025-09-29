@@ -1,0 +1,124 @@
+{
+  "placeholderImages": [
+    {
+      "id": "hero-1",
+      "description": "Green cake with pink flowers on a stand",
+      "imageUrl": "https://i.imgur.com/6mIsDDF.png",
+      "imageHint": "elegant cake flowers"
+    },
+    {
+      "id": "hero-2",
+      "description": "A slice of chocolate cake on a plate",
+      "imageUrl": "https://i.imgur.com/tOtqvMQ.png",
+      "imageHint": "chocolate cake slice"
+    },
+    {
+      "id": "hero-3",
+      "description": "A vibrant and colorful multi-layered cake",
+      "imageUrl": "https://i.imgur.com/IWlEU5U.png",
+      "imageHint": "colorful layered cake"
+    },
+    {
+      "id": "hero-4",
+      "description": "A close-up of a cupcake with intricate frosting",
+      "imageUrl": "https://i.imgur.com/t1VwmSJ.png",
+      "imageHint": "frosted cupcake"
+    },
+    {
+      "id": "cake-1",
+      "description": "Cake with blueberries",
+      "imageUrl": "https://i.imgur.com/rpYIQ2X.png",
+      "imageHint": "blueberry cake"
+    },
+    {
+      "id": "cake-2",
+      "description": "Blue and white cake with a flower",
+      "imageUrl": "https://i.imgur.com/KeT5s5h.png",
+      "imageHint": "blue cake"
+    },
+    {
+      "id": "cake-3",
+      "description": "Rainbow colored cake",
+      "imageUrl": "https://i.imgur.com/t1VwmSJ.png",
+      "imageHint": "rainbow cake"
+    },
+    {
+      "id": "cupcake-1",
+      "description": "Green layered cake",
+      "imageUrl": "https://i.imgur.com/giqD7TS.png",
+      "imageHint": "green cake"
+    },
+    {
+      "id": "cupcake-2",
+      "description": "Watercolor style cake",
+      "imageUrl": "https://i.imgur.com/PNpiwav.png",
+      "imageHint": "colorful cake"
+    },
+    {
+      "id": "other-1",
+      "description": "Pink and purple cake",
+      "imageUrl": "https://i.imgur.com/6CoeHx9.png",
+      "imageHint": "pink cake"
+    },
+    {
+      "id": "other-2",
+      "description": "Cake with a bicycle",
+      "imageUrl": "https://i.imgur.com/gZBJM7G.png",
+      "imageHint": "bicycle cake"
+    },
+    {
+      "id": "other-3",
+      "description": "Forest themed cake",
+      "imageUrl": "https://i.imgur.com/mVaesdN.png",
+      "imageHint": "forest cake"
+    },
+    {
+      "id": "gallery-1",
+      "description": "A stunning wedding cake",
+      "imageUrl": "https://images.unsplash.com/photo-1519654793190-2e8a4806f1f2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx3ZWRkaW5nJTIwY2FrZXxlbnwwfHx8fDE3NTg4NDc1MDJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "wedding cake"
+    },
+    {
+      "id": "gallery-2",
+      "description": "A birthday cake with cartoon characters",
+      "imageUrl": "https://images.unsplash.com/photo-1756621716915-cb8723574795?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8a2lkcyUyMGJpcnRoZGF5JTIwY2FrZXxlbnwwfHx8fDE3NTg4Nzc4MDh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "kids birthday cake"
+    },
+    {
+      "id": "gallery-3",
+      "description": "A box of assorted cupcakes",
+      "imageUrl": "https://images.unsplash.com/photo-1587536848939-c7e58de4b792?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjdXBjYWtlJTIwYm94fGVufDB8fHx8MTc1ODg3NzgwOHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "cupcake box"
+    },
+    {
+      "id": "gallery-4",
+      "description": "Custom designed sugar cookies",
+      "imageUrl": "https://images.unsplash.com/photo-1646169018521-993a1b315917?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxkZWNvcmF0ZWQlMjBjb29raWVzfGVufDB8fHx8MTc1ODg3NzgwOHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "decorated cookies"
+    },
+    {
+      "id": "gallery-5",
+      "description": "A dessert table at an event",
+      "imageUrl": "https://images.unsplash.com/photo-1637944220604-c5f28faac604?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxkZXNzZXJ0JTIwdGFibGV8ZW58MHx8fHwxNzU4NzczMDczfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "dessert table"
+    },
+    {
+      "id": "gallery-6",
+      "description": "Elegant tiered cake",
+      "imageUrl": "https://images.unsplash.com/photo-1551978103-4b1b704719fd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHx0aWVyZWQlMjBjYWtlfGVufDB8fHx8MTc1ODg3NzgwOHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "tiered cake"
+    },
+    {
+      "id": "gallery-7",
+      "description": "A close-up of intricate piping work on a cake",
+      "imageUrl": "https://images.unsplash.com/photo-1611810797891-ac09c37a1f93?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjYWtlJTIwZGV0YWlsfGVufDB8fHx8MTc1ODg3NzgwOHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "cake detail"
+    },
+    {
+      "id": "gallery-8",
+      "description": "A rustic-themed naked cake with fresh berries",
+      "imageUrl": "https://images.unsplash.com/photo-1679654596647-faf434b35796?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxydXN0aWMlMjBjYWtlfGVufDB8fHx8MTc1ODg3NzgwOHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "rustic cake"
+    }
+  ]
+}
