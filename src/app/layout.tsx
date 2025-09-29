@@ -10,6 +10,9 @@ import { OrderProvider } from '@/context/order-context';
 export const metadata: Metadata = {
   title: "Rue's Delectables",
   description: 'Handcrafted cakes, cupcakes, and treats for every occasion.',
+  icons: {
+    icon: 'https://i.imgur.com/iwxnVR1.png',
+  },
 };
 
 export default function RootLayout({
@@ -34,7 +37,7 @@ export default function RootLayout({
           <OrderProvider>
             <div className="relative flex min-h-dvh flex-col">
               <Header />
-              <main className="flex-1 pt-12">{children}</main>
+              <main className="flex-1">{children}</main>
               <div className="relative bg-background">
                 <Footer />
               </div>
