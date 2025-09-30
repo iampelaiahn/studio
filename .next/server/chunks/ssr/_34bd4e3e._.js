@@ -31,51 +31,67 @@ __turbopack_context__.s({
 const products = [
     {
         id: "prod-1",
-        name: "Classic Chocolate Fudge Cake",
-        description: "A rich and moist chocolate cake with layers of decadent fudge frosting.",
-        price: "45.00",
+        name: "Vintage",
+        description: "Sponge cake with cocoa in combination with cappuccino cream and blueberries.",
+        price: "$188.90",
         category: "Cakes",
         imageId: "cake-1"
     },
     {
         id: "prod-2",
-        name: "Summer Strawberry Bliss",
-        description: "Light vanilla sponge with fresh strawberries and cream, perfect for any occasion.",
-        price: "50.00",
+        name: "Crystal Flower",
+        description: "Light vanilla sponge with fresh strawberries and cream.",
+        price: "$69.20",
         category: "Cakes",
         imageId: "cake-2"
     },
     {
         id: "prod-3",
-        name: "Enchanted Garden Cake",
+        name: "Violet veil",
         description: "Delicate vanilla bean cake adorned with beautiful, handcrafted sugar flowers.",
-        price: "65.00",
+        price: "$100.00",
         category: "Cakes",
         imageId: "cake-3"
     },
     {
         id: "prod-4",
-        name: "Red Velvet Dream Cupcakes",
+        name: "Fairy",
         description: "Classic red velvet cupcakes with a smooth cream cheese frosting.",
-        price: "36.00 / dozen",
+        price: "$220.00",
         category: "Cupcakes",
         imageId: "cupcake-1"
     },
     {
         id: "prod-5",
-        name: "Zesty Lemon Meringue Cupcakes",
+        name: "Watercolor",
         description: "Tangy lemon curd-filled cupcakes topped with toasted meringue.",
-        price: "42.00 / dozen",
+        price: "$100.50",
         category: "Cupcakes",
         imageId: "cupcake-2"
     },
     {
         id: "prod-6",
-        name: "Parisian Macarons",
-        description: "A delightful assortment of our finest handcrafted macarons. Flavors vary by season.",
-        price: "30.00 / dozen",
-        category: "Other",
+        name: "Blackberry",
+        description: "A delightful assortment of our finest handcrafted macarons.",
+        price: "$60.80",
+        category: "Baked Treats",
         imageId: "other-1"
+    },
+    {
+        id: "prod-7",
+        name: "Long vacation",
+        description: "A delightful assortment of our finest handcrafted macarons.",
+        price: "$125.00",
+        category: "Baked Treats",
+        imageId: "other-2"
+    },
+    {
+        id: "prod-8",
+        name: "Forest",
+        description: "A delightful assortment of our finest handcrafted macarons.",
+        price: "$172.80",
+        category: "Baked Treats",
+        imageId: "other-3"
     }
 ];
 const galleryImages = [
@@ -106,35 +122,54 @@ const galleryImages = [
 ];
 const navLinks = [
     {
-        href: "/",
-        label: "Home"
+        id: "about",
+        href: "/about",
+        label: "About Us"
     },
     {
-        href: "/products",
-        label: "Products"
-    },
-    {
+        id: "gallery",
         href: "/gallery",
         label: "Gallery"
     },
     {
+        id: "products",
+        href: "/products",
+        label: "Catalog"
+    },
+    {
+        id: "pricing",
+        href: "/pricing",
+        label: "Pricing"
+    },
+    {
+        id: "custom-order",
         href: "/custom-order",
-        label: "Custom Order"
+        label: "Custom-cakes"
+    },
+    {
+        id: "feedback",
+        href: "/feedback",
+        label: "Feedback"
+    },
+    {
+        id: "availability",
+        href: "#",
+        label: "Availability"
     }
 ];
 const productTypes = [
-    "Cake",
-    "Cupcakes",
-    "Cookies",
-    "Macarons",
-    "Other"
+    "Cakes",
+    "Desserts",
+    "Donuts",
+    "Vegan",
+    "Drinks"
 ];
 }}),
 "[project]/src/lib/placeholder-images.json (json)": ((__turbopack_context__) => {
 
 var { g: global, __dirname } = __turbopack_context__;
 {
-__turbopack_context__.v(JSON.parse("{\"placeholderImages\":[{\"id\":\"hero-1\",\"description\":\"A beautiful cake on a stand\",\"imageUrl\":\"https://picsum.photos/seed/hero1/1920/1080\",\"imageHint\":\"elegant cake\"},{\"id\":\"cake-1\",\"description\":\"Chocolate layer cake\",\"imageUrl\":\"https://picsum.photos/seed/cake1/600/400\",\"imageHint\":\"chocolate cake\"},{\"id\":\"cake-2\",\"description\":\"Strawberry shortcake\",\"imageUrl\":\"https://picsum.photos/seed/cake2/600/400\",\"imageHint\":\"strawberry cake\"},{\"id\":\"cake-3\",\"description\":\"Vanilla bean cake with floral decorations\",\"imageUrl\":\"https://picsum.photos/seed/cake3/600/400\",\"imageHint\":\"floral cake\"},{\"id\":\"cupcake-1\",\"description\":\"Red velvet cupcakes\",\"imageUrl\":\"https://picsum.photos/seed/cupcake1/600/400\",\"imageHint\":\"red velvet cupcake\"},{\"id\":\"cupcake-2\",\"description\":\"Lemon meringue cupcakes\",\"imageUrl\":\"https://picsum.photos/seed/cupcake2/600/400\",\"imageHint\":\"lemon cupcake\"},{\"id\":\"other-1\",\"description\":\"Assorted macarons\",\"imageUrl\":\"https://picsum.photos/seed/other1/600/400\",\"imageHint\":\"colorful macarons\"},{\"id\":\"gallery-1\",\"description\":\"A stunning wedding cake\",\"imageUrl\":\"https://picsum.photos/seed/gallery1/800/600\",\"imageHint\":\"wedding cake\"},{\"id\":\"gallery-2\",\"description\":\"A birthday cake with cartoon characters\",\"imageUrl\":\"https://picsum.photos/seed/gallery2/800/600\",\"imageHint\":\"kids birthday cake\"},{\"id\":\"gallery-3\",\"description\":\"A box of assorted cupcakes\",\"imageUrl\":\"https://picsum.photos/seed/gallery3/800/600\",\"imageHint\":\"cupcake box\"},{\"id\":\"gallery-4\",\"description\":\"Custom designed sugar cookies\",\"imageUrl\":\"https://picsum.photos/seed/gallery4/800/600\",\"imageHint\":\"decorated cookies\"},{\"id\":\"gallery-5\",\"description\":\"A dessert table at an event\",\"imageUrl\":\"https://picsum.photos/seed/gallery5/800/600\",\"imageHint\":\"dessert table\"},{\"id\":\"gallery-6\",\"description\":\"Elegant tiered cake\",\"imageUrl\":\"https://picsum.photos/seed/gallery6/800/600\",\"imageHint\":\"tiered cake\"},{\"id\":\"gallery-7\",\"description\":\"A close-up of intricate piping work on a cake\",\"imageUrl\":\"https://picsum.photos/seed/gallery7/800/600\",\"imageHint\":\"cake detail\"},{\"id\":\"gallery-8\",\"description\":\"A rustic-themed naked cake with fresh berries\",\"imageUrl\":\"https://picsum.photos/seed/gallery8/800/600\",\"imageHint\":\"rustic cake\"}]}"));}}),
+__turbopack_context__.v(JSON.parse("{\"placeholderImages\":[{\"id\":\"hero-1\",\"description\":\"Green cake with pink flowers on a stand\",\"imageUrl\":\"https://i.imgur.com/6mIsDDF.png\",\"imageHint\":\"elegant cake flowers\"},{\"id\":\"hero-2\",\"description\":\"A slice of chocolate cake on a plate\",\"imageUrl\":\"https://i.imgur.com/tOtqvMQ.png\",\"imageHint\":\"chocolate cake slice\"},{\"id\":\"hero-3\",\"description\":\"A vibrant and colorful multi-layered cake\",\"imageUrl\":\"https://i.imgur.com/IWlEU5U.png\",\"imageHint\":\"colorful layered cake\"},{\"id\":\"hero-4\",\"description\":\"A close-up of a cupcake with intricate frosting\",\"imageUrl\":\"https://i.imgur.com/t1VwmSJ.png\",\"imageHint\":\"frosted cupcake\"},{\"id\":\"cake-1\",\"description\":\"Cake with blueberries\",\"imageUrl\":\"https://i.imgur.com/rpYIQ2X.png\",\"imageHint\":\"blueberry cake\"},{\"id\":\"cake-2\",\"description\":\"Blue and white cake with a flower\",\"imageUrl\":\"https://i.imgur.com/KeT5s5h.png\",\"imageHint\":\"blue cake\"},{\"id\":\"cake-3\",\"description\":\"Rainbow colored cake\",\"imageUrl\":\"https://i.imgur.com/t1VwmSJ.png\",\"imageHint\":\"rainbow cake\"},{\"id\":\"cupcake-1\",\"description\":\"Green layered cake\",\"imageUrl\":\"https://i.imgur.com/giqD7TS.png\",\"imageHint\":\"green cake\"},{\"id\":\"cupcake-2\",\"description\":\"Watercolor style cake\",\"imageUrl\":\"https://i.imgur.com/PNpiwav.png\",\"imageHint\":\"colorful cake\"},{\"id\":\"other-1\",\"description\":\"Pink and purple cake\",\"imageUrl\":\"https://i.imgur.com/6CoeHx9.png\",\"imageHint\":\"pink cake\"},{\"id\":\"other-2\",\"description\":\"Cake with a bicycle\",\"imageUrl\":\"https://i.imgur.com/gZBJM7G.png\",\"imageHint\":\"bicycle cake\"},{\"id\":\"other-3\",\"description\":\"Forest themed cake\",\"imageUrl\":\"https://i.imgur.com/mVaesdN.png\",\"imageHint\":\"forest cake\"},{\"id\":\"gallery-1\",\"description\":\"A stunning wedding cake\",\"imageUrl\":\"https://images.unsplash.com/photo-1519654793190-2e8a4806f1f2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx3ZWRkaW5nJTIwY2FrZXxlbnwwfHx8fDE3NTg4NDc1MDJ8MA&ixlib=rb-4.1.0&q=80&w=1080\",\"imageHint\":\"wedding cake\"},{\"id\":\"gallery-2\",\"description\":\"A birthday cake with cartoon characters\",\"imageUrl\":\"https://images.unsplash.com/photo-1756621716915-cb8723574795?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8a2lkcyUyMGJpcnRoZGF5JTIwY2FrZXxlbnwwfHx8fDE3NTg4Nzc4MDh8MA&ixlib=rb-4.1.0&q=80&w=1080\",\"imageHint\":\"kids birthday cake\"},{\"id\":\"gallery-3\",\"description\":\"A box of assorted cupcakes\",\"imageUrl\":\"https://images.unsplash.com/photo-1587536848939-c7e58de4b792?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjdXBjYWtlJTIwYm94fGVufDB8fHx8MTc1ODg3NzgwOHww&ixlib=rb-4.1.0&q=80&w=1080\",\"imageHint\":\"cupcake box\"},{\"id\":\"gallery-4\",\"description\":\"Custom designed sugar cookies\",\"imageUrl\":\"https://images.unsplash.com/photo-1646169018521-993a1b315917?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxkZWNvcmF0ZWQlMjBjb29raWVzfGVufDB8fHx8MTc1ODg3NzgwOHww&ixlib=rb-4.1.0&q=80&w=1080\",\"imageHint\":\"decorated cookies\"},{\"id\":\"gallery-5\",\"description\":\"A dessert table at an event\",\"imageUrl\":\"https://images.unsplash.com/photo-1637944220604-c5f28faac604?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxkZXNzZXJ0JTIwdGFibGV8ZW58MHx8fHwxNzU4NzczMDczfDA&ixlib=rb-4.1.0&q=80&w=1080\",\"imageHint\":\"dessert table\"},{\"id\":\"gallery-6\",\"description\":\"Elegant tiered cake\",\"imageUrl\":\"https://images.unsplash.com/photo-1551978103-4b1b704719fd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHx0aWVyZWQlMjBjYWtlfGVufDB8fHx8MTc1ODg3NzgwOHww&ixlib=rb-4.1.0&q=80&w=1080\",\"imageHint\":\"tiered cake\"},{\"id\":\"gallery-7\",\"description\":\"A close-up of intricate piping work on a cake\",\"imageUrl\":\"https://images.unsplash.com/photo-1611810797891-ac09c37a1f93?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjYWtlJTIwZGV0YWlsfGVufDB8fHx8MTc1ODg3NzgwOHww&ixlib=rb-4.1.0&q=80&w=1080\",\"imageHint\":\"cake detail\"},{\"id\":\"gallery-8\",\"description\":\"A rustic-themed naked cake with fresh berries\",\"imageUrl\":\"https://images.unsplash.com/photo-1679654596647-faf434b35796?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxydXN0aWMlMjBjYWtlfGVufDB8fHx8MTc1ODg3NzgwOHww&ixlib=rb-4.1.0&q=80&w=1080\",\"imageHint\":\"rustic cake\"}]}"));}}),
 "[project]/src/lib/placeholder-images.ts [app-rsc] (ecmascript)": ((__turbopack_context__) => {
 "use strict";
 
