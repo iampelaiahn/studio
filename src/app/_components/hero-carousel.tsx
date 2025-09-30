@@ -16,18 +16,16 @@ type Cake = {
     weight: string;
     size: string;
     productionTime: string;
-    price: string;
     imageId: string;
 }
 
-const carouselCakes: Cake[] = [
+const carouselCakes: Omit<Cake, 'price'>[] = [
     {
         name: 'Vintage',
         description: 'Sponge cake with cocoa in combination with cappuccino cream and blueberries.',
         weight: '2.4 KG',
         size: '22 CM',
         productionTime: '72 H',
-        price: '$188,90',
         imageId: 'hero-1'
     },
     {
@@ -36,7 +34,6 @@ const carouselCakes: Cake[] = [
         weight: '1.8 KG',
         size: '20 CM',
         productionTime: '48 H',
-        price: '$150,00',
         imageId: 'hero-2'
     },
     {
@@ -45,7 +42,6 @@ const carouselCakes: Cake[] = [
         weight: '2.8 KG',
         size: '24 CM',
         productionTime: '96 H',
-        price: '$155,00',
         imageId: 'hero-3'
     },
     {
@@ -54,7 +50,6 @@ const carouselCakes: Cake[] = [
         weight: '0.2 KG',
         size: '8 CM',
         productionTime: '24 H',
-        price: '$80,00',
         imageId: 'hero-4'
     }
 ];
@@ -159,10 +154,6 @@ export default function HeroCarousel() {
                     <div>
                         <p className="text-muted-foreground">Production time</p>
                         <p>{currentCake.productionTime}</p>
-                    </div>
-                    <div>
-                        <p className="text-muted-foreground">Product price</p>
-                        <p className="text-2xl font-bold">{currentCake.price}</p>
                     </div>
                 </div>
             </div>

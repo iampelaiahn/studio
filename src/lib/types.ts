@@ -1,7 +1,7 @@
 
 import { products } from "./data";
 
-export type ProductWithImage = (typeof products)[0] & {
+export type ProductWithImage = Omit<(typeof products)[0], 'price'> & {
     imageUrl?: string;
     imageHint?: string;
 };

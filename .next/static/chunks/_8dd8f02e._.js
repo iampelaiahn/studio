@@ -469,7 +469,6 @@ const carouselCakes = [
         weight: '2.4 KG',
         size: '22 CM',
         productionTime: '72 H',
-        price: '$188,90',
         imageId: 'hero-1'
     },
     {
@@ -478,7 +477,6 @@ const carouselCakes = [
         weight: '1.8 KG',
         size: '20 CM',
         productionTime: '48 H',
-        price: '$150,00',
         imageId: 'hero-2'
     },
     {
@@ -487,7 +485,6 @@ const carouselCakes = [
         weight: '2.8 KG',
         size: '24 CM',
         productionTime: '96 H',
-        price: '$155,00',
         imageId: 'hero-3'
     },
     {
@@ -496,7 +493,6 @@ const carouselCakes = [
         weight: '0.2 KG',
         size: '8 CM',
         productionTime: '24 H',
-        price: '$80,00',
         imageId: 'hero-4'
     }
 ];
@@ -570,32 +566,32 @@ function HeroCarousel() {
                                                 "data-ai-hint": img.imageHint
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/_components/hero-carousel.tsx",
-                                                lineNumber: 117,
+                                                lineNumber: 112,
                                                 columnNumber: 41
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/_components/hero-carousel.tsx",
-                                            lineNumber: 115,
+                                            lineNumber: 110,
                                             columnNumber: 33
                                         }, this)
                                     }, index, false, {
                                         fileName: "[project]/src/app/_components/hero-carousel.tsx",
-                                        lineNumber: 114,
+                                        lineNumber: 109,
                                         columnNumber: 29
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/src/app/_components/hero-carousel.tsx",
-                                lineNumber: 112,
+                                lineNumber: 107,
                                 columnNumber: 21
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/app/_components/hero-carousel.tsx",
-                            lineNumber: 105,
+                            lineNumber: 100,
                             columnNumber: 17
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/_components/hero-carousel.tsx",
-                        lineNumber: 104,
+                        lineNumber: 99,
                         columnNumber: 13
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -617,7 +613,7 @@ function HeroCarousel() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/_components/hero-carousel.tsx",
-                                                lineNumber: 137,
+                                                lineNumber: 132,
                                                 columnNumber: 29
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -628,33 +624,33 @@ function HeroCarousel() {
                                                         className: "w-4 h-4"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/_components/hero-carousel.tsx",
-                                                        lineNumber: 139,
+                                                        lineNumber: 134,
                                                         columnNumber: 128
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/_components/hero-carousel.tsx",
-                                                    lineNumber: 139,
+                                                    lineNumber: 134,
                                                     columnNumber: 33
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/_components/hero-carousel.tsx",
-                                                lineNumber: 138,
+                                                lineNumber: 133,
                                                 columnNumber: 29
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/_components/hero-carousel.tsx",
-                                        lineNumber: 136,
+                                        lineNumber: 131,
                                         columnNumber: 25
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/_components/hero-carousel.tsx",
-                                    lineNumber: 135,
+                                    lineNumber: 130,
                                     columnNumber: 21
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/app/_components/hero-carousel.tsx",
-                                lineNumber: 134,
+                                lineNumber: 129,
                                 columnNumber: 18
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -667,20 +663,20 @@ function HeroCarousel() {
                                                 children: "Cake description"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/_components/hero-carousel.tsx",
-                                                lineNumber: 146,
+                                                lineNumber: 141,
                                                 columnNumber: 25
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                 children: currentCake.description
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/_components/hero-carousel.tsx",
-                                                lineNumber: 147,
+                                                lineNumber: 142,
                                                 columnNumber: 25
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/_components/hero-carousel.tsx",
-                                        lineNumber: 145,
+                                        lineNumber: 140,
                                         columnNumber: 21
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -693,20 +689,20 @@ function HeroCarousel() {
                                                         children: "Cake weight"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/_components/hero-carousel.tsx",
-                                                        lineNumber: 151,
+                                                        lineNumber: 146,
                                                         columnNumber: 29
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                         children: currentCake.weight
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/_components/hero-carousel.tsx",
-                                                        lineNumber: 152,
+                                                        lineNumber: 147,
                                                         columnNumber: 29
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/_components/hero-carousel.tsx",
-                                                lineNumber: 150,
+                                                lineNumber: 145,
                                                 columnNumber: 25
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -716,26 +712,26 @@ function HeroCarousel() {
                                                         children: "Cake size"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/_components/hero-carousel.tsx",
-                                                        lineNumber: 155,
+                                                        lineNumber: 150,
                                                         columnNumber: 29
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                         children: currentCake.size
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/_components/hero-carousel.tsx",
-                                                        lineNumber: 156,
+                                                        lineNumber: 151,
                                                         columnNumber: 29
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/_components/hero-carousel.tsx",
-                                                lineNumber: 154,
+                                                lineNumber: 149,
                                                 columnNumber: 25
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/_components/hero-carousel.tsx",
-                                        lineNumber: 149,
+                                        lineNumber: 144,
                                         columnNumber: 21
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -745,62 +741,38 @@ function HeroCarousel() {
                                                 children: "Production time"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/_components/hero-carousel.tsx",
-                                                lineNumber: 160,
+                                                lineNumber: 155,
                                                 columnNumber: 25
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                 children: currentCake.productionTime
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/_components/hero-carousel.tsx",
-                                                lineNumber: 161,
+                                                lineNumber: 156,
                                                 columnNumber: 25
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/_components/hero-carousel.tsx",
-                                        lineNumber: 159,
-                                        columnNumber: 21
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                className: "text-muted-foreground",
-                                                children: "Product price"
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/app/_components/hero-carousel.tsx",
-                                                lineNumber: 164,
-                                                columnNumber: 25
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                className: "text-2xl font-bold",
-                                                children: currentCake.price
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/app/_components/hero-carousel.tsx",
-                                                lineNumber: 165,
-                                                columnNumber: 25
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/src/app/_components/hero-carousel.tsx",
-                                        lineNumber: 163,
+                                        lineNumber: 154,
                                         columnNumber: 21
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/_components/hero-carousel.tsx",
-                                lineNumber: 144,
+                                lineNumber: 139,
                                 columnNumber: 17
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/_components/hero-carousel.tsx",
-                        lineNumber: 133,
+                        lineNumber: 128,
                         columnNumber: 13
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/_components/hero-carousel.tsx",
-                lineNumber: 103,
+                lineNumber: 98,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -812,23 +784,23 @@ function HeroCarousel() {
                             className: `w-2 h-2 rounded-full ${i === current ? 'bg-primary' : 'bg-primary/50'}`
                         }, i, false, {
                             fileName: "[project]/src/app/_components/hero-carousel.tsx",
-                            lineNumber: 174,
+                            lineNumber: 165,
                             columnNumber: 21
                         }, this))
                 }, void 0, false, {
                     fileName: "[project]/src/app/_components/hero-carousel.tsx",
-                    lineNumber: 172,
+                    lineNumber: 163,
                     columnNumber: 13
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/_components/hero-carousel.tsx",
-                lineNumber: 171,
+                lineNumber: 162,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/_components/hero-carousel.tsx",
-        lineNumber: 102,
+        lineNumber: 97,
         columnNumber: 5
     }, this);
 }

@@ -5,7 +5,7 @@ import React,  { useState, useEffect, useRef, useCallback } from 'react';
 import Image from 'next/image';
 import { type ProductWithImage } from '@/lib/types';
 import { Button } from '@/components/ui/button';
-import CheckoutModal from './checkout-modal';
+import Link from 'next/link';
 
 type ProductCarouselProps = {
     products: ProductWithImage[];
@@ -20,7 +20,6 @@ export default function ProductCarousel({ products, isShowingDetail, setIsShowin
     const carouselRef = useRef<HTMLDivElement>(null);
     const unacceptClickTimeout = useRef<NodeJS.Timeout | null>(null);
     const autoSlideInterval = useRef<NodeJS.Timeout | null>(null);
-    const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
 
     const showSlider = useCallback((type: 'next' | 'prev') => {
         if (!carouselRef.current) return;
@@ -84,11 +83,6 @@ export default function ProductCarousel({ products, isShowingDetail, setIsShowin
         startAutoSlider();
     };
 
-    const handleBuyNowClick = () => {
-        stopAutoSlider();
-        setIsCheckoutOpen(true);
-    };
-
     useEffect(() => {
         const backButton = document.getElementById('back');
         if (backButton) {
@@ -122,10 +116,10 @@ export default function ProductCarousel({ products, isShowingDetail, setIsShowin
                                     </button>
                                      <div className="relative">
                                         <Button
+                                            asChild
                                             className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full animate-bounce"
-                                            onClick={handleBuyNowClick}
                                         >
-                                            Order Now
+                                            <Link href="/custom-order">Order Now</Link>
                                         </Button>
                                     </div>
                                 </div>
@@ -135,11 +129,10 @@ export default function ProductCarousel({ products, isShowingDetail, setIsShowin
                                 <div className="des">{product.description}</div>
                                 <div className="specifications">
                                     {product.category && <div><p>Category</p><p>{product.category}</p></div>}
-                                    {product.price && <div><p>Price</p><p>{product.price}</p></div>}
                                 </div>
                                 <div className="checkout">
-                                    <Button onClick={handleBuyNowClick}>ADD TO CART</Button>
-                                    <Button variant="outline" onClick={handleBuyNowClick}>ORDER NOW</Button>
+                                    <Button asChild><Link href="/custom-order">CUSTOM ORDER</Link></Button>
+                                    <Button asChild variant="outline"><Link href="/custom-order">ORDER NOW</Link></Button>
                                 </div>
                             </div>
                         </div>
@@ -151,18 +144,6 @@ export default function ProductCarousel({ products, isShowingDetail, setIsShowin
                 </div>
                 <button id="back">Back</button>
             </div>
-            {activeProduct && (
-                <CheckoutModal 
-                    product={activeProduct}
-                    isOpen={isCheckoutOpen}
-                    onOpenChange={(isOpen) => {
-                        setIsCheckoutOpen(isOpen);
-                        if (!isOpen) {
-                            startAutoSlider();
-                        }
-                    }}
-                />
-            )}
         </>
     );
 };
