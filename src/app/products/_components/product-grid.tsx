@@ -2,15 +2,16 @@
 "use client"
 
 import React, { useState, useMemo } from "react"
-import { type ProductWithImage } from "../page"
+import { type ProductWithImage } from "@/lib/types"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ProductCard } from "./product-card"
 
 type ProductGridProps = {
-  products: ProductWithImage[]
+  products: ProductWithImage[],
+  onProductClick: (product: ProductWithImage) => void;
 }
 
-export default function ProductGrid({ products }: ProductGridProps) {
+export default function ProductGrid({ products, onProductClick }: ProductGridProps) {
   const categories = useMemo(() => ["All", ...Array.from(new Set(products.map(p => p.category)))], [products]);
   const [activeTab, setActiveTab] = useState(categories[0]);
 
@@ -33,7 +34,7 @@ export default function ProductGrid({ products }: ProductGridProps) {
         <TabsContent key={category} value={category}>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                 {products.filter(p => activeTab === 'All' || p.category === activeTab).map(product => (
-                    <ProductCard key={product.id} product={product} />
+                    <ProductCard key={product.id} product={product} onClick={onProductClick} />
                 ))}
             </div>
             {products.filter(p => activeTab === 'All' || p.category === activeTab).length === 0 && (

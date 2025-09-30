@@ -6,13 +6,8 @@ import { products } from "@/lib/data"
 import { PlaceHolderImages, ImagePlaceholder } from "@/lib/placeholder-images"
 import ProductGrid from "./_components/product-grid"
 import ProductCarousel from '@/app/shop/_components/product-carousel';
-import { type Product as ProductType } from "@/lib/data";
-
-export type ProductWithImage = ProductType & {
-    imageUrl?: string;
-    imageHint?: string;
-};
-
+import { type ProductWithImage } from "@/lib/types";
+import ProductDetailModal from './_components/product-detail-modal';
 
 export default function ProductsPage() {
     const productsWithImages: ProductWithImage[] = products.map(product => {
@@ -20,18 +15,27 @@ export default function ProductsPage() {
         return { ...product, imageUrl: image?.imageUrl, imageHint: image?.imageHint }
     })
 
-    const [isShowingDetail, setIsShowingDetail] = useState(false);
-    const [activeProduct, setActiveProduct] = useState<ProductWithImage | null>(productsWithImages[1]);
+    const [isCarouselShowingDetail, setIsCarouselShowingDetail] = useState(false);
+    const [activeCarouselProduct, setActiveCarouselProduct] = useState<ProductWithImage | null>(productsWithImages[1]);
+    const [selectedProduct, setSelectedProduct] = useState<ProductWithImage | null>(null);
+
+    const handleProductClick = (product: ProductWithImage) => {
+        setSelectedProduct(product);
+    };
+
+    const handleCloseModal = () => {
+        setSelectedProduct(null);
+    };
 
     return (
         <div className="bg-background">
             <section className="relative py-16 md:py-24 bg-background text-foreground overflow-hidden -mt-[5vh] z-0">
                 <ProductCarousel
                     products={productsWithImages}
-                    isShowingDetail={isShowingDetail}
-                    setIsShowingDetail={setIsShowingDetail}
-                    activeProduct={activeProduct}
-                    setActiveProduct={setActiveProduct}
+                    isShowingDetail={isCarouselShowingDetail}
+                    setIsShowingDetail={setIsCarouselShowingDetail}
+                    activeProduct={activeCarouselProduct}
+                    setActiveProduct={setActiveCarouselProduct}
                 />
             </section>
             <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
@@ -41,9 +45,15 @@ export default function ProductsPage() {
                         Browse our signature creations, each made with the finest ingredients and a sprinkle of love.
                     </p>
                 </header>
-                <ProductGrid products={productsWithImages} />
+                <ProductGrid products={productsWithImages} onProductClick={handleProductClick} />
             </div>
+             {selectedProduct && (
+                <ProductDetailModal
+                    product={selectedProduct}
+                    isOpen={!!selectedProduct}
+                    onOpenChange={handleCloseModal}
+                />
+            )}
         </div>
     )
 }
-
