@@ -2365,27 +2365,30 @@ function Header() {
     const [cartOpen, setCartOpen] = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useState(false);
     const { cart } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$order$2d$context$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useOrder"])();
     const totalItems = cart.reduce((sum, item)=>sum + item.quantity, 0);
-    const renderNavLink = (link, isMobile = false)=>{
-        if (link.id === 'availability') {
-            return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                onClick: ()=>setAvailabilityOpen(true),
-                className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$utils$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["cn"])('font-medium transition-colors hover:text-primary whitespace-nowrap', isMobile ? 'text-lg' : 'text-sm', 'text-foreground/60'),
+    const renderNavLinks = (isMobile = false)=>{
+        return __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$data$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["navLinks"].map((link)=>{
+            const className = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$utils$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["cn"])('font-medium transition-colors hover:text-primary whitespace-nowrap', isMobile ? 'text-lg' : 'text-sm', pathname === link.href ? 'text-primary' : 'text-foreground/60');
+            if (link.id === 'availability') {
+                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                    onClick: ()=>setAvailabilityOpen(true),
+                    className: className,
+                    children: link.label
+                }, link.href, false, {
+                    fileName: "[project]/src/components/layout/header.tsx",
+                    lineNumber: 44,
+                    columnNumber: 11
+                }, this);
+            }
+            return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
+                href: link.href,
+                className: className,
                 children: link.label
             }, link.href, false, {
                 fileName: "[project]/src/components/layout/header.tsx",
-                lineNumber: 37,
+                lineNumber: 54,
                 columnNumber: 9
             }, this);
-        }
-        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
-            href: link.href,
-            className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$utils$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["cn"])('font-medium transition-colors hover:text-primary whitespace-nowrap', isMobile ? 'text-lg' : 'text-sm', pathname === link.href ? 'text-primary' : 'text-foreground/60'),
-            children: link.label
-        }, link.href, false, {
-            fileName: "[project]/src/components/layout/header.tsx",
-            lineNumber: 51,
-            columnNumber: 7
-        }, this);
+        });
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
         children: [
@@ -2415,7 +2418,7 @@ function Header() {
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
                             className: "hidden lg:flex items-center gap-6 text-sm",
-                            children: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$data$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["navLinks"].map((link)=>renderNavLink(link))
+                            children: renderNavLinks()
                         }, void 0, false, {
                             fileName: "[project]/src/components/layout/header.tsx",
                             lineNumber: 73,
@@ -2529,7 +2532,7 @@ function Header() {
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
                                                         className: "flex flex-col gap-6 mt-8",
-                                                        children: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$data$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["navLinks"].map((link)=>renderNavLink(link, true))
+                                                        children: renderNavLinks(true)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/layout/header.tsx",
                                                         lineNumber: 100,

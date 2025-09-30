@@ -31,35 +31,35 @@ export default function Header() {
 
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
 
-  const renderNavLink = (link: (typeof navLinks)[0], isMobile = false) => {
-    if (link.id === 'availability') {
+  const renderNavLinks = (isMobile = false) => {
+    return navLinks.map(link => {
+      const className = cn(
+        'font-medium transition-colors hover:text-primary whitespace-nowrap',
+        isMobile ? 'text-lg' : 'text-sm',
+        pathname === link.href ? 'text-primary' : 'text-foreground/60'
+      );
+
+      if (link.id === 'availability') {
+        return (
+          <button
+            key={link.href}
+            onClick={() => setAvailabilityOpen(true)}
+            className={className}
+          >
+            {link.label}
+          </button>
+        );
+      }
       return (
-        <button
+        <Link
           key={link.href}
-          onClick={() => setAvailabilityOpen(true)}
-          className={cn(
-            'font-medium transition-colors hover:text-primary whitespace-nowrap',
-            isMobile ? 'text-lg' : 'text-sm',
-            'text-foreground/60'
-          )}
+          href={link.href}
+          className={className}
         >
           {link.label}
-        </button>
+        </Link>
       );
-    }
-    return (
-      <Link
-        key={link.href}
-        href={link.href}
-        className={cn(
-          'font-medium transition-colors hover:text-primary whitespace-nowrap',
-          isMobile ? 'text-lg' : 'text-sm',
-          pathname === link.href ? 'text-primary' : 'text-foreground/60'
-        )}
-      >
-        {link.label}
-      </Link>
-    );
+    });
   };
 
   return (
@@ -71,7 +71,7 @@ export default function Header() {
           </Link>
 
           <nav className="hidden lg:flex items-center gap-6 text-sm">
-            {navLinks.map(link => renderNavLink(link))}
+            {renderNavLinks()}
           </nav>
 
           <div className="flex items-center justify-end gap-2">
@@ -98,7 +98,7 @@ export default function Header() {
                     <SheetTitle className="sr-only">Mobile Menu</SheetTitle>
                   </SheetHeader>
                   <nav className="flex flex-col gap-6 mt-8">
-                    {navLinks.map(link => renderNavLink(link, true))}
+                    {renderNavLinks(true)}
                   </nav>
                 </SheetContent>
               </Sheet>
