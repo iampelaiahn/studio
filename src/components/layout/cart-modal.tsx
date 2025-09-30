@@ -107,7 +107,7 @@ ${itemsSummary}
                 </Button>
             )}
             <DialogTitle className="font-headline text-xl">
-                {step === 1 ? `Your Cart (${totalItems} items)` : 'Delivery Details'}
+                {step === 1 ? `Your Cart (${totalItems} items)` : 'Delivery Details & Summary'}
             </DialogTitle>
            </div>
         </DialogHeader>
@@ -163,27 +163,31 @@ ${itemsSummary}
             ) : (
                 <>
                 <ScrollArea>
-                    <div className="p-6 space-y-4">
-                        <div className="space-y-2">
-                            <Label htmlFor="name-cart">Full Name</Label>
-                            <Input id="name-cart" value={name} onChange={(e) => setName(e.target.value)} placeholder="Jane Doe" />
-                        </div>
-                         <div className="space-y-2">
-                            <Label htmlFor="email-cart">Email</Label>
-                            <Input id="email-cart" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="jane.doe@example.com" />
-                        </div>
-                         <div className="space-y-2">
-                            <Label htmlFor="address-cart">Delivery Address</Label>
-                            <Textarea id="address-cart" value={address} onChange={(e) => setAddress(e.target.value)} placeholder="123 Sweet Street, Dallas, TX" />
-                        </div>
+                    <div className="p-6 space-y-6">
                         <div>
-                            <p className='font-medium text-sm mt-4 mb-2'>Order Summary</p>
-                             <div className='text-sm text-muted-foreground space-y-1'>
+                            <h3 className="text-lg font-semibold mb-4">Order Summary</h3>
+                             <div className='text-sm text-muted-foreground space-y-2 rounded-md border p-4'>
                                 {cart.map(item => (
-                                    <div key={item.product.id} className="flex justify-between">
-                                        <span>{item.product.name} (x{item.quantity})</span>
+                                    <div key={item.product.id} className="flex justify-between items-center">
+                                        <span>{item.product.name}</span>
+                                        <span className='font-medium text-foreground'>x{item.quantity}</span>
                                     </div>
                                 ))}
+                            </div>
+                        </div>
+                         <div className="space-y-4">
+                            <h3 className="text-lg font-semibold">Your Details</h3>
+                            <div className="space-y-2">
+                                <Label htmlFor="name-cart">Full Name</Label>
+                                <Input id="name-cart" value={name} onChange={(e) => setName(e.target.value)} placeholder="Jane Doe" />
+                            </div>
+                             <div className="space-y-2">
+                                <Label htmlFor="email-cart">Email</Label>
+                                <Input id="email-cart" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="jane.doe@example.com" />
+                            </div>
+                             <div className="space-y-2">
+                                <Label htmlFor="address-cart">Delivery Address</Label>
+                                <Textarea id="address-cart" value={address} onChange={(e) => setAddress(e.target.value)} placeholder="123 Sweet Street, Dallas, TX" />
                             </div>
                         </div>
                     </div>
