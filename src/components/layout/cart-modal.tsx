@@ -155,7 +155,7 @@ ${itemsSummary}
                 <DialogFooter className="p-6 border-t bg-background">
                     <div className="w-full space-y-4">
                         <Button size="lg" className="w-full" onClick={handleNextStep}>
-                            Submit Order Request
+                            Next
                         </Button>
                     </div>
                 </DialogFooter>

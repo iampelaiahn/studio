@@ -2286,7 +2286,7 @@ ${itemsSummary}
                                     size: "lg",
                                     className: "w-full",
                                     onClick: handleNextStep,
-                                    children: "Submit Order Request"
+                                    children: "Next"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/layout/cart-modal.tsx",
                                     lineNumber: 157,
