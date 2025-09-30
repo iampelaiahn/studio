@@ -2286,6 +2286,7 @@ ${itemsSummary}
                                     size: "lg",
                                     className: "w-full",
                                     onClick: handleNextStep,
+                                    disabled: cart.length === 0,
                                     children: "Next"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/layout/cart-modal.tsx",

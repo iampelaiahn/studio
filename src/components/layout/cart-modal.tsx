@@ -154,7 +154,7 @@ ${itemsSummary}
 
                 <DialogFooter className="p-6 border-t bg-background">
                     <div className="w-full space-y-4">
-                        <Button size="lg" className="w-full" onClick={handleNextStep}>
+                        <Button size="lg" className="w-full" onClick={handleNextStep} disabled={cart.length === 0}>
                             Next
                         </Button>
                     </div>
