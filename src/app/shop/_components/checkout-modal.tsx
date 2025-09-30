@@ -72,7 +72,6 @@ export default function CheckoutModal({ product, isOpen, onOpenChange }: Checkou
               <p className="text-muted-foreground mt-2">{product.category}</p>
               <Separator className="my-4" />
               <p className="text-sm text-muted-foreground">{product.description}</p>
-              <p className="text-4xl font-bold text-foreground my-6">{product.price}</p>
             </div>
 
             <div className="mt-auto space-y-6">
