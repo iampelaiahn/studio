@@ -73,7 +73,7 @@ export const galleryImages = [
 
 export const navLinks = [
   { id: "about", href: "/about", label: "About Us" },
-  { id: "shop", href: "/shop", label: "Shop" },
+  { id: "gallery", href: "/gallery", label: "Gallery" },
   { id: "products", href: "/products", label: "Catalog" },
   { id: "custom-order", href: "/custom-order", label: "Custom-cakes" },
   { id: "feedback", href: "/feedback", label: "Feedback" },
@@ -81,4 +81,3 @@ export const navLinks = [
 ];
 
 export const productTypes = ["Cakes", "Desserts", "Donuts", "Vegan", "Drinks"];
-

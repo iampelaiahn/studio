@@ -159,9 +159,9 @@ const navLinks = [
         label: "About Us"
     },
     {
-        id: "shop",
-        href: "/shop",
-        label: "Shop"
+        id: "gallery",
+        href: "/gallery",
+        label: "Gallery"
     },
     {
         id: "products",
