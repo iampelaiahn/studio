@@ -1955,10 +1955,6 @@ function CartModal({ isOpen, onOpenChange }) {
     const { cart, removeFromCart, updateCartItemQuantity, clearCart, customerDetails } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$order$2d$context$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useOrder"])();
     const { toast } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$use$2d$toast$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useToast"])();
     const totalItems = cart.reduce((sum, item)=>sum + item.quantity, 0);
-    const subtotal = cart.reduce((sum, item)=>{
-        const price = parseFloat(item.product.price?.replace('$', '') || '0');
-        return sum + price * item.quantity;
-    }, 0);
     const handleCheckout = ()=>{
         if (cart.length === 0) {
             toast({
@@ -1968,10 +1964,9 @@ function CartModal({ isOpen, onOpenChange }) {
             });
             return;
         }
-        // 1. Format the order details for the email body
-        const itemsSummary = cart.map((item)=>`- ${item.product.name} (x${item.quantity}) - ${item.product.price}`).join('\n');
+        const itemsSummary = cart.map((item)=>`- ${item.product.name} (x${item.quantity})`).join('\n');
         const emailBody = `
-New Order Details:
+New Order Request:
 ==================
 
 Customer Name: ${customerDetails.name || 'Not provided'}
@@ -1979,20 +1974,15 @@ Customer Email: ${customerDetails.email || 'Not provided'}
 
 Order Items:
 ${itemsSummary}
-
-Subtotal: $${subtotal.toFixed(2)}
     `;
-        // 2. Create the mailto link
         const mailtoLink = `mailto:info@ruesdelectables.com?subject=${encodeURIComponent(`New Order from ${customerDetails.name || 'Website Customer'}`)}&body=${encodeURIComponent(emailBody)}`;
-        // 3. Open the email client
         window.location.href = mailtoLink;
-        // 4. Show confirmation and clear the cart
-        let description = `Your order has been submitted.`;
+        let description = `Your order request has been prepared. Please send the email to finalize.`;
         if (customerDetails.name) {
             description += ` Thank you, ${customerDetails.name}!`;
         }
         toast({
-            title: 'Order Submitted!',
+            title: 'Finalize Your Order',
             description
         });
         clearCart();
@@ -2015,12 +2005,12 @@ Subtotal: $${subtotal.toFixed(2)}
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/layout/cart-modal.tsx",
-                        lineNumber: 82,
+                        lineNumber: 72,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/src/components/layout/cart-modal.tsx",
-                    lineNumber: 81,
+                    lineNumber: 71,
                     columnNumber: 9
                 }, this),
                 cart.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2031,7 +2021,7 @@ Subtotal: $${subtotal.toFixed(2)}
                             children: "Your cart is empty"
                         }, void 0, false, {
                             fileName: "[project]/src/components/layout/cart-modal.tsx",
-                            lineNumber: 89,
+                            lineNumber: 79,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogClose"], {
@@ -2042,18 +2032,18 @@ Subtotal: $${subtotal.toFixed(2)}
                                 children: "Continue Shopping"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/layout/cart-modal.tsx",
-                                lineNumber: 91,
+                                lineNumber: 81,
                                 columnNumber: 17
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/components/layout/cart-modal.tsx",
-                            lineNumber: 90,
+                            lineNumber: 80,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/layout/cart-modal.tsx",
-                    lineNumber: 88,
+                    lineNumber: 78,
                     columnNumber: 11
                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
                     children: [
@@ -2072,12 +2062,12 @@ Subtotal: $${subtotal.toFixed(2)}
                                                     className: "object-cover"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/layout/cart-modal.tsx",
-                                                    lineNumber: 102,
+                                                    lineNumber: 92,
                                                     columnNumber: 25
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/layout/cart-modal.tsx",
-                                                lineNumber: 100,
+                                                lineNumber: 90,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2088,15 +2078,15 @@ Subtotal: $${subtotal.toFixed(2)}
                                                         children: item.product.name
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/layout/cart-modal.tsx",
-                                                        lineNumber: 106,
+                                                        lineNumber: 96,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                         className: "text-sm text-muted-foreground",
-                                                        children: item.product.price
+                                                        children: item.product.category
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/layout/cart-modal.tsx",
-                                                        lineNumber: 107,
+                                                        lineNumber: 97,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2111,12 +2101,12 @@ Subtotal: $${subtotal.toFixed(2)}
                                                                     className: "h-3 w-3"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/components/layout/cart-modal.tsx",
-                                                                    lineNumber: 110,
+                                                                    lineNumber: 100,
                                                                     columnNumber: 27
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/layout/cart-modal.tsx",
-                                                                lineNumber: 109,
+                                                                lineNumber: 99,
                                                                 columnNumber: 25
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2124,7 +2114,7 @@ Subtotal: $${subtotal.toFixed(2)}
                                                                 children: item.quantity
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/layout/cart-modal.tsx",
-                                                                lineNumber: 112,
+                                                                lineNumber: 102,
                                                                 columnNumber: 25
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -2136,24 +2126,24 @@ Subtotal: $${subtotal.toFixed(2)}
                                                                     className: "h-3 w-3"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/components/layout/cart-modal.tsx",
-                                                                    lineNumber: 114,
+                                                                    lineNumber: 104,
                                                                     columnNumber: 27
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/layout/cart-modal.tsx",
-                                                                lineNumber: 113,
+                                                                lineNumber: 103,
                                                                 columnNumber: 25
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/layout/cart-modal.tsx",
-                                                        lineNumber: 108,
+                                                        lineNumber: 98,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/layout/cart-modal.tsx",
-                                                lineNumber: 105,
+                                                lineNumber: 95,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -2165,28 +2155,28 @@ Subtotal: $${subtotal.toFixed(2)}
                                                     className: "h-4 w-4 text-muted-foreground"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/layout/cart-modal.tsx",
-                                                    lineNumber: 119,
+                                                    lineNumber: 109,
                                                     columnNumber: 23
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/layout/cart-modal.tsx",
-                                                lineNumber: 118,
+                                                lineNumber: 108,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, item.product.id, true, {
                                         fileName: "[project]/src/components/layout/cart-modal.tsx",
-                                        lineNumber: 99,
+                                        lineNumber: 89,
                                         columnNumber: 19
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/src/components/layout/cart-modal.tsx",
-                                lineNumber: 97,
+                                lineNumber: 87,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/components/layout/cart-modal.tsx",
-                            lineNumber: 96,
+                            lineNumber: 86,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogFooter"], {
@@ -2194,59 +2184,33 @@ Subtotal: $${subtotal.toFixed(2)}
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "w-full space-y-4",
                                 children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex justify-between items-center font-medium",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                children: "Subtotal"
-                                            }, void 0, false, {
-                                                fileName: "[project]/src/components/layout/cart-modal.tsx",
-                                                lineNumber: 129,
-                                                columnNumber: 25
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                children: [
-                                                    "$",
-                                                    subtotal.toFixed(2)
-                                                ]
-                                            }, void 0, true, {
-                                                fileName: "[project]/src/components/layout/cart-modal.tsx",
-                                                lineNumber: 130,
-                                                columnNumber: 25
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/src/components/layout/cart-modal.tsx",
-                                        lineNumber: 128,
-                                        columnNumber: 21
-                                    }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                         className: "text-xs text-muted-foreground text-center",
-                                        children: "Taxes and shipping calculated at checkout."
+                                        children: "You will receive a quote via email after submitting your request."
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/layout/cart-modal.tsx",
-                                        lineNumber: 132,
+                                        lineNumber: 118,
                                         columnNumber: 21
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
                                         size: "lg",
                                         className: "w-full",
                                         onClick: handleCheckout,
-                                        children: "Proceed to Checkout"
+                                        children: "Submit Order Request"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/layout/cart-modal.tsx",
-                                        lineNumber: 133,
+                                        lineNumber: 119,
                                         columnNumber: 21
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/layout/cart-modal.tsx",
-                                lineNumber: 127,
+                                lineNumber: 117,
                                 columnNumber: 17
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/components/layout/cart-modal.tsx",
-                            lineNumber: 126,
+                            lineNumber: 116,
                             columnNumber: 13
                         }, this)
                     ]
@@ -2254,12 +2218,12 @@ Subtotal: $${subtotal.toFixed(2)}
             ]
         }, void 0, true, {
             fileName: "[project]/src/components/layout/cart-modal.tsx",
-            lineNumber: 80,
+            lineNumber: 70,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/layout/cart-modal.tsx",
-        lineNumber: 79,
+        lineNumber: 69,
         columnNumber: 5
     }, this);
 }

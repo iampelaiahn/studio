@@ -21,10 +21,6 @@ export default function CartModal({ isOpen, onOpenChange }: CartModalProps) {
   const { toast } = useToast();
 
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-  const subtotal = cart.reduce((sum, item) => {
-    const price = parseFloat(item.product.price?.replace('$', '') || '0');
-    return sum + price * item.quantity;
-  }, 0);
 
   const handleCheckout = () => {
     if(cart.length === 0) {
@@ -36,13 +32,12 @@ export default function CartModal({ isOpen, onOpenChange }: CartModalProps) {
       return;
     }
     
-    // 1. Format the order details for the email body
     const itemsSummary = cart.map(item => 
-      `- ${item.product.name} (x${item.quantity}) - ${item.product.price}`
+      `- ${item.product.name} (x${item.quantity})`
     ).join('\n');
 
     const emailBody = `
-New Order Details:
+New Order Request:
 ==================
 
 Customer Name: ${customerDetails.name || 'Not provided'}
@@ -50,24 +45,19 @@ Customer Email: ${customerDetails.email || 'Not provided'}
 
 Order Items:
 ${itemsSummary}
-
-Subtotal: $${subtotal.toFixed(2)}
     `;
 
-    // 2. Create the mailto link
     const mailtoLink = `mailto:info@ruesdelectables.com?subject=${encodeURIComponent(`New Order from ${customerDetails.name || 'Website Customer'}`)}&body=${encodeURIComponent(emailBody)}`;
 
-    // 3. Open the email client
     window.location.href = mailtoLink;
 
-    // 4. Show confirmation and clear the cart
-    let description = `Your order has been submitted.`;
+    let description = `Your order request has been prepared. Please send the email to finalize.`;
     if (customerDetails.name) {
       description += ` Thank you, ${customerDetails.name}!`
     }
 
     toast({
-      title: 'Order Submitted!',
+      title: 'Finalize Your Order',
       description,
     });
     
@@ -104,7 +94,7 @@ Subtotal: $${subtotal.toFixed(2)}
                     </div>
                     <div className="flex-1">
                       <p className="font-semibold">{item.product.name}</p>
-                      <p className="text-sm text-muted-foreground">{item.product.price}</p>
+                      <p className="text-sm text-muted-foreground">{item.product.category}</p>
                       <div className="flex items-center gap-2 mt-2">
                         <Button variant="outline" size="icon" className="h-6 w-6" onClick={() => updateCartItemQuantity(item.product.id, item.quantity - 1)}>
                           <Minus className="h-3 w-3" />
@@ -125,13 +115,9 @@ Subtotal: $${subtotal.toFixed(2)}
 
             <DialogFooter className="p-6 border-t bg-background">
                 <div className="w-full space-y-4">
-                    <div className="flex justify-between items-center font-medium">
-                        <span>Subtotal</span>
-                        <span>${subtotal.toFixed(2)}</span>
-                    </div>
-                    <p className="text-xs text-muted-foreground text-center">Taxes and shipping calculated at checkout.</p>
+                    <p className="text-xs text-muted-foreground text-center">You will receive a quote via email after submitting your request.</p>
                     <Button size="lg" className="w-full" onClick={handleCheckout}>
-                        Proceed to Checkout
+                        Submit Order Request
                     </Button>
                 </div>
             </DialogFooter>
