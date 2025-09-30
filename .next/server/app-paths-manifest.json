@@ -2,5 +2,6 @@
   "/custom-order/page": "app/custom-order/page.js",
   "/gallery/page": "app/gallery/page.js",
   "/page": "app/page.js",
+  "/pricing/page": "app/pricing/page.js",
   "/shop/page": "app/shop/page.js"
 }
