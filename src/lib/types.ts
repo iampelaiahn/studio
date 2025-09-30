@@ -1,3 +1,4 @@
+
 import { products } from "./data";
 
 export type ProductWithImage = (typeof products)[0] & {

@@ -2,7 +2,13 @@
 import { products } from "@/lib/data"
 import { PlaceHolderImages, ImagePlaceholder } from "@/lib/placeholder-images"
 import ProductGrid from "./_components/product-grid"
-import { type ProductWithImage } from "@/lib/types"
+import { type Product as ProductType } from "@/lib/data";
+
+export type ProductWithImage = ProductType & {
+    imageUrl?: string;
+    imageHint?: string;
+};
+
 
 export default function ProductsPage() {
     const productsWithImages: ProductWithImage[] = products.map(product => {
