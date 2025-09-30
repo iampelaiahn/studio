@@ -69,7 +69,6 @@ export const products = [
 export const navLinks = [
   { id: "about", href: "/about", label: "About Us" },
   { id: "products", href: "/products", label: "Catalog" },
-  { id: "pricing", href: "/pricing", label: "Pricing" },
   { id: "custom-order", href: "/custom-order", label: "Custom-cakes" },
   { id: "feedback", href: "/feedback", label: "Feedback" },
   { id: "availability", href: "#", label: "Availability" },

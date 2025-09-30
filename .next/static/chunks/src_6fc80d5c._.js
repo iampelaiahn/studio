@@ -137,11 +137,6 @@ const navLinks = [
         label: "Catalog"
     },
     {
-        id: "pricing",
-        href: "/pricing",
-        label: "Pricing"
-    },
-    {
         id: "custom-order",
         href: "/custom-order",
         label: "Custom-cakes"
