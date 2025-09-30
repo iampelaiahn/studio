@@ -116,7 +116,7 @@ export default function ProductCarousel({ products, isShowingDetail, setIsShowin
                                 <div className="title">Discover</div>
                                 <div className="topic">{product.name}</div>
                                 <div className="des">{product.description}</div>
-                                <div className="flex items-center gap-4 mt-4">
+                                <div className="flex items-center gap-4 mt-4 justify-center md:justify-start">
                                     <button className="seeMore" onClick={handleSeeMoreClick}>
                                         SEE MORE &#8594;
                                     </button>
@@ -139,7 +139,7 @@ export default function ProductCarousel({ products, isShowingDetail, setIsShowin
                                 </div>
                                 <div className="checkout">
                                     <Button onClick={handleBuyNowClick}>ADD TO CART</Button>
-                                    <Button variant="outline" onClick={handleBuyNowClick}>CHECKOUT</Button>
+                                    <Button variant="outline" onClick={handleBuyNowClick}>ORDER NOW</Button>
                                 </div>
                             </div>
                         </div>
@@ -166,3 +166,5 @@ export default function ProductCarousel({ products, isShowingDetail, setIsShowin
         </>
     );
 };
+
+    
