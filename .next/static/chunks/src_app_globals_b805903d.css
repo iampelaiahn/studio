@@ -1618,6 +1618,10 @@ body {
   width: 100%;
 }
 
+.w-\[120px\] {
+  width: 120px;
+}
+
 .min-w-0 {
   min-width: 0;
 }
@@ -4230,6 +4234,10 @@ body {
 
   .sm\:w-\[400px\] {
     width: 400px;
+  }
+
+  .sm\:w-\[160px\] {
+    width: 160px;
   }
 
   .sm\:max-w-lg {
