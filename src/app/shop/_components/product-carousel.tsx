@@ -125,7 +125,7 @@ export default function ProductCarousel({ products, isShowingDetail, setIsShowin
                                             className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full animate-bounce"
                                             onClick={handleBuyNowClick}
                                         >
-                                            Buy Now
+                                            Order Now
                                         </Button>
                                     </div>
                                 </div>
