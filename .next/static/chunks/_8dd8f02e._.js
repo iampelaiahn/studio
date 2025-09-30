@@ -496,7 +496,7 @@ const carouselCakes = [
         weight: '0.2 KG',
         size: '8 CM',
         productionTime: '24 H',
-        price: '$25,00',
+        price: '$80,00',
         imageId: 'hero-4'
     }
 ];
