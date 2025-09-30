@@ -36,10 +36,6 @@ export function ProductCard({ product }: ProductCardProps) {
         <CardContent className="flex-grow">
           <CardDescription>{product.description}</CardDescription>
         </CardContent>
-        <CardFooter className='flex justify-between items-center'>
-            <p className='font-bold text-lg'>{product.price}</p>
-            <Button onClick={() => setIsCheckoutOpen(true)}>Buy Now</Button>
-        </CardFooter>
       </Card>
        <CheckoutModal 
             product={product}
