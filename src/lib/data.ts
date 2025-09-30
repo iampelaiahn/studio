@@ -66,14 +66,8 @@ export const products = [
   },
 ];
 
-export const galleryImages = [
-  { id: "gallery-1" }, { id: "gallery-2" }, { id: "gallery-3" }, { id: "gallery-4" },
-  { id: "gallery-5" }, { id: "gallery-6" }, { id: "gallery-7" }, { id: "gallery-8" },
-];
-
 export const navLinks = [
   { id: "about", href: "/about", label: "About Us" },
-  { id: "gallery", href: "/gallery", label: "Gallery" },
   { id: "products", href: "/products", label: "Catalog" },
   { id: "pricing", href: "/pricing", label: "Pricing" },
   { id: "custom-order", href: "/custom-order", label: "Custom-cakes" },

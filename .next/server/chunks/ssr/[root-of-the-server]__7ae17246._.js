@@ -78,7 +78,6 @@ function cn(...inputs) {
 var { g: global, __dirname } = __turbopack_context__;
 {
 __turbopack_context__.s({
-    "galleryImages": (()=>galleryImages),
     "navLinks": (()=>navLinks),
     "productTypes": (()=>productTypes),
     "products": (()=>products)
@@ -149,42 +148,11 @@ const products = [
         imageId: "other-3"
     }
 ];
-const galleryImages = [
-    {
-        id: "gallery-1"
-    },
-    {
-        id: "gallery-2"
-    },
-    {
-        id: "gallery-3"
-    },
-    {
-        id: "gallery-4"
-    },
-    {
-        id: "gallery-5"
-    },
-    {
-        id: "gallery-6"
-    },
-    {
-        id: "gallery-7"
-    },
-    {
-        id: "gallery-8"
-    }
-];
 const navLinks = [
     {
         id: "about",
         href: "/about",
         label: "About Us"
-    },
-    {
-        id: "gallery",
-        href: "/gallery",
-        label: "Gallery"
     },
     {
         id: "products",
