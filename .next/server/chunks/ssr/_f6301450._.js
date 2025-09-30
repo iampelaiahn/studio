@@ -23,7 +23,6 @@ __turbopack_context__.n(__turbopack_context__.i("[project]/src/app/layout.tsx [a
 var { g: global, __dirname } = __turbopack_context__;
 {
 __turbopack_context__.s({
-    "galleryImages": (()=>galleryImages),
     "navLinks": (()=>navLinks),
     "productTypes": (()=>productTypes),
     "products": (()=>products)
@@ -94,32 +93,6 @@ const products = [
         imageId: "other-3"
     }
 ];
-const galleryImages = [
-    {
-        id: "gallery-1"
-    },
-    {
-        id: "gallery-2"
-    },
-    {
-        id: "gallery-3"
-    },
-    {
-        id: "gallery-4"
-    },
-    {
-        id: "gallery-5"
-    },
-    {
-        id: "gallery-6"
-    },
-    {
-        id: "gallery-7"
-    },
-    {
-        id: "gallery-8"
-    }
-];
 const navLinks = [
     {
         id: "about",
@@ -127,14 +100,14 @@ const navLinks = [
         label: "About Us"
     },
     {
-        id: "shop",
-        href: "/shop",
-        label: "Shop"
-    },
-    {
         id: "products",
         href: "/products",
         label: "Catalog"
+    },
+    {
+        id: "pricing",
+        href: "/pricing",
+        label: "Pricing"
     },
     {
         id: "custom-order",
@@ -145,6 +118,11 @@ const navLinks = [
         id: "feedback",
         href: "/feedback",
         label: "Feedback"
+    },
+    {
+        id: "shop",
+        href: "/shop",
+        label: "Shop"
     },
     {
         id: "availability",
@@ -164,7 +142,7 @@ const productTypes = [
 
 var { g: global, __dirname } = __turbopack_context__;
 {
-__turbopack_context__.v(JSON.parse("{\"placeholderImages\":[{\"id\":\"hero-1\",\"description\":\"Green cake with pink flowers on a stand\",\"imageUrl\":\"https://i.imgur.com/6mIsDDF.png\",\"imageHint\":\"elegant cake flowers\"},{\"id\":\"hero-2\",\"description\":\"A slice of chocolate cake on a plate\",\"imageUrl\":\"https://i.imgur.com/tOtqvMQ.png\",\"imageHint\":\"chocolate cake slice\"},{\"id\":\"hero-3\",\"description\":\"A vibrant and colorful multi-layered cake\",\"imageUrl\":\"https://i.imgur.com/IWlEU5U.png\",\"imageHint\":\"colorful layered cake\"},{\"id\":\"hero-4\",\"description\":\"A close-up of a cupcake with intricate frosting\",\"imageUrl\":\"https://i.imgur.com/t1VwmSJ.png\",\"imageHint\":\"frosted cupcake\"},{\"id\":\"cake-1\",\"description\":\"Cake with blueberries\",\"imageUrl\":\"https://i.imgur.com/rpYIQ2X.png\",\"imageHint\":\"blueberry cake\"},{\"id\":\"cake-2\",\"description\":\"Blue and white cake with a flower\",\"imageUrl\":\"https://i.imgur.com/KeT5s5h.png\",\"imageHint\":\"blue cake\"},{\"id\":\"cake-3\",\"description\":\"Rainbow colored cake\",\"imageUrl\":\"https://i.imgur.com/t1VwmSJ.png\",\"imageHint\":\"rainbow cake\"},{\"id\":\"cupcake-1\",\"description\":\"Green layered cake\",\"imageUrl\":\"https://i.imgur.com/giqD7TS.png\",\"imageHint\":\"green cake\"},{\"id\":\"cupcake-2\",\"description\":\"Watercolor style cake\",\"imageUrl\":\"https://i.imgur.com/PNpiwav.png\",\"imageHint\":\"colorful cake\"},{\"id\":\"other-1\",\"description\":\"Pink and purple cake\",\"imageUrl\":\"https://i.imgur.com/6CoeHx9.png\",\"imageHint\":\"pink cake\"},{\"id\":\"other-2\",\"description\":\"Cake with a bicycle\",\"imageUrl\":\"https://i.imgur.com/gZBJM7G.png\",\"imageHint\":\"bicycle cake\"},{\"id\":\"other-3\",\"description\":\"Forest themed cake\",\"imageUrl\":\"https://i.imgur.com/mVaesdN.png\",\"imageHint\":\"forest cake\"},{\"id\":\"gallery-1\",\"description\":\"A stunning wedding cake\",\"imageUrl\":\"https://images.unsplash.com/photo-1519654793190-2e8a4806f1f2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx3ZWRkaW5nJTIwY2FrZXxlbnwwfHx8fDE3NTg4NDc1MDJ8MA&ixlib=rb-4.1.0&q=80&w=1080\",\"imageHint\":\"wedding cake\"},{\"id\":\"gallery-2\",\"description\":\"A birthday cake with cartoon characters\",\"imageUrl\":\"https://images.unsplash.com/photo-1756621716915-cb8723574795?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8a2lkcyUyMGJpcnRoZGF5JTIwY2FrZXxlbnwwfHx8fDE3NTg4Nzc4MDh8MA&ixlib=rb-4.1.0&q=80&w=1080\",\"imageHint\":\"kids birthday cake\"},{\"id\":\"gallery-3\",\"description\":\"A box of assorted cupcakes\",\"imageUrl\":\"https://images.unsplash.com/photo-1587536848939-c7e58de4b792?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjdXBjYWtlJTIwYm94fGVufDB8fHx8MTc1ODg3NzgwOHww&ixlib=rb-4.1.0&q=80&w=1080\",\"imageHint\":\"cupcake box\"},{\"id\":\"gallery-4\",\"description\":\"Custom designed sugar cookies\",\"imageUrl\":\"https://images.unsplash.com/photo-1646169018521-993a1b315917?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxkZWNvcmF0ZWQlMjBjb29raWVzfGVufDB8fHx8MTc1ODg3NzgwOHww&ixlib=rb-4.1.0&q=80&w=1080\",\"imageHint\":\"decorated cookies\"},{\"id\":\"gallery-5\",\"description\":\"A dessert table at an event\",\"imageUrl\":\"https://images.unsplash.com/photo-1637944220604-c5f28faac604?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxkZXNzZXJ0JTIwdGFibGV8ZW58MHx8fHwxNzU4NzczMDczfDA&ixlib=rb-4.1.0&q=80&w=1080\",\"imageHint\":\"dessert table\"},{\"id\":\"gallery-6\",\"description\":\"Elegant tiered cake\",\"imageUrl\":\"https://images.unsplash.com/photo-1551978103-4b1b704719fd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHx0aWVyZWQlMjBjYWtlfGVufDB8fHx8MTc1ODg3NzgwOHww&ixlib=rb-4.1.0&q=80&w=1080\",\"imageHint\":\"tiered cake\"},{\"id\":\"gallery-7\",\"description\":\"A close-up of intricate piping work on a cake\",\"imageUrl\":\"https://images.unsplash.com/photo-1611810797891-ac09c37a1f93?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjYWtlJTIwZGV0YWlsfGVufDB8fHx8MTc1ODg3NzgwOHww&ixlib=rb-4.1.0&q=80&w=1080\",\"imageHint\":\"cake detail\"},{\"id\":\"gallery-8\",\"description\":\"A rustic-themed naked cake with fresh berries\",\"imageUrl\":\"https://images.unsplash.com/photo-1679654596647-faf434b35796?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxydXN0aWMlMjBjYWtlfGVufDB8fHx8MTc1ODg3NzgwOHww&ixlib=rb-4.1.0&q=80&w=1080\",\"imageHint\":\"rustic cake\"}]}"));}}),
+__turbopack_context__.v(JSON.parse("{\"placeholderImages\":[{\"id\":\"hero-1\",\"description\":\"Green cake with pink flowers on a stand\",\"imageUrl\":\"https://i.imgur.com/6mIsDDF.png\",\"imageHint\":\"elegant cake flowers\"},{\"id\":\"hero-2\",\"description\":\"A slice of chocolate cake on a plate\",\"imageUrl\":\"https://i.imgur.com/tOtqvMQ.png\",\"imageHint\":\"chocolate cake slice\"},{\"id\":\"hero-3\",\"description\":\"A vibrant and colorful multi-layered cake\",\"imageUrl\":\"https://i.imgur.com/IWlEU5U.png\",\"imageHint\":\"colorful layered cake\"},{\"id\":\"hero-4\",\"description\":\"A close-up of a cupcake with intricate frosting\",\"imageUrl\":\"https://i.imgur.com/t1VwmSJ.png\",\"imageHint\":\"frosted cupcake\"},{\"id\":\"cake-1\",\"description\":\"Cake with blueberries\",\"imageUrl\":\"https://i.imgur.com/rpYIQ2X.png\",\"imageHint\":\"blueberry cake\"},{\"id\":\"cake-2\",\"description\":\"Blue and white cake with a flower\",\"imageUrl\":\"https://i.imgur.com/KeT5s5h.png\",\"imageHint\":\"blue cake\"},{\"id\":\"cake-3\",\"description\":\"Rainbow colored cake\",\"imageUrl\":\"https://i.imgur.com/t1VwmSJ.png\",\"imageHint\":\"rainbow cake\"},{\"id\":\"cupcake-1\",\"description\":\"Green layered cake\",\"imageUrl\":\"https://i.imgur.com/giqD7TS.png\",\"imageHint\":\"green cake\"},{\"id\":\"cupcake-2\",\"description\":\"Watercolor style cake\",\"imageUrl\":\"https://i.imgur.com/PNpiwav.png\",\"imageHint\":\"colorful cake\"},{\"id\":\"other-1\",\"description\":\"Pink and purple cake\",\"imageUrl\":\"https://i.imgur.com/6CoeHx9.png\",\"imageHint\":\"pink cake\"},{\"id\":\"other-2\",\"description\":\"Cake with a bicycle\",\"imageUrl\":\"https://i.imgur.com/gZBJM7G.png\",\"imageHint\":\"bicycle cake\"},{\"id\":\"other-3\",\"description\":\"Forest themed cake\",\"imageUrl\":\"https://i.imgur.com/mVaesdN.png\",\"imageHint\":\"forest cake\"}]}"));}}),
 "[project]/src/lib/placeholder-images.ts [app-rsc] (ecmascript)": ((__turbopack_context__) => {
 "use strict";
 
@@ -251,7 +229,7 @@ function ProductsPage() {
                         children: "Our Delectables"
                     }, void 0, false, {
                         fileName: "[project]/src/app/products/page.tsx",
-                        lineNumber: 16,
+                        lineNumber: 22,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -259,26 +237,26 @@ function ProductsPage() {
                         children: "Browse our signature creations, each made with the finest ingredients and a sprinkle of love."
                     }, void 0, false, {
                         fileName: "[project]/src/app/products/page.tsx",
-                        lineNumber: 17,
+                        lineNumber: 23,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/products/page.tsx",
-                lineNumber: 15,
+                lineNumber: 21,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$products$2f$_components$2f$product$2d$grid$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
                 products: productsWithImages
             }, void 0, false, {
                 fileName: "[project]/src/app/products/page.tsx",
-                lineNumber: 21,
+                lineNumber: 27,
                 columnNumber: 13
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/products/page.tsx",
-        lineNumber: 14,
+        lineNumber: 20,
         columnNumber: 9
     }, this);
 }

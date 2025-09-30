@@ -16,8 +16,20 @@ export default function ShopPage() {
     const [isShowingDetail, setIsShowingDetail] = useState(false);
     const [activeProduct, setActiveProduct] = useState<ProductWithImage | null>(productsWithImages[1]);
 
+    const [isShowingDetail2, setIsShowingDetail2] = useState(false);
+    const [activeProduct2, setActiveProduct2] = useState<ProductWithImage | null>(productsWithImages[1]);
+
     return (
         <div className="bg-background">
+            <section className="relative py-16 md:py-24 bg-background text-foreground overflow-hidden -mt-[5vh] z-0">
+                <ProductCarousel 
+                    products={productsWithImages} 
+                    isShowingDetail={isShowingDetail2}
+                    setIsShowingDetail={setIsShowingDetail2}
+                    activeProduct={activeProduct2}
+                    setActiveProduct={setActiveProduct2}
+                />
+            </section>
             <section className="relative py-16 md:py-24 bg-background text-foreground overflow-hidden -mt-[5vh] z-0">
                 <ProductCarousel 
                     products={productsWithImages} 
