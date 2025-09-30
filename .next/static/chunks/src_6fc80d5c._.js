@@ -152,11 +152,6 @@ const navLinks = [
         label: "Feedback"
     },
     {
-        id: "shop",
-        href: "/shop",
-        label: "Shop"
-    },
-    {
         id: "availability",
         href: "#",
         label: "Availability"
