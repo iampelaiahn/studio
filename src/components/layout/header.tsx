@@ -97,7 +97,7 @@ export default function Header() {
                   <SheetHeader>
                     <SheetTitle className="sr-only">Mobile Menu</SheetTitle>
                   </SheetHeader>
-                  <nav className="flex flex-col gap-6 mt-8">
+                  <nav className="flex flex-col items-start gap-6 mt-8">
                     {renderNavLinks(true)}
                   </nav>
                 </SheetContent>
