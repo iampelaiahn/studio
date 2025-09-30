@@ -37,7 +37,7 @@ export default function Home() {
                 </p>
                 <div className="mt-8 flex gap-4 justify-center">
                   <Button size="lg" asChild className="rounded-full">
-                    <Link href="/shop">BUY</Link>
+                    <Link href="/custom-order">Order Now</Link>
                   </Button>
                   <Button size="lg" variant="outline" asChild className="rounded-full">
                     <Link href="/products">View all</Link>

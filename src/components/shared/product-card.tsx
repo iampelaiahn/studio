@@ -6,14 +6,12 @@ import Image from 'next/image'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { type ProductWithImage } from '@/lib/types'
 import { Button } from '../ui/button';
-import CheckoutModal from '@/app/shop/_components/checkout-modal';
 
 type ProductCardProps = {
   product: ProductWithImage
 }
 
 export function ProductCard({ product }: ProductCardProps) {
-  const [isCheckoutOpen, setIsCheckoutOpen] = React.useState(false);
 
   return (
     <>
@@ -37,11 +35,6 @@ export function ProductCard({ product }: ProductCardProps) {
           <CardDescription>{product.description}</CardDescription>
         </CardContent>
       </Card>
-       <CheckoutModal 
-            product={product}
-            isOpen={isCheckoutOpen}
-            onOpenChange={setIsCheckoutOpen}
-        />
     </>
   )
 }

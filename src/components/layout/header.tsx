@@ -3,7 +3,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, ShoppingCart } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import React from 'react';
 import Image from 'next/image';
 
@@ -19,17 +19,10 @@ import {
 } from '@/components/ui/sheet';
 import { ThemeToggle } from '@/components/theme-toggle';
 import AvailabilityModal from './availability-modal';
-import { useOrder } from '@/context/order-context';
-import { Badge } from '../ui/badge';
-import CartModal from './cart-modal';
 
 export default function Header() {
   const pathname = usePathname();
   const [availabilityOpen, setAvailabilityOpen] = React.useState(false);
-  const [cartOpen, setCartOpen] = React.useState(false);
-  const { cart } = useOrder();
-
-  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   const renderNavLinks = (isMobile = false) => {
     return navLinks.map(link => {
@@ -75,15 +68,6 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center justify-end gap-2">
-            <div className="relative">
-              <Button variant="ghost" size="icon" onClick={() => setCartOpen(true)}>
-                <ShoppingCart className="h-5 w-5" />
-                <span className="sr-only">Shopping Cart</span>
-              </Button>
-              {totalItems > 0 && (
-                <Badge variant="destructive" className="absolute -top-1 -right-1 h-5 w-5 justify-center p-0">{totalItems}</Badge>
-              )}
-            </div>
             <ThemeToggle />
             <div className="lg:hidden">
               <Sheet>
@@ -107,7 +91,6 @@ export default function Header() {
         </div>
       </header>
       <AvailabilityModal isOpen={availabilityOpen} onOpenChange={setAvailabilityOpen} />
-      <CartModal isOpen={cartOpen} onOpenChange={setCartOpen} />
     </>
   );
 }
