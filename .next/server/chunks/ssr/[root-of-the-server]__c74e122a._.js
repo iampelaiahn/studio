@@ -113,7 +113,7 @@ const products = [
     },
     {
         id: "prod-5",
-        name: "Watercolor",
+        name: "Carrot Cake",
         description: "Carrot cake with cream cheese frosting",
         category: "Cupcakes",
         imageId: "cupcake-2"
