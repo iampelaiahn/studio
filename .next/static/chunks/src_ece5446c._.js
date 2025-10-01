@@ -84,7 +84,7 @@ const products = [
     {
         id: "prod-4",
         name: "Red velvet",
-        description: "this is a red velvet cake with cherrys on top",
+        description: "A scarlet-hued classic with rich cream cheese frosting, crowned with a sweet cherry.",
         category: "Cupcakes",
         imageId: "cupcake-1"
     },
