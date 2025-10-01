@@ -107,7 +107,7 @@ const products = [
     {
         id: "prod-4",
         name: "Red velvet",
-        description: "Classic red velvet cupcakes with a smooth cream cheese frosting.",
+        description: "A southern classic, this scarlet-hued masterpiece boasts a subtle chocolate flavor and a moist, tender crumb. Each cupcake is generously topped with a swirl of rich, tangy cream cheese frosting for a truly irresistible treat.",
         category: "Cupcakes",
         imageId: "cupcake-1"
     },
