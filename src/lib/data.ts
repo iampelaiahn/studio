@@ -38,7 +38,7 @@ export const products = [
   {
     id: "prod-6",
     name: "Funfetti",
-    description: "A delightful assortment of our finest handcrafted macarons.",
+    description: "vanilla with confetti and buttercream frosting",
     category: "Baked Treats",
     imageId: "other-1",
   },
