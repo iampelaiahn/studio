@@ -464,8 +464,8 @@ var _s = __turbopack_context__.k.signature();
 ;
 const carouselCakes = [
     {
-        name: 'Vintage',
-        description: 'Sponge cake with cocoa in combination with cappuccino cream and blueberries.',
+        name: 'Triple Chocolate Fudge',
+        description: 'Decadent triple-layered chocolate fudge cake with a rich ganache frosting.',
         weight: '2.4 KG',
         size: '22 CM',
         productionTime: '72 H',

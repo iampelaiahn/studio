@@ -2,7 +2,7 @@
 export const products = [
   {
     id: "prod-1",
-    name: "Vintage",
+    name: "tripple chocolate fudge",
     description: "Sponge cake with cocoa in combination with cappuccino cream and blueberries.",
     category: "Cakes",
     imageId: "cake-1",
