@@ -23,7 +23,7 @@ export const products = [
   },
   {
     id: "prod-4",
-    name: "Fairy",
+    name: "Red velvet",
     description: "Classic red velvet cupcakes with a smooth cream cheese frosting.",
     category: "Cupcakes",
     imageId: "cupcake-1",
