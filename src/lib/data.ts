@@ -31,7 +31,7 @@ export const products = [
   {
     id: "prod-5",
     name: "Watercolor",
-    description: "Tangy lemon curd-filled cupcakes topped with toasted meringue.",
+    description: "Carrot cake with cream cheese frosting",
     category: "Cupcakes",
     imageId: "cupcake-2",
   },
@@ -47,7 +47,7 @@ export const products = [
     name: "Long vacation",
     description: "A delightful assortment of our finest handcrafted macarons.",
     category: "Baked Treats",
-    imageId: "other-2",
+imageId: "other-2",
   },
   {
     id: "prod-8",

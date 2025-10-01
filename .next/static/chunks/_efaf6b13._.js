@@ -400,36 +400,51 @@ __turbopack_context__.s({
     "default": (()=>ProductCarousel)
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/image.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/app-dir/link.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/ui/button.tsx [app-client] (ecmascript)");
+;
+var _s = __turbopack_context__.k.signature();
 "use client";
 ;
 ;
 ;
 ;
-function ProductCarousel({ products, isShowingDetail, setIsShowingDetail, activeProduct, setActiveProduct }) {
-    const handleNext = ()=>{
-        if (products.length > 0) {
-            const list = document.querySelector('.carousel .list');
-            const firstItem = document.querySelector('.carousel .list .item');
-            if (list && firstItem) {
-                list.appendChild(firstItem);
-                const newActiveIndex = (products.findIndex((p)=>p.id === activeProduct?.id) + 1) % products.length;
-                setActiveProduct(products[newActiveIndex]);
-            }
+function ProductCarousel({ products, isShowingDetail, setIsShowingDetail }) {
+    _s();
+    const [carouselProducts, setCarouselProducts] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "ProductCarousel.useEffect": ()=>{
+            setCarouselProducts(products);
         }
+    }["ProductCarousel.useEffect"], [
+        products
+    ]);
+    const activeProduct = carouselProducts.length > 1 ? carouselProducts[1] : carouselProducts[0];
+    const handleNext = ()=>{
+        setCarouselProducts((prev)=>{
+            const newList = [
+                ...prev
+            ];
+            const first = newList.shift();
+            if (first) {
+                newList.push(first);
+            }
+            return newList;
+        });
     };
     const handlePrev = ()=>{
-        if (products.length > 0) {
-            const list = document.querySelector('.carousel .list');
-            const lastItem = document.querySelector('.carousel .list .item:last-child');
-            if (list && lastItem) {
-                list.prepend(lastItem);
-                const newActiveIndex = (products.findIndex((p)=>p.id === activeProduct?.id) - 1 + products.length) % products.length;
-                setActiveProduct(products[newActiveIndex]);
+        setCarouselProducts((prev)=>{
+            const newList = [
+                ...prev
+            ];
+            const last = newList.pop();
+            if (last) {
+                newList.unshift(last);
             }
-        }
+            return newList;
+        });
     };
     const handleShowDetail = ()=>{
         setIsShowingDetail(true);
@@ -437,12 +452,15 @@ function ProductCarousel({ products, isShowingDetail, setIsShowingDetail, active
     const handleBack = ()=>{
         setIsShowingDetail(false);
     };
+    if (!carouselProducts.length) {
+        return null;
+    }
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: `carousel ${isShowingDetail ? 'showDetail' : ''}`,
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "list",
-                children: products.map((product, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                children: carouselProducts.map((product)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "item",
                         children: [
                             product.imageUrl && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -453,7 +471,7 @@ function ProductCarousel({ products, isShowingDetail, setIsShowingDetail, active
                                 "data-ai-hint": product.imageHint
                             }, void 0, false, {
                                 fileName: "[project]/src/app/shop/_components/product-carousel.tsx",
-                                lineNumber: 58,
+                                lineNumber: 65,
                                 columnNumber: 29
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -464,7 +482,7 @@ function ProductCarousel({ products, isShowingDetail, setIsShowingDetail, active
                                         children: "Discover"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/shop/_components/product-carousel.tsx",
-                                        lineNumber: 67,
+                                        lineNumber: 74,
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -472,7 +490,7 @@ function ProductCarousel({ products, isShowingDetail, setIsShowingDetail, active
                                         children: product.name
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/shop/_components/product-carousel.tsx",
-                                        lineNumber: 68,
+                                        lineNumber: 75,
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -480,7 +498,7 @@ function ProductCarousel({ products, isShowingDetail, setIsShowingDetail, active
                                         children: product.description
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/shop/_components/product-carousel.tsx",
-                                        lineNumber: 69,
+                                        lineNumber: 76,
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -489,13 +507,13 @@ function ProductCarousel({ products, isShowingDetail, setIsShowingDetail, active
                                         children: "SEE MORE →"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/shop/_components/product-carousel.tsx",
-                                        lineNumber: 70,
+                                        lineNumber: 77,
                                         columnNumber: 29
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/shop/_components/product-carousel.tsx",
-                                lineNumber: 66,
+                                lineNumber: 73,
                                 columnNumber: 25
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -506,7 +524,7 @@ function ProductCarousel({ products, isShowingDetail, setIsShowingDetail, active
                                         children: product.name
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/shop/_components/product-carousel.tsx",
-                                        lineNumber: 73,
+                                        lineNumber: 80,
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -514,7 +532,7 @@ function ProductCarousel({ products, isShowingDetail, setIsShowingDetail, active
                                         children: product.description
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/shop/_components/product-carousel.tsx",
-                                        lineNumber: 74,
+                                        lineNumber: 81,
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -525,25 +543,25 @@ function ProductCarousel({ products, isShowingDetail, setIsShowingDetail, active
                                                     children: "Category"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/shop/_components/product-carousel.tsx",
-                                                    lineNumber: 77,
+                                                    lineNumber: 84,
                                                     columnNumber: 37
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                     children: product.category
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/shop/_components/product-carousel.tsx",
-                                                    lineNumber: 78,
+                                                    lineNumber: 85,
                                                     columnNumber: 37
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/shop/_components/product-carousel.tsx",
-                                            lineNumber: 76,
+                                            lineNumber: 83,
                                             columnNumber: 33
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/shop/_components/product-carousel.tsx",
-                                        lineNumber: 75,
+                                        lineNumber: 82,
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -555,34 +573,34 @@ function ProductCarousel({ products, isShowingDetail, setIsShowingDetail, active
                                                 children: "Order Now"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/shop/_components/product-carousel.tsx",
-                                                lineNumber: 83,
+                                                lineNumber: 90,
                                                 columnNumber: 37
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/shop/_components/product-carousel.tsx",
-                                            lineNumber: 82,
+                                            lineNumber: 89,
                                             columnNumber: 33
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/shop/_components/product-carousel.tsx",
-                                        lineNumber: 81,
+                                        lineNumber: 88,
                                         columnNumber: 29
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/shop/_components/product-carousel.tsx",
-                                lineNumber: 72,
+                                lineNumber: 79,
                                 columnNumber: 25
                             }, this)
                         ]
                     }, product.id, true, {
                         fileName: "[project]/src/app/shop/_components/product-carousel.tsx",
-                        lineNumber: 56,
+                        lineNumber: 63,
                         columnNumber: 21
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/src/app/shop/_components/product-carousel.tsx",
-                lineNumber: 54,
+                lineNumber: 61,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -594,7 +612,7 @@ function ProductCarousel({ products, isShowingDetail, setIsShowingDetail, active
                         children: "<"
                     }, void 0, false, {
                         fileName: "[project]/src/app/shop/_components/product-carousel.tsx",
-                        lineNumber: 92,
+                        lineNumber: 99,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -603,7 +621,7 @@ function ProductCarousel({ products, isShowingDetail, setIsShowingDetail, active
                         children: ">"
                     }, void 0, false, {
                         fileName: "[project]/src/app/shop/_components/product-carousel.tsx",
-                        lineNumber: 93,
+                        lineNumber: 100,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -612,22 +630,23 @@ function ProductCarousel({ products, isShowingDetail, setIsShowingDetail, active
                         children: "Back"
                     }, void 0, false, {
                         fileName: "[project]/src/app/shop/_components/product-carousel.tsx",
-                        lineNumber: 94,
+                        lineNumber: 101,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/shop/_components/product-carousel.tsx",
-                lineNumber: 91,
+                lineNumber: 98,
                 columnNumber: 13
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/shop/_components/product-carousel.tsx",
-        lineNumber: 53,
+        lineNumber: 60,
         columnNumber: 9
     }, this);
 }
+_s(ProductCarousel, "ZMZCCJGzLI8R4eZ9+uR8XarBPlw=");
 _c = ProductCarousel;
 var _c;
 __turbopack_context__.k.register(_c, "ProductCarousel");
@@ -821,7 +840,6 @@ function ProductsPage() {
         };
     });
     const [isCarouselShowingDetail, setIsCarouselShowingDetail] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
-    const [activeCarouselProduct, setActiveCarouselProduct] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(productsWithImages[1]);
     const [selectedProduct, setSelectedProduct] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const handleProductClick = (product)=>{
         setSelectedProduct(product);
@@ -837,17 +855,15 @@ function ProductsPage() {
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$shop$2f$_components$2f$product$2d$carousel$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                     products: productsWithImages,
                     isShowingDetail: isCarouselShowingDetail,
-                    setIsShowingDetail: setIsCarouselShowingDetail,
-                    activeProduct: activeCarouselProduct,
-                    setActiveProduct: setActiveCarouselProduct
+                    setIsShowingDetail: setIsCarouselShowingDetail
                 }, void 0, false, {
                     fileName: "[project]/src/app/products/page.tsx",
-                    lineNumber: 33,
+                    lineNumber: 32,
                     columnNumber: 17
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/products/page.tsx",
-                lineNumber: 32,
+                lineNumber: 31,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -861,7 +877,7 @@ function ProductsPage() {
                                 children: "Our Delectables"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/products/page.tsx",
-                                lineNumber: 43,
+                                lineNumber: 40,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -869,13 +885,13 @@ function ProductsPage() {
                                 children: "Browse our signature creations, each made with the finest ingredients and a sprinkle of love."
                             }, void 0, false, {
                                 fileName: "[project]/src/app/products/page.tsx",
-                                lineNumber: 44,
+                                lineNumber: 41,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/products/page.tsx",
-                        lineNumber: 42,
+                        lineNumber: 39,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$products$2f$_components$2f$product$2d$grid$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -883,13 +899,13 @@ function ProductsPage() {
                         onProductClick: handleProductClick
                     }, void 0, false, {
                         fileName: "[project]/src/app/products/page.tsx",
-                        lineNumber: 48,
+                        lineNumber: 45,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/products/page.tsx",
-                lineNumber: 41,
+                lineNumber: 38,
                 columnNumber: 13
             }, this),
             selectedProduct && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$products$2f$_components$2f$product$2d$detail$2d$modal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -898,17 +914,17 @@ function ProductsPage() {
                 onOpenChange: handleCloseModal
             }, void 0, false, {
                 fileName: "[project]/src/app/products/page.tsx",
-                lineNumber: 51,
+                lineNumber: 48,
                 columnNumber: 17
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/products/page.tsx",
-        lineNumber: 31,
+        lineNumber: 30,
         columnNumber: 9
     }, this);
 }
-_s(ProductsPage, "2p3+3w1S53PNwNl08FrkngTyIIY=");
+_s(ProductsPage, "XmMqW7Zpe3gd7quSx+TtFfGDLso=");
 _c = ProductsPage;
 var _c;
 __turbopack_context__.k.register(_c, "ProductsPage");
