@@ -1,7 +1,7 @@
 
 "use client"
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { type ProductWithImage } from '@/lib/types';
@@ -11,36 +11,39 @@ type ProductCarouselProps = {
     products: ProductWithImage[];
     isShowingDetail: boolean;
     setIsShowingDetail: React.Dispatch<React.SetStateAction<boolean>>;
-    activeProduct: ProductWithImage | null;
-    setActiveProduct: React.Dispatch<React.SetStateAction<ProductWithImage | null>>;
 };
 
-export default function ProductCarousel({ products, isShowingDetail, setIsShowingDetail, activeProduct, setActiveProduct }: ProductCarouselProps) {
+export default function ProductCarousel({ products, isShowingDetail, setIsShowingDetail }: ProductCarouselProps) {
+    const [carouselProducts, setCarouselProducts] = useState<ProductWithImage[]>([]);
+    
+    useEffect(() => {
+        setCarouselProducts(products);
+    }, [products]);
+
+    const activeProduct = carouselProducts.length > 1 ? carouselProducts[1] : carouselProducts[0];
 
     const handleNext = () => {
-        if (products.length > 0) {
-            const list = document.querySelector('.carousel .list') as HTMLElement;
-            const firstItem = document.querySelector('.carousel .list .item');
-            if (list && firstItem) {
-                list.appendChild(firstItem);
-                const newActiveIndex = (products.findIndex(p => p.id === activeProduct?.id) + 1) % products.length;
-                setActiveProduct(products[newActiveIndex]);
+        setCarouselProducts(prev => {
+            const newList = [...prev];
+            const first = newList.shift();
+            if (first) {
+                newList.push(first);
             }
-        }
+            return newList;
+        });
     };
 
     const handlePrev = () => {
-        if (products.length > 0) {
-            const list = document.querySelector('.carousel .list') as HTMLElement;
-            const lastItem = document.querySelector('.carousel .list .item:last-child');
-            if (list && lastItem) {
-                list.prepend(lastItem);
-                const newActiveIndex = (products.findIndex(p => p.id === activeProduct?.id) - 1 + products.length) % products.length;
-                setActiveProduct(products[newActiveIndex]);
+        setCarouselProducts(prev => {
+            const newList = [...prev];
+            const last = newList.pop();
+            if (last) {
+                newList.unshift(last);
             }
-        }
+            return newList;
+        });
     };
-
+    
     const handleShowDetail = () => {
         setIsShowingDetail(true);
     };
@@ -49,10 +52,14 @@ export default function ProductCarousel({ products, isShowingDetail, setIsShowin
         setIsShowingDetail(false);
     };
 
+    if (!carouselProducts.length) {
+        return null;
+    }
+
     return (
         <div className={`carousel ${isShowingDetail ? 'showDetail' : ''}`}>
             <div className="list">
-                {products.map((product, index) => (
+                {carouselProducts.map((product) => (
                     <div className="item" key={product.id}>
                         {product.imageUrl && (
                             <Image
@@ -96,4 +103,3 @@ export default function ProductCarousel({ products, isShowingDetail, setIsShowin
         </div>
     );
 }
-

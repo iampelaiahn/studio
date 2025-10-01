@@ -16,7 +16,6 @@ export default function ProductsPage() {
     })
 
     const [isCarouselShowingDetail, setIsCarouselShowingDetail] = useState(false);
-    const [activeCarouselProduct, setActiveCarouselProduct] = useState<ProductWithImage | null>(productsWithImages[1]);
     const [selectedProduct, setSelectedProduct] = useState<ProductWithImage | null>(null);
 
     const handleProductClick = (product: ProductWithImage) => {
@@ -34,8 +33,6 @@ export default function ProductsPage() {
                     products={productsWithImages}
                     isShowingDetail={isCarouselShowingDetail}
                     setIsShowingDetail={setIsCarouselShowingDetail}
-                    activeProduct={activeCarouselProduct}
-                    setActiveProduct={setActiveCarouselProduct}
                 />
             </section>
             <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
