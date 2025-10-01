@@ -97,7 +97,7 @@ const products = [
     },
     {
         id: "prod-6",
-        name: "Blackberry",
+        name: "Funfetti",
         description: "A delightful assortment of our finest handcrafted macarons.",
         category: "Baked Treats",
         imageId: "other-1"
