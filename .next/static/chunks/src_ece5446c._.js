@@ -70,7 +70,7 @@ const products = [
     {
         id: "prod-2",
         name: "Crystal Flower",
-        description: "Light vanilla sponge with fresh strawberries and cream.",
+        description: "Vanilla with cherry filling and whipped cream",
         category: "Cakes",
         imageId: "cake-2"
     },
