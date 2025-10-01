@@ -17,13 +17,13 @@ export default function ProductCarousel({ products, isShowingDetail, setIsShowin
     const [carouselProducts, setCarouselProducts] = useState<ProductWithImage[]>([]);
     
     useEffect(() => {
+        // Set initial products only on client-side to avoid hydration issues
         setCarouselProducts(products);
     }, [products]);
 
-    const activeProduct = carouselProducts.length > 1 ? carouselProducts[1] : carouselProducts[0];
-
     const handleNext = () => {
         setCarouselProducts(prev => {
+            if (prev.length < 2) return prev;
             const newList = [...prev];
             const first = newList.shift();
             if (first) {
@@ -35,6 +35,7 @@ export default function ProductCarousel({ products, isShowingDetail, setIsShowin
 
     const handlePrev = () => {
         setCarouselProducts(prev => {
+            if (prev.length < 2) return prev;
             const newList = [...prev];
             const last = newList.pop();
             if (last) {
@@ -53,7 +54,16 @@ export default function ProductCarousel({ products, isShowingDetail, setIsShowin
     };
 
     if (!carouselProducts.length) {
-        return null;
+        return (
+            <div className="carousel">
+                <div className="list"></div>
+                <div className="arrows">
+                    <button id="prev">&lt;</button>
+                    <button id="next">&gt;</button>
+                    <button id="back">Back</button>
+                </div>
+            </div>
+        );
     }
 
     return (
@@ -68,6 +78,7 @@ export default function ProductCarousel({ products, isShowingDetail, setIsShowin
                                 width={800}
                                 height={800}
                                 data-ai-hint={product.imageHint}
+                                priority={carouselProducts.indexOf(product) < 2}
                             />
                         )}
                         <div className="introduce">
