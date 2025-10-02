@@ -683,15 +683,17 @@ function CustomOrderForm() {
     const [isSubmitting, setIsSubmitting] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const { toast } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$use$2d$toast$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useToast"])();
     const fileInputRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
-    const { customerDetails, bookingDate } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$order$2d$context$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useOrder"])();
+    const { customerDetails, bookingDate, productDetails } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$order$2d$context$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useOrder"])();
     const form = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$hook$2d$form$2f$dist$2f$index$2e$esm$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useForm"])({
         resolver: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$hookform$2f$resolvers$2f$zod$2f$dist$2f$zod$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["zodResolver"])(formSchema),
         defaultValues: {
-            name: '',
-            email: '',
+            name: customerDetails.name || '',
+            email: customerDetails.email || '',
+            productType: productDetails.productType || '',
+            flavor: productDetails.flavor || '',
+            icing: productDetails.icing || '',
+            eventDate: bookingDate || undefined,
             designTheme: '',
-            flavor: '',
-            icing: '',
             servings: undefined
         }
     });
@@ -712,10 +714,20 @@ function CustomOrderForm() {
             if (bookingDate) {
                 form.setValue('eventDate', bookingDate);
             }
+            if (productDetails.productType) {
+                form.setValue('productType', productDetails.productType);
+            }
+            if (productDetails.flavor) {
+                form.setValue('flavor', productDetails.flavor);
+            }
+            if (productDetails.icing) {
+                form.setValue('icing', productDetails.icing);
+            }
         }
     }["CustomOrderForm.useEffect"], [
         customerDetails,
         bookingDate,
+        productDetails,
         form
     ]);
     async function onSubmit(values) {
@@ -771,7 +783,7 @@ Inspiration Image Attached: ${values.designImage?.[0] ? 'Yes, see attached file.
                                 children: "Let's start with your details"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                lineNumber: 133,
+                                lineNumber: 144,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormField"], {
@@ -783,7 +795,7 @@ Inspiration Image Attached: ${values.designImage?.[0] ? 'Yes, see attached file.
                                                 children: "Full Name"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                lineNumber: 139,
+                                                lineNumber: 150,
                                                 columnNumber: 17
                                             }, void 0),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormControl"], {
@@ -792,28 +804,28 @@ Inspiration Image Attached: ${values.designImage?.[0] ? 'Yes, see attached file.
                                                     ...field
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                    lineNumber: 141,
+                                                    lineNumber: 152,
                                                     columnNumber: 21
                                                 }, void 0)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                lineNumber: 140,
+                                                lineNumber: 151,
                                                 columnNumber: 17
                                             }, void 0),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormMessage"], {}, void 0, false, {
                                                 fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                lineNumber: 143,
+                                                lineNumber: 154,
                                                 columnNumber: 17
                                             }, void 0)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                        lineNumber: 138,
+                                        lineNumber: 149,
                                         columnNumber: 17
                                     }, void 0)
                             }, void 0, false, {
                                 fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                lineNumber: 134,
+                                lineNumber: 145,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormField"], {
@@ -825,7 +837,7 @@ Inspiration Image Attached: ${values.designImage?.[0] ? 'Yes, see attached file.
                                                 children: "Email Address"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                lineNumber: 152,
+                                                lineNumber: 163,
                                                 columnNumber: 17
                                             }, void 0),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormControl"], {
@@ -834,34 +846,34 @@ Inspiration Image Attached: ${values.designImage?.[0] ? 'Yes, see attached file.
                                                     ...field
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                    lineNumber: 154,
+                                                    lineNumber: 165,
                                                     columnNumber: 21
                                                 }, void 0)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                lineNumber: 153,
+                                                lineNumber: 164,
                                                 columnNumber: 17
                                             }, void 0),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormMessage"], {}, void 0, false, {
                                                 fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                lineNumber: 156,
+                                                lineNumber: 167,
                                                 columnNumber: 17
                                             }, void 0)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                        lineNumber: 151,
+                                        lineNumber: 162,
                                         columnNumber: 17
                                     }, void 0)
                             }, void 0, false, {
                                 fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                lineNumber: 147,
+                                lineNumber: 158,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                        lineNumber: 132,
+                        lineNumber: 143,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -872,7 +884,7 @@ Inspiration Image Attached: ${values.designImage?.[0] ? 'Yes, see attached file.
                                 children: "Tell us about the treat"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                lineNumber: 163,
+                                lineNumber: 174,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormField"], {
@@ -884,11 +896,12 @@ Inspiration Image Attached: ${values.designImage?.[0] ? 'Yes, see attached file.
                                                 children: "Product Type"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                lineNumber: 169,
+                                                lineNumber: 180,
                                                 columnNumber: 21
                                             }, void 0),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Select"], {
                                                 onValueChange: field.onChange,
+                                                value: field.value,
                                                 defaultValue: field.value,
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormControl"], {
@@ -897,17 +910,17 @@ Inspiration Image Attached: ${values.designImage?.[0] ? 'Yes, see attached file.
                                                                 placeholder: "Select a product"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                                lineNumber: 173,
+                                                                lineNumber: 184,
                                                                 columnNumber: 25
                                                             }, void 0)
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                            lineNumber: 172,
+                                                            lineNumber: 183,
                                                             columnNumber: 25
                                                         }, void 0)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                        lineNumber: 171,
+                                                        lineNumber: 182,
                                                         columnNumber: 21
                                                     }, void 0),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectContent"], {
@@ -916,34 +929,34 @@ Inspiration Image Attached: ${values.designImage?.[0] ? 'Yes, see attached file.
                                                                 children: type
                                                             }, type, false, {
                                                                 fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                                lineNumber: 178,
+                                                                lineNumber: 189,
                                                                 columnNumber: 25
                                                             }, void 0))
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                        lineNumber: 176,
+                                                        lineNumber: 187,
                                                         columnNumber: 21
                                                     }, void 0)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                lineNumber: 170,
+                                                lineNumber: 181,
                                                 columnNumber: 21
                                             }, void 0),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormMessage"], {}, void 0, false, {
                                                 fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                lineNumber: 182,
+                                                lineNumber: 193,
                                                 columnNumber: 21
                                             }, void 0)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                        lineNumber: 168,
+                                        lineNumber: 179,
                                         columnNumber: 17
                                     }, void 0)
                             }, void 0, false, {
                                 fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                lineNumber: 164,
+                                lineNumber: 175,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -958,7 +971,7 @@ Inspiration Image Attached: ${values.designImage?.[0] ? 'Yes, see attached file.
                                                         children: "Cake/Base Flavor"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                        lineNumber: 193,
+                                                        lineNumber: 204,
                                                         columnNumber: 25
                                                     }, void 0),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormControl"], {
@@ -967,28 +980,28 @@ Inspiration Image Attached: ${values.designImage?.[0] ? 'Yes, see attached file.
                                                             ...field
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                            lineNumber: 195,
+                                                            lineNumber: 206,
                                                             columnNumber: 25
                                                         }, void 0)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                        lineNumber: 194,
+                                                        lineNumber: 205,
                                                         columnNumber: 25
                                                     }, void 0),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormMessage"], {}, void 0, false, {
                                                         fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                        lineNumber: 197,
+                                                        lineNumber: 208,
                                                         columnNumber: 25
                                                     }, void 0)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                lineNumber: 192,
+                                                lineNumber: 203,
                                                 columnNumber: 21
                                             }, void 0)
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                        lineNumber: 188,
+                                        lineNumber: 199,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormField"], {
@@ -1000,7 +1013,7 @@ Inspiration Image Attached: ${values.designImage?.[0] ? 'Yes, see attached file.
                                                         children: "Icing Flavor"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                        lineNumber: 206,
+                                                        lineNumber: 217,
                                                         columnNumber: 25
                                                     }, void 0),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormControl"], {
@@ -1009,34 +1022,34 @@ Inspiration Image Attached: ${values.designImage?.[0] ? 'Yes, see attached file.
                                                             ...field
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                            lineNumber: 208,
+                                                            lineNumber: 219,
                                                             columnNumber: 25
                                                         }, void 0)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                        lineNumber: 207,
+                                                        lineNumber: 218,
                                                         columnNumber: 25
                                                     }, void 0),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormMessage"], {}, void 0, false, {
                                                         fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                        lineNumber: 210,
+                                                        lineNumber: 221,
                                                         columnNumber: 25
                                                     }, void 0)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                lineNumber: 205,
+                                                lineNumber: 216,
                                                 columnNumber: 21
                                             }, void 0)
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                        lineNumber: 201,
+                                        lineNumber: 212,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                lineNumber: 187,
+                                lineNumber: 198,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormField"], {
@@ -1048,7 +1061,7 @@ Inspiration Image Attached: ${values.designImage?.[0] ? 'Yes, see attached file.
                                                 children: "Number of Servings"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                lineNumber: 220,
+                                                lineNumber: 231,
                                                 columnNumber: 21
                                             }, void 0),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormControl"], {
@@ -1059,34 +1072,34 @@ Inspiration Image Attached: ${values.designImage?.[0] ? 'Yes, see attached file.
                                                     value: field.value ?? ''
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                    lineNumber: 222,
+                                                    lineNumber: 233,
                                                     columnNumber: 21
                                                 }, void 0)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                lineNumber: 221,
+                                                lineNumber: 232,
                                                 columnNumber: 21
                                             }, void 0),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormMessage"], {}, void 0, false, {
                                                 fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                lineNumber: 224,
+                                                lineNumber: 235,
                                                 columnNumber: 21
                                             }, void 0)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                        lineNumber: 219,
+                                        lineNumber: 230,
                                         columnNumber: 17
                                     }, void 0)
                             }, void 0, false, {
                                 fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                lineNumber: 215,
+                                lineNumber: 226,
                                 columnNumber: 17
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                        lineNumber: 162,
+                        lineNumber: 173,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -1097,7 +1110,7 @@ Inspiration Image Attached: ${values.designImage?.[0] ? 'Yes, see attached file.
                                 children: "Design and Date"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                lineNumber: 231,
+                                lineNumber: 242,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormField"], {
@@ -1109,7 +1122,7 @@ Inspiration Image Attached: ${values.designImage?.[0] ? 'Yes, see attached file.
                                                 children: "Design / Theme"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                lineNumber: 237,
+                                                lineNumber: 248,
                                                 columnNumber: 21
                                             }, void 0),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormControl"], {
@@ -1118,35 +1131,35 @@ Inspiration Image Attached: ${values.designImage?.[0] ? 'Yes, see attached file.
                                                     ...field
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                    lineNumber: 239,
+                                                    lineNumber: 250,
                                                     columnNumber: 21
                                                 }, void 0)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                lineNumber: 238,
+                                                lineNumber: 249,
                                                 columnNumber: 21
                                             }, void 0),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormDescription"], {
                                                 children: "Describe the look, feel, or any specific characters/elements you'd like."
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                lineNumber: 241,
+                                                lineNumber: 252,
                                                 columnNumber: 21
                                             }, void 0),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormMessage"], {}, void 0, false, {
                                                 fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                lineNumber: 244,
+                                                lineNumber: 255,
                                                 columnNumber: 21
                                             }, void 0)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                        lineNumber: 236,
+                                        lineNumber: 247,
                                         columnNumber: 17
                                     }, void 0)
                             }, void 0, false, {
                                 fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                lineNumber: 232,
+                                lineNumber: 243,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormField"], {
@@ -1158,7 +1171,7 @@ Inspiration Image Attached: ${values.designImage?.[0] ? 'Yes, see attached file.
                                                 children: "Upload Inspiration"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                lineNumber: 254,
+                                                lineNumber: 265,
                                                 columnNumber: 21
                                             }, void 0),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormControl"], {
@@ -1172,12 +1185,12 @@ Inspiration Image Attached: ${values.designImage?.[0] ? 'Yes, see attached file.
                                                     name: name
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                    lineNumber: 256,
+                                                    lineNumber: 267,
                                                     columnNumber: 21
                                                 }, void 0)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                lineNumber: 255,
+                                                lineNumber: 266,
                                                 columnNumber: 21
                                             }, void 0),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1192,14 +1205,14 @@ Inspiration Image Attached: ${values.designImage?.[0] ? 'Yes, see attached file.
                                                                 className: "mr-2 h-4 w-4"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                                lineNumber: 272,
+                                                                lineNumber: 283,
                                                                 columnNumber: 25
                                                             }, void 0),
                                                             "Choose File"
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                        lineNumber: 267,
+                                                        lineNumber: 278,
                                                         columnNumber: 21
                                                     }, void 0),
                                                     selectedFile?.[0] && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1209,7 +1222,7 @@ Inspiration Image Attached: ${values.designImage?.[0] ? 'Yes, see attached file.
                                                                 children: selectedFile[0].name
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                                lineNumber: 277,
+                                                                lineNumber: 288,
                                                                 columnNumber: 29
                                                             }, void 0),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -1229,47 +1242,47 @@ Inspiration Image Attached: ${values.designImage?.[0] ? 'Yes, see attached file.
                                                                     className: "h-4 w-4"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                                    lineNumber: 290,
+                                                                    lineNumber: 301,
                                                                     columnNumber: 33
                                                                 }, void 0)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                                lineNumber: 278,
+                                                                lineNumber: 289,
                                                                 columnNumber: 29
                                                             }, void 0)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                        lineNumber: 276,
+                                                        lineNumber: 287,
                                                         columnNumber: 25
                                                     }, void 0)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                lineNumber: 266,
+                                                lineNumber: 277,
                                                 columnNumber: 21
                                             }, void 0),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormDescription"], {
                                                 children: "Have a specific design in mind? Upload an image for reference."
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                lineNumber: 295,
+                                                lineNumber: 306,
                                                 columnNumber: 21
                                             }, void 0),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormMessage"], {}, void 0, false, {
                                                 fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                lineNumber: 298,
+                                                lineNumber: 309,
                                                 columnNumber: 21
                                             }, void 0)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                        lineNumber: 253,
+                                        lineNumber: 264,
                                         columnNumber: 17
                                     }, void 0)
                             }, void 0, false, {
                                 fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                lineNumber: 249,
+                                lineNumber: 260,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormField"], {
@@ -1282,7 +1295,7 @@ Inspiration Image Attached: ${values.designImage?.[0] ? 'Yes, see attached file.
                                                 children: "Pickup / Event Date"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                lineNumber: 308,
+                                                lineNumber: 319,
                                                 columnNumber: 21
                                             }, void 0),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$popover$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Popover"], {
@@ -1298,30 +1311,30 @@ Inspiration Image Attached: ${values.designImage?.[0] ? 'Yes, see attached file.
                                                                         children: "Pick a date"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                                        lineNumber: 322,
+                                                                        lineNumber: 333,
                                                                         columnNumber: 29
                                                                     }, void 0),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$calendar$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CalendarIcon$3e$__["CalendarIcon"], {
                                                                         className: "ml-auto h-4 w-4 opacity-50"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                                        lineNumber: 324,
+                                                                        lineNumber: 335,
                                                                         columnNumber: 29
                                                                     }, void 0)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                                lineNumber: 312,
+                                                                lineNumber: 323,
                                                                 columnNumber: 25
                                                             }, void 0)
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                            lineNumber: 311,
+                                                            lineNumber: 322,
                                                             columnNumber: 25
                                                         }, void 0)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                        lineNumber: 310,
+                                                        lineNumber: 321,
                                                         columnNumber: 21
                                                     }, void 0),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$popover$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["PopoverContent"], {
@@ -1335,40 +1348,40 @@ Inspiration Image Attached: ${values.designImage?.[0] ? 'Yes, see attached file.
                                                             initialFocus: true
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                            lineNumber: 329,
+                                                            lineNumber: 340,
                                                             columnNumber: 25
                                                         }, void 0)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                        lineNumber: 328,
+                                                        lineNumber: 339,
                                                         columnNumber: 21
                                                     }, void 0)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                lineNumber: 309,
+                                                lineNumber: 320,
                                                 columnNumber: 21
                                             }, void 0),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$form$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FormMessage"], {}, void 0, false, {
                                                 fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                                lineNumber: 340,
+                                                lineNumber: 351,
                                                 columnNumber: 21
                                             }, void 0)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                        lineNumber: 307,
+                                        lineNumber: 318,
                                         columnNumber: 17
                                     }, void 0)
                             }, void 0, false, {
                                 fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                lineNumber: 303,
+                                lineNumber: 314,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                        lineNumber: 230,
+                        lineNumber: 241,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1384,44 +1397,44 @@ Inspiration Image Attached: ${values.designImage?.[0] ? 'Yes, see attached file.
                                         className: "mr-2 h-4 w-4 animate-spin"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                        lineNumber: 349,
+                                        lineNumber: 360,
                                         columnNumber: 38
                                     }, this),
                                     "Submit Request"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                                lineNumber: 348,
+                                lineNumber: 359,
                                 columnNumber: 17
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                            lineNumber: 347,
+                            lineNumber: 358,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                        lineNumber: 346,
+                        lineNumber: 357,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-                lineNumber: 130,
+                lineNumber: 141,
                 columnNumber: 7
             }, this)
         }, void 0, false, {
             fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-            lineNumber: 129,
+            lineNumber: 140,
             columnNumber: 5
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/app/custom-order/_components/custom-order-form.tsx",
-        lineNumber: 128,
+        lineNumber: 139,
         columnNumber: 5
     }, this);
 }
-_s(CustomOrderForm, "2d3rDTTf7g54ZM0pvypXWEO9xqM=", false, function() {
+_s(CustomOrderForm, "a9XvXhbwS+spwELUmlJTM18W5vY=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$use$2d$toast$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useToast"],
         __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$context$2f$order$2d$context$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useOrder"],
