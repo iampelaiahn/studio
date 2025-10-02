@@ -104,7 +104,7 @@ const products = [
     },
     {
         id: "prod-7",
-        name: "Long vacation",
+        name: "Strawberry",
         description: "A delightful assortment of our finest handcrafted macarons.",
         category: "Baked Treats",
         imageId: "other-2"
