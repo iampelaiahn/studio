@@ -128,7 +128,7 @@ const products = [
     {
         id: "prod-7",
         name: "Strawberry",
-        description: "A delightful assortment of our finest handcrafted macarons.",
+        description: "A sweet and fruity delight, bursting with the flavor of fresh strawberries.",
         category: "Baked Treats",
         imageId: "other-2"
     },
