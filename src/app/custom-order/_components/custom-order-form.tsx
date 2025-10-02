@@ -46,16 +46,18 @@ export default function CustomOrderForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const { customerDetails, bookingDate } = useOrder();
+  const { customerDetails, bookingDate, productDetails } = useOrder();
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: '',
-      email: '',
+      name: customerDetails.name || '',
+      email: customerDetails.email || '',
+      productType: productDetails.productType || '',
+      flavor: productDetails.flavor || '',
+      icing: productDetails.icing || '',
+      eventDate: bookingDate || undefined,
       designTheme: '',
-      flavor: '',
-      icing: '',
       servings: undefined,
     },
   });
@@ -76,7 +78,16 @@ export default function CustomOrderForm() {
     if (bookingDate) {
       form.setValue('eventDate', bookingDate);
     }
-  }, [customerDetails, bookingDate, form]);
+    if (productDetails.productType) {
+        form.setValue('productType', productDetails.productType);
+    }
+    if (productDetails.flavor) {
+        form.setValue('flavor', productDetails.flavor);
+    }
+    if (productDetails.icing) {
+        form.setValue('icing', productDetails.icing);
+    }
+  }, [customerDetails, bookingDate, productDetails, form]);
 
   async function onSubmit(values: FormValues) {
     setIsSubmitting(true);
@@ -167,7 +178,7 @@ Inspiration Image Attached: ${values.designImage?.[0] ? 'Yes, see attached file.
                 render={({ field }) => (
                 <FormItem>
                     <FormLabel>Product Type</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <Select onValueChange={field.onChange} value={field.value} defaultValue={field.value}>
                     <FormControl>
                         <SelectTrigger>
                         <SelectValue placeholder="Select a product" />
@@ -357,5 +368,3 @@ Inspiration Image Attached: ${values.designImage?.[0] ? 'Yes, see attached file.
     </div>
   );
 }
-
-    

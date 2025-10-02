@@ -7,6 +7,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { type ProductWithImage } from '@/lib/types';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { useOrder } from '@/context/order-context';
 
 type ProductDetailModalProps = {
   product: ProductWithImage;
@@ -15,7 +16,17 @@ type ProductDetailModalProps = {
 };
 
 export default function ProductDetailModal({ product, isOpen, onOpenChange }: ProductDetailModalProps) {
+  const { setProductDetails } = useOrder();
+
   if (!product) return null;
+
+  const handleRequestOrder = () => {
+    setProductDetails({
+      productType: product.category,
+      flavor: product.name,
+      icing: '' // No icing data in product, so we leave it empty
+    });
+  };
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
@@ -43,7 +54,7 @@ export default function ProductDetailModal({ product, isOpen, onOpenChange }: Pr
                     <p className='text-foreground'>{product.description}</p>
                 </div>
                 <div className="p-6 border-t">
-                    <Button asChild size="lg" className='w-full'>
+                    <Button asChild size="lg" className='w-full' onClick={handleRequestOrder}>
                         <Link href="/custom-order">Request a Custom Order</Link>
                     </Button>
                 </div>
