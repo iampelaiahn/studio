@@ -154,7 +154,7 @@ const navLinks = [
     {
         id: "custom-order",
         href: "/custom-order",
-        label: "Custom-cakes"
+        label: "Customize"
     },
     {
         id: "feedback",
