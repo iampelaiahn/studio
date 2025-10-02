@@ -1445,6 +1445,14 @@ body {
   height: 100svh;
 }
 
+.h-\[20\%\] {
+  height: 20%;
+}
+
+.h-\[80\%\] {
+  height: 80%;
+}
+
 .max-h-96 {
   max-height: 24rem;
 }

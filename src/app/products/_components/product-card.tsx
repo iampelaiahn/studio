@@ -14,9 +14,9 @@ export function ProductCard({ product, onClick }: ProductCardProps) {
         className="flex flex-col overflow-hidden h-full cursor-pointer group"
         onClick={() => onClick(product)}
     >
-      <CardHeader className="p-0">
+      <div className="h-[80%] relative">
         {product.imageUrl && (
-            <div className="relative aspect-video overflow-hidden">
+            <div className="relative w-full h-full overflow-hidden">
             <Image
                 src={product.imageUrl}
                 alt={product.name}
@@ -27,8 +27,8 @@ export function ProductCard({ product, onClick }: ProductCardProps) {
             />
             </div>
         )}
-      </CardHeader>
-      <CardContent className="p-6 flex-grow flex flex-col">
+      </div>
+      <CardContent className="p-6 flex-grow flex flex-col h-[20%] justify-center">
         <CardTitle className="font-headline text-2xl mb-2">{product.name}</CardTitle>
         <CardDescription className="flex-grow">{product.description}</CardDescription>
       </CardContent>
