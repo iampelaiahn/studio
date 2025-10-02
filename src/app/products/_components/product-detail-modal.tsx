@@ -27,7 +27,7 @@ export default function ProductDetailModal({ product, isOpen, onOpenChange }: Pr
                     src={product.imageUrl}
                     alt={product.name}
                     fill
-                    className="object-cover rounded-t-lg md:rounded-l-lg md:rounded-t-none"
+                    className="object-contain rounded-t-lg md:rounded-l-lg md:rounded-t-none"
                     data-ai-hint={product.imageHint}
                     />
                 )}
