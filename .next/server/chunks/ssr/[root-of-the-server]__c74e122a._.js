@@ -138,6 +138,13 @@ const products = [
         description: "A delightful assortment of our finest handcrafted macarons.",
         category: "Baked Treats",
         imageId: "other-3"
+    },
+    {
+        id: "prod-9",
+        name: "Designer Inspired Cake",
+        description: "A custom cake inspired by high fashion, perfect for a stylish celebration.",
+        category: "Cakes",
+        imageId: "cake-4"
     }
 ];
 const navLinks = [
