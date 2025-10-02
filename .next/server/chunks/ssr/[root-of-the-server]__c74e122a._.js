@@ -141,8 +141,8 @@ const products = [
     },
     {
         id: "prod-9",
-        name: "Designer Inspired Cake",
-        description: "A custom cake inspired by high fashion, perfect for a stylish celebration.",
+        name: "Whiskey Cake",
+        description: "A rich, moist cake infused with a smooth whiskey flavor, perfect for a sophisticated palate.",
         category: "Cakes",
         imageId: "cake-4"
     }
