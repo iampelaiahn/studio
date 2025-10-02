@@ -1,6 +1,6 @@
 
 import Image from 'next/image'
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { type ProductWithImage } from '@/lib/types'
 
 type ProductCardProps = {
@@ -14,9 +14,8 @@ export function ProductCard({ product, onClick }: ProductCardProps) {
         className="flex flex-col overflow-hidden h-full cursor-pointer group"
         onClick={() => onClick(product)}
     >
-      <div className="h-[80%] relative">
+      <div className="relative w-full aspect-square overflow-hidden">
         {product.imageUrl && (
-            <div className="relative w-full h-full overflow-hidden">
             <Image
                 src={product.imageUrl}
                 alt={product.name}
@@ -25,10 +24,9 @@ export function ProductCard({ product, onClick }: ProductCardProps) {
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 data-ai-hint={product.imageHint}
             />
-            </div>
         )}
       </div>
-      <CardContent className="p-6 flex-grow flex flex-col h-[20%] justify-center">
+      <CardContent className="p-6 flex-grow flex flex-col justify-center">
         <CardTitle className="font-headline text-2xl mb-2">{product.name}</CardTitle>
         <CardDescription className="flex-grow">{product.description}</CardDescription>
       </CardContent>
