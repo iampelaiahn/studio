@@ -11,7 +11,7 @@ type ProductCardProps = {
 export function ProductCard({ product, onClick }: ProductCardProps) {
   return (
     <Card 
-        className="flex flex-col overflow-hidden h-full cursor-pointer group max-w-sm mx-auto"
+        className="flex flex-col overflow-hidden h-full cursor-pointer group"
         onClick={() => onClick(product)}
     >
       <CardHeader className="p-0">
