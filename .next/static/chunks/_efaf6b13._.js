@@ -214,7 +214,7 @@ function ProductCard({ product, onClick }) {
                     src: product.imageUrl,
                     alt: product.name,
                     fill: true,
-                    className: "object-cover group-hover:scale-105 transition-transform duration-300",
+                    className: "object-contain group-hover:scale-105 transition-transform duration-300",
                     sizes: "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw",
                     "data-ai-hint": product.imageHint
                 }, void 0, false, {
@@ -740,7 +740,7 @@ function ProductDetailModal({ product, isOpen, onOpenChange }) {
                             src: product.imageUrl,
                             alt: product.name,
                             fill: true,
-                            className: "object-cover rounded-t-lg md:rounded-l-lg md:rounded-t-none",
+                            className: "object-contain rounded-t-lg md:rounded-l-lg md:rounded-t-none",
                             "data-ai-hint": product.imageHint
                         }, void 0, false, {
                             fileName: "[project]/src/app/products/_components/product-detail-modal.tsx",
