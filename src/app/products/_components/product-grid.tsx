@@ -12,13 +12,12 @@ type ProductGridProps = {
 }
 
 export default function ProductGrid({ products, onProductClick }: ProductGridProps) {
-  const categories = useMemo(() => ["All", ...Array.from(new Set(products.map(p => p.category)))], [products]);
+  const categories = useMemo(() => {
+    const uniqueCategories = Array.from(new Set(products.map(p => p.category)));
+    uniqueCategories.sort();
+    return ["All", ...uniqueCategories];
+  }, [products]);
   const [activeTab, setActiveTab] = useState(categories[0]);
-
-  const filteredProducts = useMemo(() => {
-    if (activeTab === "All") return products;
-    return products.filter(p => p.category === activeTab);
-  }, [activeTab, products]);
 
   return (
     <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">

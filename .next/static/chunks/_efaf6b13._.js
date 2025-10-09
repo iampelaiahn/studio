@@ -287,27 +287,20 @@ var _s = __turbopack_context__.k.signature();
 function ProductGrid({ products, onProductClick }) {
     _s();
     const categories = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMemo"])({
-        "ProductGrid.useMemo[categories]": ()=>[
+        "ProductGrid.useMemo[categories]": ()=>{
+            const uniqueCategories = Array.from(new Set(products.map({
+                "ProductGrid.useMemo[categories].uniqueCategories": (p)=>p.category
+            }["ProductGrid.useMemo[categories].uniqueCategories"])));
+            uniqueCategories.sort();
+            return [
                 "All",
-                ...Array.from(new Set(products.map({
-                    "ProductGrid.useMemo[categories]": (p)=>p.category
-                }["ProductGrid.useMemo[categories]"])))
-            ]
+                ...uniqueCategories
+            ];
+        }
     }["ProductGrid.useMemo[categories]"], [
         products
     ]);
     const [activeTab, setActiveTab] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(categories[0]);
-    const filteredProducts = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMemo"])({
-        "ProductGrid.useMemo[filteredProducts]": ()=>{
-            if (activeTab === "All") return products;
-            return products.filter({
-                "ProductGrid.useMemo[filteredProducts]": (p)=>p.category === activeTab
-            }["ProductGrid.useMemo[filteredProducts]"]);
-        }
-    }["ProductGrid.useMemo[filteredProducts]"], [
-        activeTab,
-        products
-    ]);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$tabs$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Tabs"], {
         value: activeTab,
         onValueChange: setActiveTab,
@@ -322,17 +315,17 @@ function ProductGrid({ products, onProductClick }) {
                             children: category
                         }, category, false, {
                             fileName: "[project]/src/app/products/_components/product-grid.tsx",
-                            lineNumber: 28,
+                            lineNumber: 27,
                             columnNumber: 13
                         }, this))
                 }, void 0, false, {
                     fileName: "[project]/src/app/products/_components/product-grid.tsx",
-                    lineNumber: 26,
+                    lineNumber: 25,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/products/_components/product-grid.tsx",
-                lineNumber: 25,
+                lineNumber: 24,
                 columnNumber: 7
             }, this),
             categories.map((category)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$tabs$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TabsContent"], {
@@ -345,12 +338,12 @@ function ProductGrid({ products, onProductClick }) {
                                     onClick: onProductClick
                                 }, product.id, false, {
                                     fileName: "[project]/src/app/products/_components/product-grid.tsx",
-                                    lineNumber: 37,
+                                    lineNumber: 36,
                                     columnNumber: 21
                                 }, this))
                         }, void 0, false, {
                             fileName: "[project]/src/app/products/_components/product-grid.tsx",
-                            lineNumber: 35,
+                            lineNumber: 34,
                             columnNumber: 13
                         }, this),
                         products.filter((p)=>activeTab === 'All' || p.category === activeTab).length === 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -359,28 +352,28 @@ function ProductGrid({ products, onProductClick }) {
                                 children: "No products found in this category."
                             }, void 0, false, {
                                 fileName: "[project]/src/app/products/_components/product-grid.tsx",
-                                lineNumber: 42,
+                                lineNumber: 41,
                                 columnNumber: 21
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/app/products/_components/product-grid.tsx",
-                            lineNumber: 41,
+                            lineNumber: 40,
                             columnNumber: 17
                         }, this)
                     ]
                 }, category, true, {
                     fileName: "[project]/src/app/products/_components/product-grid.tsx",
-                    lineNumber: 34,
+                    lineNumber: 33,
                     columnNumber: 9
                 }, this))
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/products/_components/product-grid.tsx",
-        lineNumber: 24,
+        lineNumber: 23,
         columnNumber: 5
     }, this);
 }
-_s(ProductGrid, "A0RkaTqKdAaDgQWOc4cubgQ9b/E=");
+_s(ProductGrid, "XCWlokhDiEZihpD1U6kGNffSFqo=");
 _c = ProductGrid;
 var _c;
 __turbopack_context__.k.register(_c, "ProductGrid");
