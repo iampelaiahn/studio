@@ -23,7 +23,7 @@ export default function ProductGrid({ products, onProductClick }: ProductGridPro
   return (
     <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
       <div className="flex justify-center">
-        <TabsList className="grid w-full max-w-md grid-cols-2 md:grid-cols-4 mb-8">
+        <TabsList className="grid w-full max-w-lg grid-cols-2 md:grid-cols-4 mb-8">
           {categories.map(category => (
             <TabsTrigger key={category} value={category}>{category}</TabsTrigger>
           ))}

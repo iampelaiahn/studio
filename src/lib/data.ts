@@ -25,21 +25,21 @@ export const products = [
     id: "prod-4",
     name: "Red velvet",
     description: "A scarlet-hued classic with rich cream cheese frosting, crowned with a sweet cherry.",
-    category: "Cakes",
+    category: "Cupcakes",
     imageId: "cupcake-1",
   },
   {
     id: "prod-5",
     name: "Carrot Cake",
     description: "Carrot cake with cream cheese frosting",
-    category: "Cakes",
+    category: "Cupcakes",
     imageId: "cupcake-2",
   },
   {
     id: "prod-6",
     name: "Funfetti",
     description: "vanilla with confetti and buttercream frosting",
-    category: "Cakes",
+    category: "Cupcakes",
     imageId: "other-1",
   },
   {
@@ -63,6 +63,21 @@ export const products = [
     category: "Cakes",
     imageId: "cake-4",
   },
+  {
+    id: "prod-10",
+    name: "Blueberry Muffin",
+    description: "A classic blueberry muffin, moist and delicious.",
+    category: "Muffins",
+    imageId: "muffin-1",
+  },
+  {
+    id: "prod-11",
+    name: "Chocolate Chip Cookie",
+    description: "A warm, gooey chocolate chip cookie, fresh from the oven.",
+    category: "Cookies",
+    imageId: "cookie-1",
+  },
+
 ];
 
 export const navLinks = [
@@ -73,4 +88,4 @@ export const navLinks = [
   { id: "availability", href: "#", label: "Availability" },
 ];
 
-export const productTypes = ["Cakes", "Desserts", "Donuts", "Vegan", "Drinks"];
+export const productTypes = ["Cakes", "Desserts", "Donuts", "Vegan", "Drinks", "Cupcakes", "Muffins", "Cookies"];

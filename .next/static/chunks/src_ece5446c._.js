@@ -85,21 +85,21 @@ const products = [
         id: "prod-4",
         name: "Red velvet",
         description: "A scarlet-hued classic with rich cream cheese frosting, crowned with a sweet cherry.",
-        category: "Cakes",
+        category: "Cupcakes",
         imageId: "cupcake-1"
     },
     {
         id: "prod-5",
         name: "Carrot Cake",
         description: "Carrot cake with cream cheese frosting",
-        category: "Cakes",
+        category: "Cupcakes",
         imageId: "cupcake-2"
     },
     {
         id: "prod-6",
         name: "Funfetti",
         description: "vanilla with confetti and buttercream frosting",
-        category: "Cakes",
+        category: "Cupcakes",
         imageId: "other-1"
     },
     {
@@ -122,6 +122,20 @@ const products = [
         description: "A rich, moist cake infused with a smooth whiskey flavor, perfect for a sophisticated palate.",
         category: "Cakes",
         imageId: "cake-4"
+    },
+    {
+        id: "prod-10",
+        name: "Blueberry Muffin",
+        description: "A classic blueberry muffin, moist and delicious.",
+        category: "Muffins",
+        imageId: "muffin-1"
+    },
+    {
+        id: "prod-11",
+        name: "Chocolate Chip Cookie",
+        description: "A warm, gooey chocolate chip cookie, fresh from the oven.",
+        category: "Cookies",
+        imageId: "cookie-1"
     }
 ];
 const navLinks = [
@@ -156,7 +170,10 @@ const productTypes = [
     "Desserts",
     "Donuts",
     "Vegan",
-    "Drinks"
+    "Drinks",
+    "Cupcakes",
+    "Muffins",
+    "Cookies"
 ];
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(module, globalThis.$RefreshHelpers$);

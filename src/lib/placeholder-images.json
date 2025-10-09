@@ -77,6 +77,18 @@
       "description": "A cake decorated with a Louis Vuitton pattern",
       "imageUrl": "https://i.imgur.com/vfNluWl.png",
       "imageHint": "whiskey cake"
+    },
+    {
+      "id": "muffin-1",
+      "description": "A classic blueberry muffin",
+      "imageUrl": "https://picsum.photos/seed/muffin1/600/400",
+      "imageHint": "blueberry muffin"
+    },
+    {
+      "id": "cookie-1",
+      "description": "A stack of chocolate chip cookies",
+      "imageUrl": "https://picsum.photos/seed/cookie1/600/400",
+      "imageHint": "chocolate cookies"
     }
   ]
 }
