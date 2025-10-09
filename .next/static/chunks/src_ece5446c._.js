@@ -85,21 +85,21 @@ const products = [
         id: "prod-4",
         name: "Red velvet",
         description: "A scarlet-hued classic with rich cream cheese frosting, crowned with a sweet cherry.",
-        category: "Cupcakes",
+        category: "Cakes",
         imageId: "cupcake-1"
     },
     {
         id: "prod-5",
         name: "Carrot Cake",
         description: "Carrot cake with cream cheese frosting",
-        category: "Cupcakes",
+        category: "Cakes",
         imageId: "cupcake-2"
     },
     {
         id: "prod-6",
         name: "Funfetti",
         description: "vanilla with confetti and buttercream frosting",
-        category: "Cupcakes",
+        category: "Cakes",
         imageId: "other-1"
     },
     {
