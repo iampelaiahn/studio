@@ -60,7 +60,6 @@ export default function ProductCarousel({ products, isShowingDetail, setIsShowin
                 <div className="arrows">
                     <button id="prev">&lt;</button>
                     <button id="next">&gt;</button>
-                    <button id="back">Back</button>
                 </div>
             </div>
         );
@@ -101,6 +100,7 @@ export default function ProductCarousel({ products, isShowingDetail, setIsShowin
                                     <Link href="/custom-order">Order Now</Link>
                                 </Button>
                             </div>
+                            <button id="back" onClick={handleBack}>Back</button>
                         </div>
                     </div>
                 ))}
@@ -109,7 +109,6 @@ export default function ProductCarousel({ products, isShowingDetail, setIsShowin
             <div className="arrows">
                 <button id="prev" onClick={handlePrev}>&lt;</button>
                 <button id="next" onClick={handleNext}>&gt;</button>
-                <button id="back" onClick={handleBack}>Back</button>
             </div>
         </div>
     );

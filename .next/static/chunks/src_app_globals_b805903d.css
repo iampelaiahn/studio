@@ -1445,14 +1445,6 @@ body {
   height: 100svh;
 }
 
-.h-\[20\%\] {
-  height: 20%;
-}
-
-.h-\[80\%\] {
-  height: 80%;
-}
-
 .max-h-96 {
   max-height: 24rem;
 }
@@ -3257,7 +3249,7 @@ body {
   animation: .5s ease-in-out 1s forwards showContent;
 }
 
-.carousel.showDetail .list .item:nth-child(2) .detail .des {
+.carousel.showDetail .list .item:nth-child(2) .detail #back, .carousel.showDetail .list .item:nth-child(2) .detail .des {
   animation-delay: 1.2s;
 }
 
@@ -3320,27 +3312,22 @@ body {
 }
 
 #back {
-  z-index: 100;
   border: none;
   border-bottom: 1px solid hsl(var(--border));
   letter-spacing: 3px;
   color: hsl(var(--foreground));
-  opacity: 0;
-  pointer-events: none;
+  cursor: pointer;
   background-color: #0000;
+  margin-top: 20px;
   padding: 10px;
   font-family: PT Sans, sans-serif;
   font-weight: bold;
   transition: opacity .5s;
-  position: absolute;
-  bottom: 0%;
-  left: 50%;
-  transform: translateX(-50%);
 }
 
 @media (width <= 767px) {
   #back {
-    bottom: 1rem;
+    margin-top: 1rem;
   }
 }
 
@@ -3349,7 +3336,7 @@ body {
   pointer-events: auto;
 }
 
-.carousel.showDetail .arrows button#prev, .carousel.showDetail .arrows button#next {
+.carousel:not(.showDetail) #back, .carousel.showDetail .arrows button#prev, .carousel.showDetail .arrows button#next {
   opacity: 0;
   pointer-events: none;
 }
