@@ -232,7 +232,7 @@ export default function FeedbackForm() {
                   )}
                 />
 
-                <Button type="submit" size="lg" className="w-full bg-gradient-to-r from-green-400 to-teal-500 text-white" disabled={isSubmitting}>
+                <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
                   {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                   Submit Now
                 </Button>

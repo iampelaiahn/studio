@@ -6,7 +6,7 @@ import { useForm, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { format } from 'date-fns';
-import { CalendarIcon, Loader2, Upload, X } from 'lucide-react';
+import { CalendarIcon, Loader2, Sparkles, Upload, X } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 import { Button } from '@/components/ui/button';
@@ -27,6 +27,7 @@ import { Calendar } from '@/components/ui/calendar';
 import { cn } from '@/lib/utils';
 import { productTypes } from '@/lib/data';
 import { useOrder } from '@/context/order-context';
+import { getIcingSuggestions } from '../actions';
 
 const formSchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
@@ -44,6 +45,8 @@ type FormValues = z.infer<typeof formSchema>;
 
 export default function CustomOrderForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuggesting, setIsSuggesting] = useState(false);
+  const [suggestions, setSuggestions] = useState<string[]>([]);
   const { toast } = useToast();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { customerDetails, bookingDate, productDetails } = useOrder();
@@ -63,6 +66,8 @@ export default function CustomOrderForm() {
   });
   
   const [isClient, setIsClient] = useState(false);
+  const productTypeValue = useWatch({ control: form.control, name: 'productType' });
+  const flavorValue = useWatch({ control: form.control, name: 'flavor' });
 
   useEffect(() => {
     setIsClient(true);
@@ -88,6 +93,30 @@ export default function CustomOrderForm() {
         form.setValue('icing', productDetails.icing);
     }
   }, [customerDetails, bookingDate, productDetails, form]);
+  
+  const handleGetSuggestions = async () => {
+    if (!productTypeValue || !flavorValue) {
+      toast({
+        variant: "destructive",
+        title: "Missing Details",
+        description: "Please select a product type and enter a flavor first.",
+      });
+      return;
+    }
+    setIsSuggesting(true);
+    setSuggestions([]);
+    const result = await getIcingSuggestions({ productType: productTypeValue, desiredFlavor: flavorValue });
+    if (result.error) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: result.error,
+      });
+    } else if (result.suggestions) {
+      setSuggestions(result.suggestions);
+    }
+    setIsSuggesting(false);
+  };
 
   async function onSubmit(values: FormValues) {
     setIsSubmitting(true);
@@ -203,7 +232,7 @@ Inspiration Image Attached: ${values.designImage?.[0] ? 'Yes, see attached file.
                     <FormItem>
                         <FormLabel>Cake/Base Flavor</FormLabel>
                         <FormControl>
-                        <Input placeholder="e.g., Chocolate, Vanilla, Strawberry" {...field} />
+                        <Input placeholder="e.g., Chocolate, Vanilla" {...field} onBlur={handleGetSuggestions} />
                         </FormControl>
                         <FormMessage />
                     </FormItem>
@@ -223,6 +252,33 @@ Inspiration Image Attached: ${values.designImage?.[0] ? 'Yes, see attached file.
                     )}
                 />
             </div>
+            {isSuggesting && (
+              <div className="flex items-center justify-center text-muted-foreground">
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                <span>Generating flavor ideas...</span>
+              </div>
+            )}
+            {suggestions.length > 0 && (
+              <div className='space-y-2'>
+                  <div className='flex items-center gap-2'>
+                    <Sparkles className="h-4 w-4 text-accent" />
+                    <h4 className="text-sm font-semibold">AI-Powered Suggestions</h4>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                      {suggestions.map((suggestion, index) => (
+                          <Button 
+                              key={index} 
+                              type="button" 
+                              variant="outline" 
+                              size="sm"
+                              onClick={() => form.setValue('icing', suggestion, { shouldValidate: true })}
+                          >
+                              {suggestion}
+                          </Button>
+                      ))}
+                  </div>
+              </div>
+            )}
                 <FormField
                 control={form.control}
                 name="servings"
@@ -368,5 +424,3 @@ Inspiration Image Attached: ${values.designImage?.[0] ? 'Yes, see attached file.
     </div>
   );
 }
-
-    
