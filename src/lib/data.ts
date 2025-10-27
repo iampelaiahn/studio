@@ -80,7 +80,7 @@ export const products = [
   {
     id: "prod-12",
     name: "Zesty Berry Stack",
-    description: "The top layer is bright lemon cake with a tangy cream cheese filling, perfectly balanced by the bottom layer of sweet strawberry cake with a rich vanilla filling. Every inch is draped in a smooth, fragrant lemon buttercream. It's the ultimate combination of sweet, tart, and creamy perfection!",
+    description: "A delightful stack of lemon and strawberry cake with complementary fillings, all wrapped in a fragrant lemon buttercream.",
     category: "Cakes",
     imageId: "cake-5",
   },
