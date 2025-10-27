@@ -136,6 +136,34 @@ const products = [
         description: "A warm, gooey chocolate chip cookie, fresh from the oven.",
         category: "Cookies",
         imageId: "cookie-1"
+    },
+    {
+        id: "prod-12",
+        name: "Lemon Drizzle Cake",
+        description: "A zesty and moist lemon cake with a sweet drizzle icing.",
+        category: "Cakes",
+        imageId: "cake-5"
+    },
+    {
+        id: "prod-13",
+        name: "Black Forest Gateau",
+        description: "Layers of chocolate sponge, whipped cream, and cherries.",
+        category: "Cakes",
+        imageId: "cake-6"
+    },
+    {
+        id: "prod-14",
+        name: "Coffee and Walnut Cake",
+        description: "A classic combination of coffee-infused sponge and crunchy walnuts.",
+        category: "Cakes",
+        imageId: "cake-7"
+    },
+    {
+        id: "prod-15",
+        name: "Victoria Sponge",
+        description: "A traditional sponge cake with jam and cream filling.",
+        category: "Cakes",
+        imageId: "cake-8"
     }
 ];
 const navLinks = [
