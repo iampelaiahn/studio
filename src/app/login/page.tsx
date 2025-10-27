@@ -59,7 +59,7 @@ export default function LoginPage() {
     try {
       // In a real app, you wouldn't hardcode this, but create a user management system.
       // For this prototype, we allow a specific user to log in.
-      if (values.email !== 'admin@example.com') {
+      if (values.email !== 'info@ruesdelectables.com') {
          throw new Error("Invalid admin credentials.");
       }
       await signInWithEmailAndPassword(auth, values.email, values.password);
@@ -127,7 +127,7 @@ export default function LoginPage() {
                     <FormControl>
                       <Input
                         type="email"
-                        placeholder="admin@example.com"
+                        placeholder="info@ruesdelectables.com"
                         {...field}
                       />
                     </FormControl>
