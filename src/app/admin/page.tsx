@@ -86,30 +86,27 @@ export default function AdminPage() {
     form.reset();
   };
 
-  const handleDateSelect = (date: Date | undefined) => {
-    if (!date) return;
+  const handleDateSelect = (dates: Date[] | undefined) => {
+    if (!dates) return;
 
-    let updatedBusyDates;
-    if (busyDates.some(busyDate => busyDate.getTime() === date.getTime())) {
-      updatedBusyDates = busyDates.filter(
-        busyDate => busyDate.getTime() !== date.getTime()
-      );
-    } else {
-      updatedBusyDates = [...busyDates, date];
-    }
-    setBusyDates(updatedBusyDates);
+    const lastSelectedDate = dates[dates.length - 1];
+    if (!lastSelectedDate) return;
+    
+    const originalLength = busyDates.length;
+    setBusyDates(dates);
     localStorage.setItem(
       'busyDates',
-      JSON.stringify(updatedBusyDates.map(d => format(d, 'yyyy-MM-dd')))
+      JSON.stringify(dates.map(d => format(d, 'yyyy-MM-dd')))
     );
+
+    const isBlocked = dates.length > originalLength;
+
     toast({
       title: `Date ${
-        updatedBusyDates.length > busyDates.length ? 'blocked' : 'unblocked'
+        isBlocked ? 'blocked' : 'unblocked'
       }`,
-      description: `${format(date, 'PPP')} is now ${
-        updatedBusyDates.length > busyDates.length
-          ? 'unavailable'
-          : 'available'
+      description: `${format(lastSelectedDate, 'PPP')} is now ${
+        isBlocked ? 'unavailable' : 'available'
       }.`,
     });
   };
@@ -216,7 +213,7 @@ export default function AdminPage() {
               <Calendar
                 mode="multiple"
                 selected={busyDates}
-                onSelect={handleDateSelect as any}
+                onSelect={handleDateSelect}
                 className="rounded-md border"
               />
             </CardContent>
