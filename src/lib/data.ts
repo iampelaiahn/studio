@@ -79,8 +79,8 @@ export const products = [
   },
   {
     id: "prod-12",
-    name: "Lemon Drizzle Cake",
-    description: "A zesty and moist lemon cake with a sweet drizzle icing.",
+    name: "Zesty Berry Stack",
+    description: "A zesty lemon cake stacked with fresh berries and a sweet drizzle.",
     category: "Cakes",
     imageId: "cake-5",
   },
