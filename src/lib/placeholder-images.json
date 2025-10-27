@@ -92,8 +92,8 @@
     },
     {
       "id": "cake-5",
-      "description": "A slice of lemon drizzle cake",
-      "imageUrl": "https://i.imgur.com/hbUF70q.png",
+      "description": "A delightful stack of lemon and strawberry cake with complementary fillings, all wrapped in a fragrant lemon buttercream.",
+      "imageUrl": "https://imgur.com/Died1Mm",
       "imageHint": "lemon cake"
     },
     {
@@ -111,7 +111,7 @@
     {
       "id": "cake-8",
       "description": "A victoria sponge cake",
-      "imageUrl": "https://images.unsplash.com/photo-1569775683473-c534979f35a9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxzcG9uZ2UlMjBjYWtlfGVufDB8fHx8MTc2MTU2MjIzOXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://imgur.com/Died1Mm",
       "imageHint": "sponge cake"
     }
   ]
