@@ -69,7 +69,7 @@
     {
       "id": "other-3",
       "description": "Cake with a bicycle on top",
-      "imageUrl": "https://imgur.com/W7Uo9M9.png",
+      "imageUrl": "https://i.imgur.com/W7Uo9M9.png",
       "imageHint": "bicycle cake"
     },
     {
@@ -93,7 +93,7 @@
     {
       "id": "cake-5",
       "description": "A delightful stack of lemon and strawberry cake with complementary fillings, all wrapped in a fragrant lemon buttercream.",
-      "imageUrl": "https://imgur.com/Died1Mm",
+      "imageUrl": "https://i.imgur.com/Died1Mm.png",
       "imageHint": "lemon cake"
     },
     {
@@ -111,7 +111,7 @@
     {
       "id": "cake-8",
       "description": "A victoria sponge cake",
-      "imageUrl": "https://imgur.com/Died1Mm",
+      "imageUrl": "https://i.imgur.com/Died1Mm.png",
       "imageHint": "sponge cake"
     }
   ]
