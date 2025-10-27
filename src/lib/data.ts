@@ -100,8 +100,8 @@ export const products = [
   },
   {
     id: "prod-15",
-    name: "Victoria Sponge",
-    description: "A traditional sponge cake with jam and cream filling.",
+    name: "Triple chocolate fudge cake",
+    description: "A decadent and moist chocolate fudge cake, perfect for any chocoholic.",
     category: "Cakes",
     imageId: "cake-8",
   },
@@ -116,3 +116,4 @@ export const navLinks = [
 ];
 
 export const productTypes = ["Cakes", "Desserts", "Donuts", "Vegan", "Drinks", "Cupcakes", "Muffins", "Cookies"];
+
