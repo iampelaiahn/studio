@@ -1,11 +1,11 @@
 
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { Calendar as CalendarIcon, Loader2, Trash2 } from 'lucide-react';
+import { Calendar as CalendarIcon, Loader2, Trash2, Upload, X } from 'lucide-react';
 import { format } from 'date-fns';
 
 import { Button } from '@/components/ui/button';
@@ -32,6 +32,7 @@ import { products as staticProducts } from '@/lib/data';
 import { busyDates as staticBusyDates } from '@/lib/busy-dates';
 import { availableTimes as staticAvailableTimes } from '@/lib/data';
 import { cn } from '@/lib/utils';
+import { ProductWithImage } from '@/lib/types';
 
 const productSchema = z.object({
   name: z.string().min(2, 'Product name must be at least 2 characters.'),
@@ -39,16 +40,18 @@ const productSchema = z.object({
     .string()
     .min(10, 'Description must be at least 10 characters.'),
   category: z.string().min(2, 'Category is required.'),
-  imageId: z.string().min(1, 'Image ID is required.'),
+  imageUrl: z.string().url('Please upload a valid image.'),
+  imageFile: z.any().optional(),
 });
 
 export default function AdminPage() {
   const { toast } = useToast();
-  const [products, setProducts] = useState(staticProducts);
+  const [products, setProducts] = useState<(typeof staticProducts[0] & { imageUrl?: string })[]>(staticProducts);
   const [busyDates, setBusyDates] = useState<Date[]>(
     staticBusyDates.map(d => new Date(d))
   );
   const [busyHours, setBusyHours] = useState<string[]>([]);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const savedProducts = localStorage.getItem('customProducts');
@@ -74,19 +77,26 @@ export default function AdminPage() {
       name: '',
       description: '',
       category: 'Cakes',
-      imageId: '',
+      imageUrl: '',
     },
   });
 
   const onProductSubmit = (values: z.infer<typeof productSchema>) => {
-    const newProduct = { ...values, id: `prod-${Date.now()}` };
-    const updatedProducts = [...products, newProduct];
+    const newProduct: ProductWithImage = { 
+        ...values, 
+        id: `prod-${Date.now()}`,
+    };
+    
+    // We don't want to store the file object in localStorage
+    const { imageFile, ...productToSave } = newProduct as any;
+
+    const updatedProducts = [...products, productToSave];
     setProducts(updatedProducts);
 
     const savedProducts = JSON.parse(
       localStorage.getItem('customProducts') || '[]'
     );
-    savedProducts.push(newProduct);
+    savedProducts.push(productToSave);
     localStorage.setItem('customProducts', JSON.stringify(savedProducts));
 
     toast({
@@ -95,33 +105,27 @@ export default function AdminPage() {
     });
     form.reset();
   };
+  
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        form.setValue('imageUrl', reader.result as string, { shouldValidate: true });
+        form.setValue('imageFile', file);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   const handleDateSelect = (dates: Date[] | undefined) => {
-    if (!dates) {
-      // If dates is undefined, it means all dates were deselected.
-      setBusyDates([]);
-      localStorage.setItem('busyDates', JSON.stringify([]));
-      toast({
-        title: `All dates unblocked`,
-        description: `All previously blocked dates are now available.`,
-      });
-      return;
-    }
-
-    const lastSelectedDate = dates.length > 0 ? dates[dates.length - 1] : undefined;
-    
-    setBusyDates(dates);
-    localStorage.setItem(
-      'busyDates',
-      JSON.stringify(dates.map(d => format(d, 'yyyy-MM-dd')))
-    );
-
-    if (lastSelectedDate) {
-      toast({
-        title: `Availability Updated`,
-        description: `Date selection has been updated.`,
-      });
-    }
+    const newDates = dates || [];
+    setBusyDates(newDates);
+    localStorage.setItem('busyDates', JSON.stringify(newDates.map(d => format(d, 'yyyy-MM-dd'))));
+    toast({
+      title: 'Availability Updated',
+      description: 'Your busy dates have been updated.',
+    });
   };
 
   const handleTimeToggle = (time: string) => {
@@ -139,6 +143,8 @@ export default function AdminPage() {
         return newBusyHours;
     });
   };
+
+  const selectedFile = form.watch('imageFile');
 
   return (
     <div className="container mx-auto max-w-7xl py-12 px-4 sm:px-6 lg:px-8">
@@ -204,21 +210,54 @@ export default function AdminPage() {
                   />
                   <FormField
                     control={form.control}
-                    name="imageId"
+                    name="imageUrl"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Image ID</FormLabel>
+                        <FormLabel>Product Image</FormLabel>
                         <FormControl>
-                          <Input placeholder="An ID from placeholder-images.json" {...field} />
+                          <>
+                            <Input
+                              type="file"
+                              accept="image/*"
+                              className="hidden"
+                              ref={fileInputRef}
+                              onChange={handleImageUpload}
+                            />
+                            <Button
+                              type="button"
+                              variant="outline"
+                              onClick={() => fileInputRef.current?.click()}
+                            >
+                              <Upload className="mr-2 h-4 w-4" />
+                              Upload Image
+                            </Button>
+                          </>
                         </FormControl>
-                        <FormDescription>
-                          This must match an ID in src/lib/placeholder-images.json
-                        </FormDescription>
+                        {selectedFile && (
+                          <div className="flex items-center gap-2 text-sm text-muted-foreground mt-2">
+                            <span>{selectedFile.name}</span>
+                            <Button
+                              type="button"
+                              variant="ghost"
+                              size="icon"
+                              className="h-6 w-6"
+                              onClick={() => {
+                                form.setValue('imageUrl', '', { shouldValidate: true });
+                                form.setValue('imageFile', null);
+                                if (fileInputRef.current) {
+                                  fileInputRef.current.value = '';
+                                }
+                              }}
+                            >
+                              <X className="h-4 w-4" />
+                            </Button>
+                          </div>
+                        )}
                         <FormMessage />
                       </FormItem>
                     )}
                   />
-                  <Button type="submit">
+                  <Button type="submit" disabled={form.formState.isSubmitting}>
                     {form.formState.isSubmitting && (
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                     )}
@@ -280,3 +319,5 @@ export default function AdminPage() {
     </div>
   );
 }
+
+    

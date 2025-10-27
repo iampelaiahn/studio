@@ -10,19 +10,28 @@ import { type ProductWithImage } from "@/lib/types";
 import ProductDetailModal from './_components/product-detail-modal';
 
 export default function ProductsPage() {
-    const [products, setProducts] = useState(staticProducts);
+    const [products, setProducts] = useState<(typeof staticProducts[0] & { imageUrl?: string })[]>(staticProducts);
 
     useEffect(() => {
         const savedProducts = localStorage.getItem('customProducts');
         if (savedProducts) {
-            setProducts(prev => [...prev, ...JSON.parse(savedProducts)]);
+            try {
+                const parsedProducts = JSON.parse(savedProducts);
+                setProducts(prev => [...staticProducts, ...parsedProducts]);
+            } catch (error) {
+                console.error("Failed to parse custom products from localStorage", error);
+                setProducts(staticProducts);
+            }
         }
     }, []);
 
     const productsWithImages: ProductWithImage[] = products.map(product => {
-        const image = PlaceHolderImages.find((img: ImagePlaceholder) => img.id === product.imageId)
-        return { ...product, imageUrl: image?.imageUrl, imageHint: image?.imageHint }
-    })
+        if (product.imageUrl) {
+            return { ...product, imageUrl: product.imageUrl, imageHint: product.name };
+        }
+        const image = PlaceHolderImages.find((img: ImagePlaceholder) => img.id === product.imageId);
+        return { ...product, imageUrl: image?.imageUrl, imageHint: image?.imageHint };
+    });
 
     const [isCarouselShowingDetail, setIsCarouselShowingDetail] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState<ProductWithImage | null>(null);
@@ -63,3 +72,5 @@ export default function ProductsPage() {
         </div>
     )
 }
+
+    
