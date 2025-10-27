@@ -33,6 +33,7 @@ import { busyDates as staticBusyDates } from '@/lib/busy-dates';
 import { availableTimes as staticAvailableTimes } from '@/lib/data';
 import { cn } from '@/lib/utils';
 import { ProductWithImage } from '@/lib/types';
+import { Separator } from '@/components/ui/separator';
 
 const productSchema = z.object({
   name: z.string().min(2, 'Product name must be at least 2 characters.'),
@@ -40,7 +41,7 @@ const productSchema = z.object({
     .string()
     .min(10, 'Description must be at least 10 characters.'),
   category: z.string().min(2, 'Category is required.'),
-  imageUrl: z.string().url('Please upload a valid image.'),
+  imageUrl: z.string().url('Please upload or enter a valid image URL.'),
   imageFile: z.any().optional(),
 });
 
@@ -214,25 +215,37 @@ export default function AdminPage() {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Product Image</FormLabel>
-                        <FormControl>
-                          <>
-                            <Input
-                              type="file"
-                              accept="image/*"
-                              className="hidden"
-                              ref={fileInputRef}
-                              onChange={handleImageUpload}
-                            />
-                            <Button
-                              type="button"
-                              variant="outline"
-                              onClick={() => fileInputRef.current?.click()}
-                            >
-                              <Upload className="mr-2 h-4 w-4" />
-                              Upload Image
-                            </Button>
-                          </>
-                        </FormControl>
+                        <div className="space-y-4">
+                            <FormControl>
+                              <Input placeholder="https://example.com/image.png" {...field} />
+                            </FormControl>
+
+                            <div className="relative">
+                                <Separator />
+                                <span className="absolute left-1/2 -translate-x-1/2 -top-2.5 bg-card px-2 text-sm text-muted-foreground">OR</span>
+                            </div>
+
+                            <FormControl>
+                              <>
+                                <Input
+                                  type="file"
+                                  accept="image/*"
+                                  className="hidden"
+                                  ref={fileInputRef}
+                                  onChange={handleImageUpload}
+                                />
+                                <Button
+                                  type="button"
+                                  variant="outline"
+                                  className='w-full'
+                                  onClick={() => fileInputRef.current?.click()}
+                                >
+                                  <Upload className="mr-2 h-4 w-4" />
+                                  Upload Image
+                                </Button>
+                              </>
+                            </FormControl>
+                        </div>
                         {selectedFile && (
                           <div className="flex items-center gap-2 text-sm text-muted-foreground mt-2">
                             <span>{selectedFile.name}</span>
@@ -319,5 +332,3 @@ export default function AdminPage() {
     </div>
   );
 }
-
-    
