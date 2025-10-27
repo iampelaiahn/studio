@@ -1,0 +1,344 @@
+{
+  "entities": {
+    "User": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "User",
+      "type": "object",
+      "description": "Represents a user account for accessing the admin page.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the user.",
+          "format": "uuid"
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address of the user.",
+          "format": "email"
+        },
+        "role": {
+          "type": "string",
+          "description": "Role of the user, e.g., 'admin'.",
+          "format": "string"
+        }
+      },
+      "required": [
+        "id",
+        "email",
+        "role"
+      ]
+    },
+    "Cake": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Cake",
+      "type": "object",
+      "description": "Represents a cake product in the catalog.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the cake."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the cake."
+        },
+        "description": {
+          "type": "string",
+          "description": "Detailed description of the cake."
+        },
+        "price": {
+          "type": "number",
+          "description": "Price of the cake."
+        },
+        "category": {
+          "type": "string",
+          "description": "Category of the cake (e.g., 'Chocolate', 'Vanilla')."
+        },
+        "imageUrl": {
+          "type": "string",
+          "description": "URL of the cake's image.",
+          "format": "uri"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "description",
+        "price",
+        "category",
+        "imageUrl"
+      ]
+    },
+    "Cupcake": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Cupcake",
+      "type": "object",
+      "description": "Represents a cupcake product in the catalog.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the cupcake."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the cupcake."
+        },
+        "description": {
+          "type": "string",
+          "description": "Detailed description of the cupcake."
+        },
+        "price": {
+          "type": "number",
+          "description": "Price of the cupcake."
+        },
+        "category": {
+          "type": "string",
+          "description": "Category of the cupcake (e.g., 'Chocolate', 'Vanilla')."
+        },
+        "imageUrl": {
+          "type": "string",
+          "description": "URL of the cupcake's image.",
+          "format": "uri"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "description",
+        "price",
+        "category",
+        "imageUrl"
+      ]
+    },
+    "CustomOrder": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "CustomOrder",
+      "type": "object",
+      "description": "Represents a custom order request submitted by a user.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the custom order."
+        },
+        "productType": {
+          "type": "string",
+          "description": "Type of product requested (e.g., 'cake', 'cupcakes')."
+        },
+        "designTheme": {
+          "type": "string",
+          "description": "Desired design or theme for the order."
+        },
+        "flavors": {
+          "type": "string",
+          "description": "Flavors requested for the order."
+        },
+        "icing": {
+          "type": "string",
+          "description": "Icing type and flavor for the order."
+        },
+        "pickupDeliveryDate": {
+          "type": "string",
+          "description": "Requested pickup or delivery date.",
+          "format": "date-time"
+        },
+        "customerId": {
+          "type": "string",
+          "description": "Reference to the Customer who placed the order. (Relationship: Customer 1:N CustomOrder)"
+        }
+      },
+      "required": [
+        "id",
+        "productType",
+        "designTheme",
+        "flavors",
+        "icing",
+        "pickupDeliveryDate",
+        "customerId"
+      ]
+    },
+    "Customer": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Customer",
+      "type": "object",
+      "description": "Represents a customer who places orders.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the customer."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the customer."
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address of the customer.",
+          "format": "email"
+        },
+        "phone": {
+          "type": "string",
+          "description": "Phone number of the customer."
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "email",
+        "phone"
+      ]
+    },
+    "GalleryImage": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "GalleryImage",
+      "type": "object",
+      "description": "Represents an image in the gallery showcase.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the gallery image."
+        },
+        "imageUrl": {
+          "type": "string",
+          "description": "URL of the gallery image.",
+          "format": "uri"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the image."
+        }
+      },
+      "required": [
+        "id",
+        "imageUrl",
+        "description"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/users/{userId}",
+        "definition": {
+          "entityName": "User",
+          "schema": {
+            "$ref": "#/backend/entities/User"
+          },
+          "description": "Stores user profiles. Secured by path-based ownership: only the authenticated user can access their own document.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier of the user."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/cakes/{cakeId}",
+        "definition": {
+          "entityName": "Cake",
+          "schema": {
+            "$ref": "#/backend/entities/Cake"
+          },
+          "description": "Stores the catalog of cakes. Publicly readable, but write-protected (admin only).",
+          "params": [
+            {
+              "name": "cakeId",
+              "description": "The unique identifier of the cake."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/cupcakes/{cupcakeId}",
+        "definition": {
+          "entityName": "Cupcake",
+          "schema": {
+            "$ref": "#/backend/entities/Cupcake"
+          },
+          "description": "Stores the catalog of cupcakes. Publicly readable, but write-protected (admin only).",
+          "params": [
+            {
+              "name": "cupcakeId",
+              "description": "The unique identifier of the cupcake."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/customers/{customerId}/customOrders/{customOrderId}",
+        "definition": {
+          "entityName": "CustomOrder",
+          "schema": {
+            "$ref": "#/backend/entities/CustomOrder"
+          },
+          "description": "Stores custom orders for each customer. Secured by path-based ownership; accessible only by the customer who owns them or by an admin.",
+          "params": [
+            {
+              "name": "customerId",
+              "description": "The unique identifier of the customer."
+            },
+            {
+              "name": "customOrderId",
+              "description": "The unique identifier of the custom order."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/customers/{customerId}",
+        "definition": {
+          "entityName": "Customer",
+          "schema": {
+            "$ref": "#/backend/entities/Customer"
+          },
+          "description": "Stores customer profiles. Secured by path-based ownership: only the authenticated user can access their customer profile, or an admin.",
+          "params": [
+            {
+              "name": "customerId",
+              "description": "The unique identifier of the customer."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/galleryImages/{galleryImageId}",
+        "definition": {
+          "entityName": "GalleryImage",
+          "schema": {
+            "$ref": "#/backend/entities/GalleryImage"
+          },
+          "description": "Stores gallery images. Publicly readable, but write-protected (admin only).",
+          "params": [
+            {
+              "name": "galleryImageId",
+              "description": "The unique identifier of the gallery image."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/roles_admin/{userId}",
+        "definition": {
+          "entityName": "User",
+          "schema": {
+            "$ref": "#/backend/entities/User"
+          },
+          "description": "Indicates admin role. The existence of a document grants admin privileges.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier of the user with admin privileges."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "The Firestore structure is designed to ensure authorization independence, clarity, and scalability, following the principles outlined in the design strategy.  The structure uses structural segregation, access modeling, and data clarity practices.\n\n1.  **Users Collection:** The `/users/{userId}` collection stores user profiles.  This collection is secured using path-based ownership; only the authenticated user can access their document.\n\n2.  **Cakes and Cupcakes Collections:** The `/cakes` and `/cupcakes` collections store the product catalog. These collections have public read access but are write-protected, accessible only by authorized admin users.\n\n3.  **Custom Orders:** Custom orders are stored in `/customers/{customerId}/customOrders/{customOrderId}` to represent the 1:N relationship of `Customer 1:N CustomOrder`. Only the authenticated user who owns the customer profile or an admin can access the orders.\n\n4.  **Customers Collection:**  Customer profiles are stored in the `/customers/{customerId}` collection, secured by path-based ownership.\n\n5.  **Gallery Images Collection:** The `/galleryImages` collection stores gallery images, accessible for public read but restricted to admin users for write operations.\n\n6. **Admin Roles Collection:** The `/roles_admin/{userId}` is used to manage admin roles. This leverages Existence over Content for authorization.  The presence of a document in this collection grants admin privileges.\n\n**Authorization Independence:** Denormalization is not necessary in this specific design because ownership is enforced through path-based rules (e.g., `/users/{userId}`). The admin role is determined by the existence of a document in the `/roles_admin/{userId}` collection, avoiding the need for `get()` calls and ensuring atomic operations.\n\n**QAPs (Rules are not Filters):**\n*   Secure `list` operations are supported.  For example, listing cakes or cupcakes is public. Listing custom orders is restricted to the customer who owns them or an admin. The segregation of admin roles into `/roles_admin/{userId}` enables simple, secure rule definitions for admin-only operations."
+  }
+}
