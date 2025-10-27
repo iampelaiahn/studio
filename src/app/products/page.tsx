@@ -1,8 +1,8 @@
 
 'use client';
 
-import React, { useState } from 'react';
-import { products } from "@/lib/data"
+import React, { useState, useEffect } from 'react';
+import { products as staticProducts } from "@/lib/data"
 import { PlaceHolderImages, ImagePlaceholder } from "@/lib/placeholder-images"
 import ProductGrid from "./_components/product-grid"
 import ProductCarousel from '@/app/shop/_components/product-carousel';
@@ -10,6 +10,15 @@ import { type ProductWithImage } from "@/lib/types";
 import ProductDetailModal from './_components/product-detail-modal';
 
 export default function ProductsPage() {
+    const [products, setProducts] = useState(staticProducts);
+
+    useEffect(() => {
+        const savedProducts = localStorage.getItem('customProducts');
+        if (savedProducts) {
+            setProducts(prev => [...prev, ...JSON.parse(savedProducts)]);
+        }
+    }, []);
+
     const productsWithImages: ProductWithImage[] = products.map(product => {
         const image = PlaceHolderImages.find((img: ImagePlaceholder) => img.id === product.imageId)
         return { ...product, imageUrl: image?.imageUrl, imageHint: image?.imageHint }

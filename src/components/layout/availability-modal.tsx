@@ -1,7 +1,7 @@
 
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogClose } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
@@ -13,7 +13,7 @@ import { cn } from '@/lib/utils';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { ScrollArea } from '../ui/scroll-area';
 import { useOrder } from '@/context/order-context';
-import { busyDates as busyDatesList } from '@/lib/busy-dates';
+import { busyDates as staticBusyDates } from '@/lib/busy-dates';
 
 type AvailabilityModalProps = {
   isOpen: boolean;
@@ -32,8 +32,6 @@ const availableTimes = [
     { time: "06:15 PM", available: false },
 ];
 
-const busyDates = busyDatesList.map(dateStr => new Date(dateStr));
-
 export default function AvailabilityModal({ isOpen, onOpenChange }: AvailabilityModalProps) {
     const { setCustomerDetails, setBookingDate } = useOrder();
     const [selectedDate, setSelectedDate] = useState(new Date());
@@ -43,6 +41,14 @@ export default function AvailabilityModal({ isOpen, onOpenChange }: Availability
     const [fullName, setFullName] = useState('');
     const [email, setEmail] = useState('');
     const router = useRouter();
+    const [busyDates, setBusyDates] = useState(staticBusyDates.map(d => new Date(d)));
+    
+    useEffect(() => {
+        const savedBusyDates = localStorage.getItem('busyDates');
+        if (savedBusyDates) {
+            setBusyDates(JSON.parse(savedBusyDates).map((d: string) => new Date(d)));
+        }
+    }, [isOpen]);
 
     const dates = Array.from({ length: 7 }).map((_, i) => addDays(currentDate, i));
 
@@ -58,7 +64,7 @@ export default function AvailabilityModal({ isOpen, onOpenChange }: Availability
         setCustomerDetails({ name: fullName, email });
         setBookingDate(selectedDate);
         if (orderType === 'shop-now') {
-            router.push('/shop');
+            router.push('/products');
         } else {
             router.push('/custom-order');
         }
@@ -136,7 +142,7 @@ export default function AvailabilityModal({ isOpen, onOpenChange }: Availability
                     <RadioGroup defaultValue="shop-now" onValueChange={setOrderType}>
                         <div className="flex items-center space-x-2">
                             <RadioGroupItem value="shop-now" id="shop-now" />
-                            <Label htmlFor="shop-now">Shop Now</Label>
+                            <Label htmlFor="shop-now">Browse Catalog</Label>
                         </div>
                         <div className="flex items-center space-x-2">
                             <RadioGroupItem value="custom-cake" id="custom-cake" />
