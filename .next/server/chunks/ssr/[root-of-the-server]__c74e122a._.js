@@ -176,7 +176,7 @@ const products = [
     },
     {
         id: "prod-14",
-        name: "Coffee and Walnut Cake",
+        name: "chocolate vanilla cake",
         description: "Chocolate and vanilla layers filled with vanilla flavored chocolate ganache and covered with buttercream",
         category: "Cakes",
         imageId: "cake-7"
