@@ -1109,6 +1109,10 @@ body {
   top: -3rem;
 }
 
+.-top-2\.5 {
+  top: -.625rem;
+}
+
 .-top-4 {
   top: -1rem;
 }
@@ -1183,10 +1187,6 @@ body {
 
 .top-\[50\%\] {
   top: 50%;
-}
-
-.-top-2\.5 {
-  top: -.625rem;
 }
 
 .z-0 {
@@ -1609,6 +1609,10 @@ body {
   max-width: 56rem;
 }
 
+.max-w-7xl {
+  max-width: 80rem;
+}
+
 .max-w-\[--skeleton-width\] {
   max-width: var(--skeleton-width);
 }
@@ -1631,10 +1635,6 @@ body {
 
 .max-w-xl {
   max-width: 36rem;
-}
-
-.max-w-7xl {
-  max-width: 80rem;
 }
 
 .flex-1 {
@@ -1786,12 +1786,12 @@ body {
   cursor: default;
 }
 
-.cursor-pointer {
-  cursor: pointer;
-}
-
 .cursor-not-allowed {
   cursor: not-allowed;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
 
 .touch-none {

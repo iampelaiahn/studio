@@ -226,7 +226,7 @@ export default function AdminPage() {
                             </div>
 
                             <FormControl>
-                              <>
+                              <div>
                                 <Input
                                   type="file"
                                   accept="image/*"
@@ -243,7 +243,7 @@ export default function AdminPage() {
                                   <Upload className="mr-2 h-4 w-4" />
                                   Upload Image
                                 </Button>
-                              </>
+                              </div>
                             </FormControl>
                         </div>
                         {selectedFile && (
