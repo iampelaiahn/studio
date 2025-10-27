@@ -146,7 +146,7 @@ const products = [
     },
     {
         id: "prod-13",
-        name: "red velvet",
+        name: "Red velvet",
         description: "Red velvet with cream cheese filling and covered with fresh cream",
         category: "Cakes",
         imageId: "cake-6"
