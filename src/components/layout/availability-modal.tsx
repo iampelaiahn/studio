@@ -14,39 +14,43 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { ScrollArea } from '../ui/scroll-area';
 import { useOrder } from '@/context/order-context';
 import { busyDates as staticBusyDates } from '@/lib/busy-dates';
+import { availableTimes as staticAvailableTimes } from '@/lib/data';
 
 type AvailabilityModalProps = {
   isOpen: boolean;
   onOpenChange: (isOpen: boolean) => void;
 };
 
-const availableTimes = [
-    { time: "10:00 AM", available: true },
-    { time: "11:00 AM", available: true },
-    { time: "12:00 PM", available: false },
-    { time: "01:30 PM", available: true },
-    { time: "02:15 PM", available: true },
-    { time: "03:00 PM", available: false },
-    { time: "04:30 PM", available: true },
-    { time: "05:00 PM", available: true },
-    { time: "06:15 PM", available: false },
-];
-
 export default function AvailabilityModal({ isOpen, onOpenChange }: AvailabilityModalProps) {
     const { setCustomerDetails, setBookingDate } = useOrder();
     const [selectedDate, setSelectedDate] = useState(new Date());
-    const [selectedTime, setSelectedTime] = useState("05:00 PM");
+    const [selectedTime, setSelectedTime] = useState<string | null>(null);
     const [currentDate, setCurrentDate] = useState(new Date());
     const [orderType, setOrderType] = useState('shop-now');
     const [fullName, setFullName] = useState('');
     const [email, setEmail] = useState('');
     const router = useRouter();
     const [busyDates, setBusyDates] = useState(staticBusyDates.map(d => new Date(d)));
+    const [busyHours, setBusyHours] = useState<string[]>([]);
     
     useEffect(() => {
-        const savedBusyDates = localStorage.getItem('busyDates');
-        if (savedBusyDates) {
-            setBusyDates(JSON.parse(savedBusyDates).map((d: string) => new Date(d)));
+        if (isOpen) {
+            const savedBusyDates = localStorage.getItem('busyDates');
+            if (savedBusyDates) {
+                setBusyDates(JSON.parse(savedBusyDates).map((d: string) => new Date(d)));
+            }
+            
+            const savedBusyHours = localStorage.getItem('busyHours');
+            if (savedBusyHours) {
+                setBusyHours(JSON.parse(savedBusyHours));
+            } else {
+                const staticBusyTimes = staticAvailableTimes.filter(t => !t.available).map(t => t.time);
+                setBusyHours(staticBusyTimes);
+            }
+
+            // Set initial selected time
+            const firstAvailableTime = staticAvailableTimes.find(t => !busyHours.includes(t.time));
+            setSelectedTime(firstAvailableTime ? firstAvailableTime.time : null);
         }
     }, [isOpen]);
 
@@ -120,20 +124,23 @@ export default function AvailabilityModal({ isOpen, onOpenChange }: Availability
                 <div>
                     <h3 className="text-lg font-semibold mb-4">Available Times</h3>
                     <div className="grid grid-cols-3 gap-3">
-                        {availableTimes.map(({ time, available }) => (
-                            <Button 
-                                key={time}
-                                variant={selectedTime === time ? "default" : "outline"}
-                                onClick={() => available && setSelectedTime(time)}
-                                disabled={!available}
-                                className={cn(
-                                    "disabled:bg-muted disabled:text-muted-foreground disabled:cursor-not-allowed",
-                                    selectedTime === time && available ? "bg-destructive text-destructive-foreground hover:bg-destructive/90" : ""
-                                )}
-                            >
-                                {time}
-                            </Button>
-                        ))}
+                        {staticAvailableTimes.map(({ time }) => {
+                            const isBusy = busyHours.includes(time);
+                            return (
+                                <Button 
+                                    key={time}
+                                    variant={selectedTime === time ? "default" : "outline"}
+                                    onClick={() => !isBusy && setSelectedTime(time)}
+                                    disabled={isBusy}
+                                    className={cn(
+                                        "disabled:bg-muted disabled:text-muted-foreground disabled:cursor-not-allowed",
+                                        selectedTime === time && !isBusy ? "bg-destructive text-destructive-foreground hover:bg-destructive/90" : ""
+                                    )}
+                                >
+                                    {time}
+                                </Button>
+                            )
+                        })}
                     </div>
                 </div>
 
@@ -163,7 +170,7 @@ export default function AvailabilityModal({ isOpen, onOpenChange }: Availability
                             <Input type="email" id="email-modal" placeholder="jane.doe@example.com" value={email} onChange={(e) => setEmail(e.target.value)} />
                         </div>
                     </div>
-                    <Button size="lg" className="w-full bg-destructive text-destructive-foreground hover:bg-destructive/90" onClick={handleNext}>Next</Button>
+                    <Button size="lg" className="w-full bg-destructive text-destructive-foreground hover:bg-destructive/90" onClick={handleNext} disabled={!selectedTime}>Next</Button>
                 </div>
             </div>
         </ScrollArea>

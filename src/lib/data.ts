@@ -116,3 +116,15 @@ export const navLinks = [
 ];
 
 export const productTypes = ["Cakes", "Desserts", "Donuts", "Vegan", "Drinks", "Cupcakes", "Muffins", "Cookies"];
+
+export const availableTimes = [
+    { time: "10:00 AM", available: true },
+    { time: "11:00 AM", available: true },
+    { time: "12:00 PM", available: false },
+    { time: "01:30 PM", available: true },
+    { time: "02:15 PM", available: true },
+    { time: "03:00 PM", available: false },
+    { time: "04:30 PM", available: true },
+    { time: "05:00 PM", available: true },
+    { time: "06:15 PM", available: false },
+];

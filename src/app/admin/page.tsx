@@ -30,6 +30,8 @@ import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import { products as staticProducts } from '@/lib/data';
 import { busyDates as staticBusyDates } from '@/lib/busy-dates';
+import { availableTimes as staticAvailableTimes } from '@/lib/data';
+import { cn } from '@/lib/utils';
 
 const productSchema = z.object({
   name: z.string().min(2, 'Product name must be at least 2 characters.'),
@@ -46,6 +48,7 @@ export default function AdminPage() {
   const [busyDates, setBusyDates] = useState<Date[]>(
     staticBusyDates.map(d => new Date(d))
   );
+  const [busyHours, setBusyHours] = useState<string[]>([]);
 
   useEffect(() => {
     const savedProducts = localStorage.getItem('customProducts');
@@ -55,6 +58,13 @@ export default function AdminPage() {
     const savedBusyDates = localStorage.getItem('busyDates');
     if (savedBusyDates) {
       setBusyDates(JSON.parse(savedBusyDates).map((d: string) => new Date(d)));
+    }
+    const savedBusyHours = localStorage.getItem('busyHours');
+    if (savedBusyHours) {
+        setBusyHours(JSON.parse(savedBusyHours));
+    } else {
+        const staticBusyTimes = staticAvailableTimes.filter(t => !t.available).map(t => t.time);
+        setBusyHours(staticBusyTimes);
     }
   }, []);
 
@@ -87,40 +97,59 @@ export default function AdminPage() {
   };
 
   const handleDateSelect = (dates: Date[] | undefined) => {
-    if (!dates) return;
+    if (!dates) {
+      // If dates is undefined, it means all dates were deselected.
+      setBusyDates([]);
+      localStorage.setItem('busyDates', JSON.stringify([]));
+      toast({
+        title: `All dates unblocked`,
+        description: `All previously blocked dates are now available.`,
+      });
+      return;
+    }
 
-    const lastSelectedDate = dates[dates.length - 1];
-    if (!lastSelectedDate) return;
+    const lastSelectedDate = dates.length > 0 ? dates[dates.length - 1] : undefined;
     
-    const originalLength = busyDates.length;
     setBusyDates(dates);
     localStorage.setItem(
       'busyDates',
       JSON.stringify(dates.map(d => format(d, 'yyyy-MM-dd')))
     );
 
-    const isBlocked = dates.length > originalLength;
+    if (lastSelectedDate) {
+      toast({
+        title: `Availability Updated`,
+        description: `Date selection has been updated.`,
+      });
+    }
+  };
 
-    toast({
-      title: `Date ${
-        isBlocked ? 'blocked' : 'unblocked'
-      }`,
-      description: `${format(lastSelectedDate, 'PPP')} is now ${
-        isBlocked ? 'unavailable' : 'available'
-      }.`,
+  const handleTimeToggle = (time: string) => {
+    setBusyHours(prev => {
+        const newBusyHours = prev.includes(time)
+            ? prev.filter(t => t !== time)
+            : [...prev, time];
+        localStorage.setItem('busyHours', JSON.stringify(newBusyHours));
+        
+        toast({
+            title: `Time slot ${prev.includes(time) ? 'made available' : 'blocked'}`,
+            description: `${time} is now ${prev.includes(time) ? 'available' : 'unavailable'}.`,
+        });
+
+        return newBusyHours;
     });
   };
 
   return (
-    <div className="container mx-auto max-w-4xl py-12 px-4 sm:px-6 lg:px-8">
+    <div className="container mx-auto max-w-7xl py-12 px-4 sm:px-6 lg:px-8">
       <header className="text-center mb-12">
         <h1 className="text-4xl md:text-5xl font-headline">Admin Panel</h1>
         <p className="mt-3 text-lg text-muted-foreground">
           Manage your products and availability here.
         </p>
       </header>
-      <div className="grid md:grid-cols-2 gap-12">
-        <section>
+      <div className="grid lg:grid-cols-3 gap-12">
+        <div className="lg:col-span-1">
           <Card>
             <CardHeader>
               <CardTitle>Add New Product</CardTitle>
@@ -199,26 +228,54 @@ export default function AdminPage() {
               </Form>
             </CardContent>
           </Card>
-        </section>
-        <section>
-          <Card>
-            <CardHeader>
-              <CardTitle>Manage Availability</CardTitle>
-              <CardDescription>
-                Select dates you are unavailable for orders. Click a date to
-                toggle its status.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="flex justify-center">
-              <Calendar
-                mode="multiple"
-                selected={busyDates}
-                onSelect={handleDateSelect}
-                className="rounded-md border"
-              />
-            </CardContent>
-          </Card>
-        </section>
+        </div>
+        <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-12">
+            <section>
+              <Card>
+                <CardHeader>
+                  <CardTitle>Manage Busy Dates</CardTitle>
+                  <CardDescription>
+                    Select dates you are unavailable for orders. Click a date to
+                    toggle its status.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="flex justify-center">
+                  <Calendar
+                    mode="multiple"
+                    selected={busyDates}
+                    onSelect={handleDateSelect}
+                    className="rounded-md border"
+                  />
+                </CardContent>
+              </Card>
+            </section>
+            <section>
+                <Card>
+                    <CardHeader>
+                        <CardTitle>Manage Busy Hours</CardTitle>
+                        <CardDescription>
+                            Click a time slot to toggle its availability.
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                         <div className="grid grid-cols-2 gap-3">
+                            {staticAvailableTimes.map(({ time }) => {
+                                const isBusy = busyHours.includes(time);
+                                return (
+                                    <Button
+                                        key={time}
+                                        variant={isBusy ? "destructive" : "outline"}
+                                        onClick={() => handleTimeToggle(time)}
+                                    >
+                                        {time}
+                                    </Button>
+                                )
+                            })}
+                        </div>
+                    </CardContent>
+                </Card>
+            </section>
+        </div>
       </div>
     </div>
   );
