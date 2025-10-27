@@ -86,7 +86,7 @@ export const products = [
   },
   {
     id: "prod-13",
-    name: "Black Forest Gateau",
+    name: "red velvet",
     description: "Red velvet with cream cheese filling and covered with fresh cream",
     category: "Cakes",
     imageId: "cake-6",
@@ -116,4 +116,3 @@ export const navLinks = [
 ];
 
 export const productTypes = ["Cakes", "Desserts", "Donuts", "Vegan", "Drinks", "Cupcakes", "Muffins", "Cookies"];
-
