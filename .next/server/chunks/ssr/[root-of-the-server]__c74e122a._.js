@@ -170,7 +170,7 @@ const products = [
     {
         id: "prod-13",
         name: "Black Forest Gateau",
-        description: "Layers of chocolate sponge, whipped cream, and cherries.",
+        description: "Red velvet with cream cheese filling and covered with fresh cream",
         category: "Cakes",
         imageId: "cake-6"
     },
