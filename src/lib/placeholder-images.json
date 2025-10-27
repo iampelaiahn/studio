@@ -99,7 +99,7 @@
     {
       "id": "cake-6",
       "description": "A black forest gateau",
-      "imageUrl": "https://images.unsplash.com/photo-1617821620536-765f8849c87c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8YmxhY2slMjBmb3Jlc3R8ZW58MHx8fHwxNzYxNTYyMjQxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://i.imgur.com/e3Lsz9C.png",
       "imageHint": "black forest"
     },
     {
@@ -110,9 +110,9 @@
     },
     {
       "id": "cake-8",
-      "description": "A victoria sponge cake",
-      "imageUrl": "https://i.imgur.com/Died1Mm.png",
-      "imageHint": "sponge cake"
+      "description": "A triple chocolate fudge cake",
+      "imageUrl": "https://i.imgur.com/tOtqvMQ.png",
+      "imageHint": "chocolate fudge cake"
     }
   ]
 }
