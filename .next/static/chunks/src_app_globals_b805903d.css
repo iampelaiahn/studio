@@ -1481,6 +1481,10 @@ body {
   min-height: 100svh;
 }
 
+.min-h-\[80vh\] {
+  min-height: 80vh;
+}
+
 .w-0 {
   width: 0;
 }
@@ -1575,6 +1579,18 @@ body {
 
 .w-full {
   width: 100%;
+}
+
+.w-1\/2 {
+  width: 50%;
+}
+
+.w-12 {
+  width: 3rem;
+}
+
+.w-fit {
+  width: fit-content;
 }
 
 .min-w-0 {

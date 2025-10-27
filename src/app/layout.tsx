@@ -6,6 +6,7 @@ import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
 import { Toaster } from '@/components/ui/toaster';
 import { OrderProvider } from '@/context/order-context';
+import { FirebaseClientProvider } from '@/firebase';
 
 export const metadata: Metadata = {
   title: "Rue's Delectables",
@@ -34,16 +35,18 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
-          <OrderProvider>
-            <div className="relative flex min-h-dvh flex-col">
-              <Header />
-              <main className="flex-1">{children}</main>
-              <div className="relative bg-background">
-                <Footer />
+          <FirebaseClientProvider>
+            <OrderProvider>
+              <div className="relative flex min-h-dvh flex-col">
+                <Header />
+                <main className="flex-1">{children}</main>
+                <div className="relative bg-background">
+                  <Footer />
+                </div>
               </div>
-            </div>
-            <Toaster />
-          </OrderProvider>
+              <Toaster />
+            </OrderProvider>
+          </FirebaseClientProvider>
         </ThemeProvider>
       </body>
     </html>

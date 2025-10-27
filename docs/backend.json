@@ -216,8 +216,7 @@
   },
   "auth": {
     "providers": [
-      "password",
-      "anonymous"
+      "password"
     ]
   },
   "firestore": {
@@ -321,24 +320,8 @@
             }
           ]
         }
-      },
-      {
-        "path": "/roles_admin/{userId}",
-        "definition": {
-          "entityName": "User",
-          "schema": {
-            "$ref": "#/backend/entities/User"
-          },
-          "description": "Indicates admin role. The existence of a document grants admin privileges.",
-          "params": [
-            {
-              "name": "userId",
-              "description": "The unique identifier of the user with admin privileges."
-            }
-          ]
-        }
       }
     ],
-    "reasoning": "The Firestore structure is designed to ensure authorization independence, clarity, and scalability, following the principles outlined in the design strategy.  The structure uses structural segregation, access modeling, and data clarity practices.\n\n1.  **Users Collection:** The `/users/{userId}` collection stores user profiles.  This collection is secured using path-based ownership; only the authenticated user can access their document.\n\n2.  **Cakes and Cupcakes Collections:** The `/cakes` and `/cupcakes` collections store the product catalog. These collections have public read access but are write-protected, accessible only by authorized admin users.\n\n3.  **Custom Orders:** Custom orders are stored in `/customers/{customerId}/customOrders/{customOrderId}` to represent the 1:N relationship of `Customer 1:N CustomOrder`. Only the authenticated user who owns the customer profile or an admin can access the orders.\n\n4.  **Customers Collection:**  Customer profiles are stored in the `/customers/{customerId}` collection, secured by path-based ownership.\n\n5.  **Gallery Images Collection:** The `/galleryImages` collection stores gallery images, accessible for public read but restricted to admin users for write operations.\n\n6. **Admin Roles Collection:** The `/roles_admin/{userId}` is used to manage admin roles. This leverages Existence over Content for authorization.  The presence of a document in this collection grants admin privileges.\n\n**Authorization Independence:** Denormalization is not necessary in this specific design because ownership is enforced through path-based rules (e.g., `/users/{userId}`). The admin role is determined by the existence of a document in the `/roles_admin/{userId}` collection, avoiding the need for `get()` calls and ensuring atomic operations.\n\n**QAPs (Rules are not Filters):**\n*   Secure `list` operations are supported.  For example, listing cakes or cupcakes is public. Listing custom orders is restricted to the customer who owns them or an admin. The segregation of admin roles into `/roles_admin/{userId}` enables simple, secure rule definitions for admin-only operations."
+    "reasoning": "The Firestore structure is designed to ensure authorization independence, clarity, and scalability, following the principles outlined in the design strategy.  The structure uses structural segregation, access modeling, and data clarity practices.\n\n1.  **Users Collection:** The `/users/{userId}` collection stores user profiles.  This collection is secured using path-based ownership; only the authenticated user can access their document.\n\n2.  **Cakes and Cupcakes Collections:** The `/cakes` and `/cupcakes` collections store the product catalog. These collections have public read access but are write-protected, accessible only by authorized admin users.\n\n3.  **Custom Orders:** Custom orders are stored in `/customers/{customerId}/customOrders/{customOrderId}` to represent the 1:N relationship of `Customer 1:N CustomOrder`. Only the authenticated user who owns the customer profile or an admin can access the orders.\n\n4.  **Customers Collection:**  Customer profiles are stored in the `/customers/{customerId}` collection, secured by path-based ownership.\n\n5.  **Gallery Images Collection:** The `/galleryImages` collection stores gallery images, accessible for public read but restricted to admin users for write operations.\n\n**Authorization Independence:** Denormalization is not necessary in this specific design because ownership is enforced through path-based rules (e.g., `/users/{userId}`).\n\n**QAPs (Rules are not Filters):**\n*   Secure `list` operations are supported.  For example, listing cakes or cupcakes is public. Listing custom orders is restricted to the customer who owns them or an admin."
   }
 }
