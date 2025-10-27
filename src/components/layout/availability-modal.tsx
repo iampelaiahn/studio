@@ -7,12 +7,13 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogClose } from '@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { addDays, format } from 'date-fns';
+import { addDays, format, isSameDay } from 'date-fns';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { ScrollArea } from '../ui/scroll-area';
 import { useOrder } from '@/context/order-context';
+import { busyDates as busyDatesList } from '@/lib/busy-dates';
 
 type AvailabilityModalProps = {
   isOpen: boolean;
@@ -30,6 +31,8 @@ const availableTimes = [
     { time: "05:00 PM", available: true },
     { time: "06:15 PM", available: false },
 ];
+
+const busyDates = busyDatesList.map(dateStr => new Date(dateStr));
 
 export default function AvailabilityModal({ isOpen, onOpenChange }: AvailabilityModalProps) {
     const { setCustomerDetails, setBookingDate } = useOrder();
@@ -61,6 +64,10 @@ export default function AvailabilityModal({ isOpen, onOpenChange }: Availability
         }
         onOpenChange(false);
     }
+    
+    const isDateBusy = (date: Date) => {
+        return busyDates.some(busyDate => isSameDay(date, busyDate));
+    }
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
@@ -87,9 +94,16 @@ export default function AvailabilityModal({ isOpen, onOpenChange }: Availability
                     <div className="grid grid-cols-7 text-center">
                     {dates.map((date, index) => {
                       const isSelected = format(selectedDate, 'yyyy-MM-dd') === format(date, 'yyyy-MM-dd');
+                      const isBusy = isDateBusy(date);
+                      const isPast = date < new Date(new Date().setHours(0,0,0,0));
+
                       return (
-                        <div key={index} onClick={() => setSelectedDate(date)} className={cn("cursor-pointer py-2", isSelected && "border-b-2 border-primary")}>
-                          <p className={cn("font-semibold text-lg", isSelected ? 'text-primary' : 'text-foreground')}>{format(date, 'dd')}</p>
+                        <div key={index} onClick={() => !isBusy && !isPast && setSelectedDate(date)} className={cn("cursor-pointer py-2", 
+                            isSelected && !isBusy && "border-b-2 border-primary",
+                            isBusy && "text-muted-foreground opacity-50 cursor-not-allowed",
+                            isPast && "text-muted-foreground opacity-50 cursor-not-allowed"
+                        )}>
+                          <p className={cn("font-semibold text-lg", isSelected && !isBusy ? 'text-primary' : 'text-foreground')}>{format(date, 'dd')}</p>
                           <p className="text-xs text-muted-foreground">{format(date, 'E')}</p>
                         </div>
                       )
