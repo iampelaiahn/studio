@@ -166,24 +166,23 @@ export default function AdminPage() {
   
   if (isLoading) {
     return (
-      <div className="container mx-auto max-w-7xl py-12 px-4 sm:px-6 lg:px-8">
+      <div className="space-y-4">
         <header className="text-center mb-12">
-          <Skeleton className="h-12 w-1/2 mx-auto" />
-          <Skeleton className="h-6 w-3/4 mx-auto mt-4" />
+          <Skeleton className="h-10 w-1/2 mx-auto" />
+          <Skeleton className="h-5 w-3/4 mx-auto mt-4" />
         </header>
         <div className="text-center">
-          <Loader2 className="mx-auto h-12 w-12 animate-spin text-primary" />
-          <p className="mt-4 text-muted-foreground">Loading Admin Panel...</p>
+          <Loader2 className="mx-auto h-10 w-10 animate-spin text-primary" />
+          <p className="mt-4 text-muted-foreground">Loading Dashboard...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="container mx-auto max-w-7xl py-12 px-4 sm:px-6 lg:px-8">
-      <header className="text-center mb-12">
-        <h1 className="text-4xl md:text-5xl font-headline">Admin Panel</h1>
-        <p className="mt-3 text-lg text-muted-foreground">
+    <div className="space-y-8">
+      <header className="text-center">
+        <p className="mt-1 text-lg text-muted-foreground">
           Manage your products and availability here.
         </p>
       </header>
