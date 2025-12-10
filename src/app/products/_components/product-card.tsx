@@ -18,7 +18,7 @@ export function ProductCard({ product, onClick }: ProductCardProps) {
         {product.imageUrl && (
             <Image
                 src={product.imageUrl}
-                alt={product.name}
+                alt={product.name || 'A cake from Rue\'s Delectables'}
                 fill
                 className="object-contain group-hover:scale-105 transition-transform duration-300"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -26,10 +26,10 @@ export function ProductCard({ product, onClick }: ProductCardProps) {
             />
         )}
       </div>
-      {(product.name || product.description) && (
+      {product.name && product.description && (
         <CardContent className="p-6 flex-grow flex flex-col justify-center">
-          {product.name && <CardTitle className="font-headline text-2xl mb-2">{product.name}</CardTitle>}
-          {product.description && <CardDescription className="flex-grow">{product.description}</CardDescription>}
+          <CardTitle className="font-headline text-2xl mb-2">{product.name}</CardTitle>
+          <CardDescription className="flex-grow">{product.description}</CardDescription>
         </CardContent>
       )}
     </Card>

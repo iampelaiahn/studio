@@ -33,7 +33,11 @@ export default function ProductGrid({ products, onProductClick }: ProductGridPro
         <TabsContent key={category} value={category}>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                 {products.filter(p => activeTab === 'All' || p.category === activeTab).map(product => (
-                    <ProductCard key={product.id} product={product} onClick={onProductClick} />
+                    <ProductCard 
+                        key={product.id} 
+                        product={{...product, name: '', description: ''}} 
+                        onClick={onProductClick} 
+                    />
                 ))}
             </div>
             {products.filter(p => activeTab === 'All' || p.category === activeTab).length === 0 && (
