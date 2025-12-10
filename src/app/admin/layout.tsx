@@ -11,7 +11,7 @@ function DesktopSidebarTrigger() {
     const { state, toggleSidebar } = useSidebar();
     return (
         <SidebarTrigger
-            className="hidden md:flex absolute top-2 right-0 transform translate-x-1/2"
+            className="hidden md:flex"
             onClick={toggleSidebar}
         >
              <PanelLeft className={`transition-transform duration-300 ${state === 'expanded' ? '' : 'rotate-180'}`} />
@@ -36,14 +36,13 @@ export default function AdminLayout({
     <SidebarProvider>
         <Sidebar collapsible='icon' className='border-r'>
             <SidebarContent>
-            <SidebarHeader className='relative'>
+            <SidebarHeader>
                 <div className="flex items-center gap-2">
                     <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
                         <BarChart className="h-5 w-5" />
                     </div>
                     <span className="text-lg font-semibold">Admin</span>
                 </div>
-                <DesktopSidebarTrigger />
             </SidebarHeader>
             <SidebarMenu>
                 {navItems.map((item) => (
@@ -92,6 +91,7 @@ export default function AdminLayout({
                     <PanelLeft />
                     <span className="sr-only">Toggle Sidebar</span>
                 </SidebarTrigger>
+                <DesktopSidebarTrigger />
                 <div className='flex-1'>
                     <h1 className="text-lg font-semibold uppercase">
                         {navItems.find(item => item.href === pathname)?.label || 'Admin'}
