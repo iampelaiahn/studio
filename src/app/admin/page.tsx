@@ -35,7 +35,6 @@ import { availableTimes as staticAvailableTimes } from '@/lib/data';
 import { cn } from '@/lib/utils';
 import { ProductWithImage } from '@/lib/types';
 import { Separator } from '@/components/ui/separator';
-import { useUser } from '@/firebase';
 import { Skeleton } from '@/components/ui/skeleton';
 
 const productSchema = z.object({
@@ -49,8 +48,6 @@ const productSchema = z.object({
 });
 
 export default function AdminPage() {
-  const { user, isUserLoading } = useUser();
-  const router = useRouter();
   const { toast } = useToast();
   const [products, setProducts] = useState<(typeof staticProducts[0] & { imageUrl?: string })[]>(staticProducts);
   const [busyDates, setBusyDates] = useState<Date[]>(
@@ -58,12 +55,7 @@ export default function AdminPage() {
   );
   const [busyHours, setBusyHours] = useState<string[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    if (!isUserLoading && !user) {
-      router.push('/login');
-    }
-  }, [isUserLoading, user, router]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const savedProducts = localStorage.getItem('customProducts');
@@ -81,6 +73,7 @@ export default function AdminPage() {
         const staticBusyTimes = staticAvailableTimes.filter(t => !t.available).map(t => t.time);
         setBusyHours(staticBusyTimes);
     }
+    setIsLoading(false);
   }, []);
 
   const form = useForm<z.infer<typeof productSchema>>({
@@ -158,7 +151,7 @@ export default function AdminPage() {
 
   const selectedFile = form.watch('imageFile');
   
-  if (isUserLoading || !user) {
+  if (isLoading) {
     return (
       <div className="container mx-auto max-w-7xl py-12 px-4 sm:px-6 lg:px-8">
         <header className="text-center mb-12">
@@ -178,7 +171,7 @@ export default function AdminPage() {
       <header className="text-center mb-12">
         <h1 className="text-4xl md:text-5xl font-headline">Admin Panel</h1>
         <p className="mt-3 text-lg text-muted-foreground">
-          Welcome, {user.email}. Manage your products and availability here.
+          Manage your products and availability here.
         </p>
       </header>
       <div className="grid lg:grid-cols-3 gap-12">
