@@ -5,9 +5,19 @@ import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Home, BarChart, Book, Settings, PanelLeft } from 'lucide-react';
-import { SidebarProvider, Sidebar, SidebarTrigger, SidebarContent, SidebarHeader, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarFooter, SidebarInset } from '@/components/ui/sidebar';
-import { Button } from '@/components/ui/button';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
+import { SidebarProvider, Sidebar, SidebarTrigger, SidebarContent, SidebarHeader, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarFooter, SidebarInset, useSidebar } from '@/components/ui/sidebar';
+
+function DesktopSidebarTrigger() {
+    const { state, toggleSidebar } = useSidebar();
+    return (
+        <SidebarTrigger
+            className="hidden md:flex absolute top-2 right-0 transform translate-x-1/2"
+            onClick={toggleSidebar}
+        >
+             <PanelLeft className={`transition-transform duration-300 ${state === 'expanded' ? '' : 'rotate-180'}`} />
+        </SidebarTrigger>
+    )
+}
 
 export default function AdminLayout({
   children,
@@ -24,15 +34,16 @@ export default function AdminLayout({
 
   return (
     <SidebarProvider>
-        <Sidebar>
+        <Sidebar collapsible='icon' className='border-r'>
             <SidebarContent>
-            <SidebarHeader>
+            <SidebarHeader className='relative'>
                 <div className="flex items-center gap-2">
                     <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
                         <BarChart className="h-5 w-5" />
                     </div>
                     <span className="text-lg font-semibold">Admin</span>
                 </div>
+                <DesktopSidebarTrigger />
             </SidebarHeader>
             <SidebarMenu>
                 {navItems.map((item) => (
@@ -77,7 +88,7 @@ export default function AdminLayout({
         </Sidebar>
         <SidebarInset>
             <header className="flex h-14 items-center gap-4 border-b bg-background px-6">
-                <SidebarTrigger variant="outline" size="icon" className='md:hidden'>
+                <SidebarTrigger variant="ghost" size="icon" className='md:hidden'>
                     <PanelLeft />
                     <span className="sr-only">Toggle Sidebar</span>
                 </SidebarTrigger>
