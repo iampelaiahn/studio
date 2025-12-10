@@ -26,7 +26,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useAuth, useUser } from '@/firebase';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
 
 const loginSchema = z.object({
   email: z.string().email('Please enter a valid email address.'),
@@ -54,6 +54,34 @@ export default function LoginPage() {
       password: '',
     },
   });
+
+  const handlePasswordReset = async () => {
+    const email = form.getValues('email');
+    if (!email) {
+      form.trigger('email'); // Trigger validation to show error
+      toast({
+        variant: 'destructive',
+        title: 'Email required',
+        description: 'Please enter your email address to reset your password.',
+      });
+      return;
+    }
+
+    try {
+      await sendPasswordResetEmail(auth, email);
+      toast({
+        title: 'Password Reset Email Sent',
+        description: `If an account exists for ${email}, you will receive a password reset link.`,
+      });
+    } catch (error: any) {
+      console.error("Password Reset Error:", error);
+      toast({
+        variant: 'destructive',
+        title: 'Error Sending Reset Email',
+        description: error.message || 'An unexpected error occurred.',
+      });
+    }
+  };
 
   const onSubmit = async (values: z.infer<typeof loginSchema>) => {
     setIsSubmitting(true);
@@ -116,7 +144,7 @@ export default function LoginPage() {
         </CardHeader>
         <CardContent>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
               <FormField
                 control={form.control}
                 name="email"
@@ -139,7 +167,17 @@ export default function LoginPage() {
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Password</FormLabel>
+                    <div className="flex justify-between items-center">
+                      <FormLabel>Password</FormLabel>
+                      <Button
+                        type="button"
+                        variant="link"
+                        className="h-auto p-0 text-xs"
+                        onClick={handlePasswordReset}
+                      >
+                        Forgot Password?
+                      </Button>
+                    </div>
                     <div className="relative">
                       <FormControl>
                         <Input
