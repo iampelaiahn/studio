@@ -1,4 +1,16 @@
 {
-  "node": {},
+  "node": {
+    "405e3a30fa16409e62049273af6fd081abef195b10": {
+      "workers": {
+        "app/custom-order/page": {
+          "moduleId": "[project]/.next-internal/server/app/custom-order/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/custom-order/actions.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/custom-order/page": "action-browser"
+      }
+    }
+  },
   "edge": {}
 }

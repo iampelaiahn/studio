@@ -474,7 +474,7 @@ function CustomOrderPage() {
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                         className: "mt-3 text-lg text-muted-foreground max-w-2xl mx-auto text-balance",
-                        children: "Fill out the form below with your ideas, and we'll get back to you to finalize the delicious details."
+                        children: "Let's bring your vision to life! Follow the steps below to tell us exactly what you're looking for."
                     }, void 0, false, {
                         fileName: "[project]/src/app/custom-order/page.tsx",
                         lineNumber: 8,

@@ -1469,6 +1469,10 @@ body {
   min-height: 80px;
 }
 
+.min-h-\[80vh\] {
+  min-height: 80vh;
+}
+
 .min-h-dvh {
   min-height: 100dvh;
 }
@@ -1481,10 +1485,6 @@ body {
   min-height: 100svh;
 }
 
-.min-h-\[80vh\] {
-  min-height: 80vh;
-}
-
 .w-0 {
   width: 0;
 }
@@ -1493,12 +1493,20 @@ body {
   width: .25rem;
 }
 
+.w-1\/2 {
+  width: 50%;
+}
+
 .w-10 {
   width: 2.5rem;
 }
 
 .w-11 {
   width: 2.75rem;
+}
+
+.w-12 {
+  width: 3rem;
 }
 
 .w-16 {
@@ -1577,20 +1585,12 @@ body {
   width: auto;
 }
 
-.w-full {
-  width: 100%;
-}
-
-.w-1\/2 {
-  width: 50%;
-}
-
-.w-12 {
-  width: 3rem;
-}
-
 .w-fit {
   width: fit-content;
+}
+
+.w-full {
+  width: 100%;
 }
 
 .min-w-0 {

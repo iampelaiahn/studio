@@ -26,10 +26,12 @@ export function ProductCard({ product, onClick }: ProductCardProps) {
             />
         )}
       </div>
-      <CardContent className="p-6 flex-grow flex flex-col justify-center">
-        <CardTitle className="font-headline text-2xl mb-2">{product.name}</CardTitle>
-        <CardDescription className="flex-grow">{product.description}</CardDescription>
-      </CardContent>
+      {(product.name || product.description) && (
+        <CardContent className="p-6 flex-grow flex flex-col justify-center">
+          {product.name && <CardTitle className="font-headline text-2xl mb-2">{product.name}</CardTitle>}
+          {product.description && <CardDescription className="flex-grow">{product.description}</CardDescription>}
+        </CardContent>
+      )}
     </Card>
   )
 }

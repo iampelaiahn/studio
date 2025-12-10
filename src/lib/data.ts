@@ -16,8 +16,8 @@ export const products = [
   },
   {
     id: "prod-3",
-    name: "Violet veil",
-    description: "Delicate vanilla bean cake adorned with beautiful, handcrafted sugar flowers.",
+    name: "",
+    description: "",
     category: "Cakes",
     imageId: "cake-3",
   },
