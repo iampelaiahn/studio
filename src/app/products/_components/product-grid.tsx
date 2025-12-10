@@ -13,7 +13,7 @@ type ProductGridProps = {
 
 export default function ProductGrid({ products, onProductClick }: ProductGridProps) {
   const categories = useMemo(() => {
-    const uniqueCategories = Array.from(new Set(products.map(p => p.category)));
+    const uniqueCategories = Array.from(new Set(products.map(p => p.category).filter(Boolean)));
     uniqueCategories.sort();
     return ["All", ...uniqueCategories];
   }, [products]);
@@ -35,7 +35,7 @@ export default function ProductGrid({ products, onProductClick }: ProductGridPro
                 {products.filter(p => activeTab === 'All' || p.category === activeTab).map(product => (
                     <ProductCard 
                         key={product.id} 
-                        product={{...product, name: '', description: ''}} 
+                        product={product} 
                         onClick={onProductClick} 
                     />
                 ))}

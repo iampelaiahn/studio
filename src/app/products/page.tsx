@@ -10,28 +10,35 @@ import { type ProductWithImage } from "@/lib/types";
 import ProductDetailModal from './_components/product-detail-modal';
 
 export default function ProductsPage() {
-    const [products, setProducts] = useState<(typeof staticProducts[0] & { imageUrl?: string })[]>(staticProducts);
+    const [products, setProducts] = useState<ProductWithImage[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        const savedProducts = localStorage.getItem('customProducts');
-        if (savedProducts) {
+        // Map static products to ProductWithImage format
+        const initialProducts: ProductWithImage[] = staticProducts.map(product => {
+            const image = PlaceHolderImages.find((img: ImagePlaceholder) => img.id === product.imageId);
+            return { 
+                ...product, 
+                imageUrl: image?.imageUrl, 
+                imageHint: image?.imageHint 
+            };
+        });
+
+        // Try to load custom products from localStorage
+        const savedProductsJSON = localStorage.getItem('customProducts');
+        let customProducts: ProductWithImage[] = [];
+        if (savedProductsJSON) {
             try {
-                const parsedProducts = JSON.parse(savedProducts);
-                setProducts(prev => [...staticProducts, ...parsedProducts]);
+                // Ensure custom products also fit the ProductWithImage type
+                customProducts = JSON.parse(savedProductsJSON) as ProductWithImage[];
             } catch (error) {
                 console.error("Failed to parse custom products from localStorage", error);
-                setProducts(staticProducts);
             }
         }
+        
+        setProducts([...initialProducts, ...customProducts]);
+        setIsLoading(false);
     }, []);
-
-    const productsWithImages: ProductWithImage[] = products.map(product => {
-        if (product.imageUrl) {
-            return { ...product, imageUrl: product.imageUrl, imageHint: product.name };
-        }
-        const image = PlaceHolderImages.find((img: ImagePlaceholder) => img.id === product.imageId);
-        return { ...product, imageUrl: image?.imageUrl, imageHint: image?.imageHint };
-    });
 
     const [isCarouselShowingDetail, setIsCarouselShowingDetail] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState<ProductWithImage | null>(null);
@@ -43,12 +50,17 @@ export default function ProductsPage() {
     const handleCloseModal = () => {
         setSelectedProduct(null);
     };
+    
+    if (isLoading) {
+        // Optional: you can add a loading skeleton here
+        return <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8 text-center">Loading products...</div>;
+    }
 
     return (
         <div className="bg-background">
             <section className="relative py-16 md:py-24 bg-background text-foreground overflow-hidden -mt-[5vh] z-0">
                 <ProductCarousel
-                    products={productsWithImages}
+                    products={products}
                     isShowingDetail={isCarouselShowingDetail}
                     setIsShowingDetail={setIsCarouselShowingDetail}
                 />
@@ -60,7 +72,7 @@ export default function ProductsPage() {
                         Browse our signature creations, each made with the finest ingredients and a sprinkle of love.
                     </p>
                 </header>
-                <ProductGrid products={productsWithImages} onProductClick={handleProductClick} />
+                <ProductGrid products={products} onProductClick={handleProductClick} />
             </div>
              {selectedProduct && (
                 <ProductDetailModal
@@ -72,5 +84,3 @@ export default function ProductsPage() {
         </div>
     )
 }
-
-    

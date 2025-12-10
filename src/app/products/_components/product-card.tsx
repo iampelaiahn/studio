@@ -5,10 +5,11 @@ import { type ProductWithImage } from '@/lib/types'
 
 type ProductCardProps = {
   product: ProductWithImage,
-  onClick: (product: ProductWithImage) => void
+  onClick: (product: ProductWithImage) => void,
+  showDetails?: boolean
 }
 
-export function ProductCard({ product, onClick }: ProductCardProps) {
+export function ProductCard({ product, onClick, showDetails = true }: ProductCardProps) {
   return (
     <Card 
         className="flex flex-col overflow-hidden h-full cursor-pointer group"
@@ -26,10 +27,10 @@ export function ProductCard({ product, onClick }: ProductCardProps) {
             />
         )}
       </div>
-      {product.name && product.description && (
+      {showDetails && product.name && (
         <CardContent className="p-6 flex-grow flex flex-col justify-center">
           <CardTitle className="font-headline text-2xl mb-2">{product.name}</CardTitle>
-          <CardDescription className="flex-grow">{product.description}</CardDescription>
+          {product.description && <CardDescription className="flex-grow">{product.description}</CardDescription>}
         </CardContent>
       )}
     </Card>
