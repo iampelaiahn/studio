@@ -15,6 +15,7 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
@@ -48,10 +49,15 @@ const productSchema = z.object({
 export default function AdminPage() {
   const { toast } = useToast();
   const [products, setProducts] = useState<(typeof staticProducts[0] & { imageUrl?: string })[]>(staticProducts);
+  
   const [busyDates, setBusyDates] = useState<Date[]>(
     staticBusyDates.map(d => new Date(d))
   );
+  const [pendingBusyDates, setPendingBusyDates] = useState<Date[]>(busyDates);
+  
   const [busyHours, setBusyHours] = useState<string[]>([]);
+  const [pendingBusyHours, setPendingBusyHours] = useState<string[]>([]);
+  
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -60,17 +66,21 @@ export default function AdminPage() {
     if (savedProducts) {
       setProducts(prev => [...prev, ...JSON.parse(savedProducts)]);
     }
+
     const savedBusyDates = localStorage.getItem('busyDates');
-    if (savedBusyDates) {
-      setBusyDates(JSON.parse(savedBusyDates).map((d: string) => new Date(d)));
-    }
+    const initialBusyDates = savedBusyDates 
+      ? JSON.parse(savedBusyDates).map((d: string) => new Date(d))
+      : staticBusyDates.map(d => new Date(d));
+    setBusyDates(initialBusyDates);
+    setPendingBusyDates(initialBusyDates);
+
     const savedBusyHours = localStorage.getItem('busyHours');
-    if (savedBusyHours) {
-        setBusyHours(JSON.parse(savedBusyHours));
-    } else {
-        const staticBusyTimes = staticAvailableTimes.filter(t => !t.available).map(t => t.time);
-        setBusyHours(staticBusyTimes);
-    }
+    const initialBusyHours = savedBusyHours
+        ? JSON.parse(savedBusyHours)
+        : staticAvailableTimes.filter(t => !t.available).map(t => t.time);
+    setBusyHours(initialBusyHours);
+    setPendingBusyHours(initialBusyHours);
+
     setIsLoading(false);
   }, []);
 
@@ -92,7 +102,6 @@ export default function AdminPage() {
         description: values.description || ''
     };
     
-    // We don't want to store the file object in localStorage
     const { imageFile, ...productToSave } = newProduct as any;
 
     const updatedProducts = [...products, productToSave];
@@ -123,31 +132,35 @@ export default function AdminPage() {
     }
   };
 
-  const handleDateSelect = (dates: Date[] | undefined) => {
-    const newDates = dates || [];
-    setBusyDates(newDates);
-    localStorage.setItem('busyDates', JSON.stringify(newDates.map(d => format(d, 'yyyy-MM-dd'))));
+  const handlePendingDateSelect = (dates: Date[] | undefined) => {
+    setPendingBusyDates(dates || []);
+  };
+
+  const handleUpdateBusyDates = () => {
+    setBusyDates(pendingBusyDates);
+    localStorage.setItem('busyDates', JSON.stringify(pendingBusyDates.map(d => format(d, 'yyyy-MM-dd'))));
     toast({
       title: 'Availability Updated',
-      description: 'Your busy dates have been updated.',
+      description: 'Your busy dates have been saved.',
     });
   };
 
-  const handleTimeToggle = (time: string) => {
-    setBusyHours(prev => {
-        const newBusyHours = prev.includes(time)
+  const handlePendingTimeToggle = (time: string) => {
+    setPendingBusyHours(prev => 
+        prev.includes(time)
             ? prev.filter(t => t !== time)
-            : [...prev, time];
-        localStorage.setItem('busyHours', JSON.stringify(newBusyHours));
-        
-        toast({
-            title: `Time slot ${prev.includes(time) ? 'made available' : 'blocked'}`,
-            description: `${time} is now ${prev.includes(time) ? 'available' : 'unavailable'}.`,
-        });
-
-        return newBusyHours;
-    });
+            : [...prev, time]
+    );
   };
+
+  const handleUpdateBusyHours = () => {
+    setBusyHours(pendingBusyHours);
+    localStorage.setItem('busyHours', JSON.stringify(pendingBusyHours));
+    toast({
+        title: 'Availability Updated',
+        description: `Your busy hours have been saved.`,
+    });
+  }
 
   const selectedFile = form.watch('imageFile');
   
@@ -302,7 +315,7 @@ export default function AdminPage() {
         </div>
         <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-12">
             <section>
-              <Card>
+              <Card className="flex flex-col">
                 <CardHeader>
                   <CardTitle>Manage Busy Dates</CardTitle>
                   <CardDescription>
@@ -310,33 +323,36 @@ export default function AdminPage() {
                     toggle its status.
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="flex justify-center">
+                <CardContent className="flex justify-center flex-grow">
                   <Calendar
                     mode="multiple"
-                    selected={busyDates}
-                    onSelect={handleDateSelect}
+                    selected={pendingBusyDates}
+                    onSelect={handlePendingDateSelect}
                     className="rounded-md border"
                   />
                 </CardContent>
+                <CardFooter>
+                    <Button onClick={handleUpdateBusyDates} className="w-full">Update Dates</Button>
+                </CardFooter>
               </Card>
             </section>
             <section>
-                <Card>
+                <Card className="flex flex-col">
                     <CardHeader>
                         <CardTitle>Manage Busy Hours</CardTitle>
                         <CardDescription>
                             Click a time slot to toggle its availability.
                         </CardDescription>
                     </CardHeader>
-                    <CardContent>
+                    <CardContent className="flex-grow">
                          <div className="grid grid-cols-2 gap-3">
                             {staticAvailableTimes.map(({ time }) => {
-                                const isBusy = busyHours.includes(time);
+                                const isBusy = pendingBusyHours.includes(time);
                                 return (
                                     <Button
                                         key={time}
                                         variant={isBusy ? "destructive" : "outline"}
-                                        onClick={() => handleTimeToggle(time)}
+                                        onClick={() => handlePendingTimeToggle(time)}
                                     >
                                         {time}
                                     </Button>
@@ -344,6 +360,9 @@ export default function AdminPage() {
                             })}
                         </div>
                     </CardContent>
+                    <CardFooter>
+                        <Button onClick={handleUpdateBusyHours} className="w-full">Update Hours</Button>
+                    </CardFooter>
                 </Card>
             </section>
         </div>
@@ -351,5 +370,3 @@ export default function AdminPage() {
     </div>
   );
 }
-
-    
