@@ -38,10 +38,8 @@ import { Separator } from '@/components/ui/separator';
 import { Skeleton } from '@/components/ui/skeleton';
 
 const productSchema = z.object({
-  name: z.string().min(2, 'Product name must be at least 2 characters.'),
-  description: z
-    .string()
-    .min(10, 'Description must be at least 10 characters.'),
+  name: z.string().optional(),
+  description: z.string().optional(),
   category: z.string().min(2, 'Category is required.'),
   imageUrl: z.string().url('Please upload or enter a valid image URL.'),
   imageFile: z.any().optional(),
@@ -90,6 +88,8 @@ export default function AdminPage() {
     const newProduct: ProductWithImage = { 
         ...values, 
         id: `prod-${Date.now()}`,
+        name: values.name || '',
+        description: values.description || ''
     };
     
     // We don't want to store the file object in localStorage
@@ -106,7 +106,7 @@ export default function AdminPage() {
 
     toast({
       title: 'Product Added!',
-      description: `${values.name} has been added to the catalog.`,
+      description: `${values.name || 'A new product'} has been added to the catalog.`,
     });
     form.reset();
   };
@@ -194,7 +194,7 @@ export default function AdminPage() {
                     name="name"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Product Name</FormLabel>
+                        <FormLabel>Product Name (Optional)</FormLabel>
                         <FormControl>
                           <Input placeholder="e.g., Classic Cheesecake" {...field} />
                         </FormControl>
@@ -207,7 +207,7 @@ export default function AdminPage() {
                     name="description"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Description</FormLabel>
+                        <FormLabel>Description (Optional)</FormLabel>
                         <FormControl>
                           <Input placeholder="A creamy and delicious dessert..." {...field} />
                         </FormControl>
@@ -351,3 +351,5 @@ export default function AdminPage() {
     </div>
   );
 }
+
+    
