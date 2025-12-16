@@ -2,43 +2,90 @@
 'use client';
 
 import React from 'react';
-import { BarChart, LineChart, PieChart } from 'lucide-react';
+import { BarChart, LineChart, PieChart, Users, ShoppingBag, DollarSign, Percent } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
-import { Bar, BarChart as BarChartRe, Line, LineChart as LineChartRe, Pie, PieChart as PieChartRe, CartesianGrid, XAxis, YAxis, Tooltip as RechartsTooltip, Legend, ResponsiveContainer } from 'recharts';
+import { Bar, BarChart as BarChartRe, Line, LineChart as LineChartRe, Pie, PieChart as PieChartRe, CartesianGrid, XAxis, YAxis, Tooltip as RechartsTooltip, Legend, ResponsiveContainer, Cell } from 'recharts';
+import { useCollection } from '@/firebase';
+import { collectionGroup, query } from 'firebase/firestore';
+import { useFirestore } from '@/firebase';
+import { useMemo } from 'react';
 
-const kpis = [
-  { title: "Total Visits", value: "12,403", change: "+12.5%", description: "vs. previous 30 days" },
-  { title: "New Customers", value: "256", change: "+8.2%", description: "this month" },
-  { title: "Conversion Rate", value: "4.8%", change: "-1.1%", description: "vs. previous 30 days" },
-  { title: "Total Revenue", value: "$5,231", change: "+20.1%", description: "this month" },
-];
-
-const barChartData = [
-  { name: 'Cakes', orders: 40, revenue: 2400 },
-  { name: 'Cupcakes', orders: 30, revenue: 900 },
-  { name: 'Cookies', orders: 20, revenue: 200 },
-  { name: 'Muffins', orders: 27, revenue: 405 },
-  { name: 'Other', orders: 18, revenue: 1200 },
-];
-
-const lineChartData = [
-  { name: 'Jan', visits: 4000, orders: 240 },
-  { name: 'Feb', visits: 3000, orders: 139 },
-  { name: 'Mar', visits: 2000, orders: 980 },
-  { name: 'Apr', visits: 2780, orders: 390 },
-  { name: 'May', visits: 1890, orders: 480 },
-  { name: 'Jun', visits: 2390, orders: 380 },
-  { name: 'Jul', visits: 3490, orders: 430 },
-];
-
-const pieChartData = [
-    { name: 'Cakes', value: 45 },
-    { name: 'Cupcakes', value: 25 },
-    { name: 'Other', value: 30 },
-];
+const PIE_CHART_COLORS = ['hsl(var(--primary))', 'hsl(var(--accent))', 'hsl(var(--secondary))'];
 
 export default function AnalysisPage() {
+  const firestore = useFirestore();
+  
+  const customOrdersQuery = useMemo(() => {
+      if (!firestore) return null;
+      return query(collectionGroup(firestore, 'customOrders'));
+  }, [firestore]);
+
+  const { data: orders, isLoading } = useCollection<any>(customOrdersQuery);
+
+  const { kpis, barChartData, lineChartData, pieChartData } = useMemo(() => {
+    if (!orders) {
+      return { kpis: [], barChartData: [], lineChartData: [], pieChartData: [] };
+    }
+
+    // This is a placeholder for total visits, as we are not tracking it.
+    const totalVisits = 12403; 
+    
+    const totalCustomers = new Set(orders.map(o => o.customerId)).size;
+    const totalOrders = orders.length;
+    // Placeholder conversion rate
+    const conversionRate = totalVisits > 0 ? (totalOrders / totalVisits) * 100 : 0;
+
+    const totalRevenue = orders.reduce((acc, order) => {
+        // Assuming orders have a price, otherwise this will be 0
+        return acc + (order.price || 0); 
+    }, 0);
+
+    const kpiData = [
+      { title: "Total Visits", value: totalVisits.toLocaleString(), change: "+12.5%", description: "vs. previous 30 days", icon: BarChart },
+      { title: "New Customers", value: totalCustomers.toLocaleString(), change: "+8.2%", description: "this month", icon: Users },
+      { title: "Conversion Rate", value: `${conversionRate.toFixed(1)}%`, change: "-1.1%", description: "vs. previous 30 days", icon: Percent },
+      { title: "Total Revenue", value: `$${totalRevenue.toLocaleString()}`, change: "+20.1%", description: "this month", icon: DollarSign },
+    ];
+
+    const ordersByCategory = orders.reduce((acc, order) => {
+      const category = order.productType || 'Other';
+      if (!acc[category]) {
+        acc[category] = { orders: 0, revenue: 0 };
+      }
+      acc[category].orders += 1;
+      acc[category].revenue += order.price || 0;
+      return acc;
+    }, {} as Record<string, { orders: number, revenue: number }>);
+
+    const barData = Object.entries(ordersByCategory).map(([name, data]) => ({ name, ...data }));
+    
+    const revenueByCategory = Object.entries(ordersByCategory).map(([name, data]) => ({
+      name,
+      value: data.revenue,
+    }));
+
+    // Placeholder line chart data
+    const lineData = [
+      { name: 'Jan', visits: 4000, orders: 24 },
+      { name: 'Feb', visits: 3000, orders: 13 },
+      { name: 'Mar', visits: 2000, orders: 80 },
+      { name: 'Apr', visits: 2780, orders: 39 },
+      { name: 'May', visits: 1890, orders: 48 },
+      { name: 'Jun', visits: 2390, orders: 38 },
+      { name: 'Jul', visits: 3490, orders: 43 },
+    ];
+
+
+    return { kpis: kpiData, barChartData: barData, lineChartData: lineData, pieChartData: revenueByCategory };
+
+  }, [orders]);
+
+
+  if (isLoading) {
+    return <div>Loading analytics...</div>;
+  }
+
   return (
     <div className="space-y-8">
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -46,7 +93,7 @@ export default function AnalysisPage() {
           <Card key={index}>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">{kpi.title}</CardTitle>
-              <BarChart className="h-4 w-4 text-muted-foreground" />
+              <kpi.icon className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{kpi.value}</div>
@@ -62,7 +109,7 @@ export default function AnalysisPage() {
         <Card>
           <CardHeader>
             <CardTitle>Orders by Category</CardTitle>
-            <CardDescription>A breakdown of orders per product category for the last quarter.</CardDescription>
+            <CardDescription>A breakdown of orders per product category.</CardDescription>
           </CardHeader>
           <CardContent>
             <ChartContainer config={{}} className="h-[300px] w-full">
@@ -83,7 +130,7 @@ export default function AnalysisPage() {
         <Card>
           <CardHeader>
             <CardTitle>Website Traffic vs. Orders</CardTitle>
-            <CardDescription>Comparison of website visits and completed orders over time.</CardDescription>
+            <CardDescription>Comparison of website visits and completed orders over time (static data).</CardDescription>
           </CardHeader>
           <CardContent>
             <ChartContainer config={{}} className="h-[300px] w-full">
@@ -122,13 +169,8 @@ export default function AnalysisPage() {
                             fill="hsl(var(--primary))"
                             label
                         >
-                             {pieChartData.map((entry, index) => (
-                                <g key={`cell-${index}`}>
-                                    <path
-                                        d={""}
-                                        fill={['hsl(var(--primary))', 'hsl(var(--accent))', 'hsl(var(--secondary))'][index % 3]}
-                                    />
-                                </g>
+                            {pieChartData.map((entry, index) => (
+                                <Cell key={`cell-${index}`} fill={PIE_CHART_COLORS[index % PIE_CHART_COLORS.length]} />
                             ))}
                         </Pie>
                     </PieChartRe>

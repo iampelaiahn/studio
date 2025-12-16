@@ -1681,6 +1681,10 @@ body {
   height: 100svh;
 }
 
+.h-screen {
+  height: 100vh;
+}
+
 .max-h-96 {
   max-height: 24rem;
 }

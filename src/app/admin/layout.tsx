@@ -3,9 +3,11 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { Home, BarChart, Book, Settings, PanelLeft } from 'lucide-react';
+import { usePathname, useRouter } from 'next/navigation';
+import { Home, BarChart, Book, Settings, PanelLeft, LogOut } from 'lucide-react';
 import { SidebarProvider, Sidebar, SidebarTrigger, SidebarContent, SidebarHeader, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarFooter, SidebarInset, useSidebar } from '@/components/ui/sidebar';
+import { useFirebase } from '@/firebase';
+import { getAuth, signOut } from 'firebase/auth';
 
 function DesktopSidebarTrigger() {
     const { state, toggleSidebar } = useSidebar();
@@ -25,12 +27,35 @@ export default function AdminLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
+  const router = useRouter();
+  const { user, isUserLoading } = useFirebase();
 
+  React.useEffect(() => {
+    if (!isUserLoading && !user) {
+      router.push('/login');
+    }
+  }, [user, isUserLoading, router]);
+
+  const handleSignOut = () => {
+    const auth = getAuth();
+    signOut(auth).then(() => {
+      router.push('/login');
+    });
+  };
+  
   const navItems = [
     { href: '/admin', icon: Home, label: 'Dashboard' },
     { href: '/admin/analysis', icon: BarChart, label: 'Analysis' },
     { href: '/admin/bookings', icon: Book, label: 'Bookings' },
   ];
+
+  if (isUserLoading || !user) {
+      return (
+          <div className="flex h-screen items-center justify-center">
+              <div>Loading...</div>
+          </div>
+      )
+  }
 
   return (
     <SidebarProvider>
@@ -81,6 +106,19 @@ export default function AdminLayout({
                             </Link>
                         </SidebarMenuButton>
                     </SidebarMenuItem>
+                     <SidebarMenuItem>
+                         <SidebarMenuButton
+                            onClick={handleSignOut}
+                            tooltip={{
+                                children: "Logout",
+                                side: "right",
+                                align: "center",
+                            }}
+                         >
+                            <LogOut />
+                            <span>Logout</span>
+                        </SidebarMenuButton>
+                    </SidebarMenuItem>
                 </SidebarMenu>
             </SidebarFooter>
             </SidebarContent>
@@ -94,7 +132,7 @@ export default function AdminLayout({
                 <DesktopSidebarTrigger />
                 <div className='flex-1'>
                     <h1 className="text-lg font-semibold uppercase">
-                        {navItems.find(item => item.href === pathname)?.label || 'Admin'}
+                        {navItems.find(item => pathname.startsWith(item.href))?.label || 'Dashboard'}
                     </h1>
                 </div>
             </header>

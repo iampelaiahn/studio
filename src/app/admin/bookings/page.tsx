@@ -15,49 +15,11 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { MoreHorizontal } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-
-const bookings = [
-  {
-    id: 'ORD-001',
-    customer: 'Liam Johnson',
-    email: 'liam@example.com',
-    date: '2025-10-25',
-    product: 'Custom Wedding Cake',
-    status: 'Pending',
-  },
-  {
-    id: 'ORD-002',
-    customer: 'Olivia Smith',
-    email: 'olivia@example.com',
-    date: '2025-10-28',
-    product: 'Birthday Cupcakes (2 Dozen)',
-    status: 'Confirmed',
-  },
-  {
-    id: 'ORD-003',
-    customer: 'Noah Williams',
-    email: 'noah@example.com',
-    date: '2025-11-02',
-    product: 'Anniversary Cake',
-    status: 'Completed',
-  },
-  {
-    id: 'ORD-004',
-    customer: 'Emma Brown',
-    email: 'emma@example.com',
-    date: '2025-11-05',
-    product: 'Sourdough Bread Loaf',
-    status: 'Pending',
-  },
-  {
-    id: 'ORD-005',
-    customer: 'Ava Jones',
-    email: 'ava@example.com',
-    date: '2025-11-10',
-    product: 'Custom "Galaxy" Themed Cake',
-    status: 'In Progress',
-  },
-];
+import { useCollection } from '@/firebase';
+import { collectionGroup, query } from 'firebase/firestore';
+import { useFirestore } from '@/firebase';
+import { useMemo } from 'react';
+import { format } from 'date-fns';
 
 const statusVariant: { [key: string]: "default" | "secondary" | "destructive" | "outline" } = {
     'Pending': 'outline',
@@ -69,6 +31,15 @@ const statusVariant: { [key: string]: "default" | "secondary" | "destructive" | 
 
 
 export default function BookingsPage() {
+  const firestore = useFirestore();
+  
+  const customOrdersQuery = useMemo(() => {
+      if (!firestore) return null;
+      return query(collectionGroup(firestore, 'customOrders'));
+  }, [firestore]);
+
+  const { data: bookings, isLoading } = useCollection<any>(customOrdersQuery);
+
   return (
     <Card>
       <CardHeader>
@@ -92,17 +63,22 @@ export default function BookingsPage() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {bookings.map((booking) => (
+            {isLoading && <TableRow><TableCell colSpan={6} className="text-center">Loading bookings...</TableCell></TableRow>}
+            {!isLoading && bookings?.map((booking) => (
               <TableRow key={booking.id}>
                 <TableCell className="font-medium">{booking.id}</TableCell>
                 <TableCell>
-                  <div className="font-medium">{booking.customer}</div>
-                  <div className="text-sm text-muted-foreground">{booking.email}</div>
+                  <div className="font-medium">{booking.customerName || 'N/A'}</div>
+                  <div className="text-sm text-muted-foreground">{booking.customerEmail || 'N/A'}</div>
                 </TableCell>
-                <TableCell>{booking.product}</TableCell>
-                <TableCell>{booking.date}</TableCell>
+                <TableCell>{booking.designTheme}</TableCell>
                 <TableCell>
-                  <Badge variant={statusVariant[booking.status] || 'default'}>{booking.status}</Badge>
+                  {booking.pickupDeliveryDate 
+                    ? format(new Date(booking.pickupDeliveryDate.seconds * 1000), 'PPP')
+                    : 'N/A'}
+                </TableCell>
+                <TableCell>
+                  <Badge variant={statusVariant[booking.status as string] || 'default'}>{booking.status as string || 'Pending'}</Badge>
                 </TableCell>
                 <TableCell>
                     <DropdownMenu>
@@ -122,6 +98,11 @@ export default function BookingsPage() {
                 </TableCell>
               </TableRow>
             ))}
+             {!isLoading && (!bookings || bookings.length === 0) && (
+                <TableRow>
+                    <TableCell colSpan={6} className="text-center">No bookings found.</TableCell>
+                </TableRow>
+            )}
           </TableBody>
         </Table>
       </CardContent>

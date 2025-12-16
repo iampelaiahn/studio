@@ -28,6 +28,8 @@ import { cn } from '@/lib/utils';
 import { productTypes } from '@/lib/data';
 import { useOrder } from '@/context/order-context';
 import { getIcingSuggestions } from '../actions';
+import { useFirebase } from '@/firebase';
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 
 const formSchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
@@ -50,6 +52,7 @@ export default function CustomOrderForm() {
   const { toast } = useToast();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { customerDetails, bookingDate, productDetails } = useOrder();
+  const { firestore, user } = useFirebase();
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -120,46 +123,51 @@ export default function CustomOrderForm() {
 
   async function onSubmit(values: FormValues) {
     setIsSubmitting(true);
+
+    if (!firestore) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Database not available. Please try again later.",
+      });
+      setIsSubmitting(false);
+      return;
+    }
     
-    const subject = `New Custom Order Request from ${values.name}`;
-    const body = `
-New Custom Order Request:
-==========================
+    // For now, we'll use a placeholder customer ID. 
+    // In a real app, this would come from the logged-in user.
+    const customerId = user ? user.uid : 'guest';
 
-Customer Name: ${values.name}
-Customer Email: ${values.email}
+    try {
+      await addDoc(collection(firestore, `customers/${customerId}/customOrders`), {
+        productType: values.productType,
+        designTheme: values.designTheme,
+        flavors: values.flavor,
+        icing: values.icing,
+        pickupDeliveryDate: values.eventDate,
+        servings: values.servings,
+        customerName: values.name,
+        customerEmail: values.email,
+        status: 'Pending',
+        createdAt: serverTimestamp(),
+      });
 
-Product Type: ${values.productType}
-Flavor: ${values.flavor}
-Icing: ${values.icing}
-Number of Servings: ${values.servings}
+      toast({
+        title: 'Request Submitted!',
+        description: "Thank you! We've received your custom order request and will be in touch shortly.",
+      });
+      form.reset();
 
-Event Date: ${format(values.eventDate, "PPP")}
-
-Design/Theme:
-${values.designTheme}
-
-Inspiration Image Attached: ${values.designImage?.[0] ? 'Yes, see attached file.' : 'No'}
-(Please instruct user to attach the file if they selected one, as it cannot be attached automatically).
-
---------------------
-    `;
-
-    const mailtoLink = `mailto:info@ruesdelectables.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-    window.location.href = mailtoLink;
-
-    // We can't know for sure if the email was sent, but we can assume it was for UX purposes.
-    await new Promise(resolve => setTimeout(resolve, 1000));
-
-    setIsSubmitting(false);
-
-    toast({
-      title: 'Your email client is opening...',
-      description: `Please review and send the email to finalize your request. If you uploaded an image, please attach it to the email.`,
-    });
-
-    form.reset();
+    } catch (error) {
+      console.error("Error submitting order: ", error);
+      toast({
+        variant: "destructive",
+        title: "Submission Error",
+        description: "There was a problem submitting your request. Please try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   }
   
   const selectedFile = form.watch('designImage');
@@ -232,7 +240,7 @@ Inspiration Image Attached: ${values.designImage?.[0] ? 'Yes, see attached file.
                     <FormItem>
                         <FormLabel>Cake/Base Flavor</FormLabel>
                         <FormControl>
-                        <Input placeholder="e.g., Chocolate, Vanilla" {...field} onBlur={handleGetSuggestions} />
+                        <Input placeholder="e.g., Chocolate, Vanilla" {...field} />
                         </FormControl>
                         <FormMessage />
                     </FormItem>
@@ -247,6 +255,9 @@ Inspiration Image Attached: ${values.designImage?.[0] ? 'Yes, see attached file.
                         <FormControl>
                         <Input placeholder="e.g., Cream Cheese, Buttercream" {...field} />
                         </FormControl>
+                         <FormDescription>
+                            Need ideas? Type a flavor above and <button type="button" onClick={handleGetSuggestions} className="text-primary underline" disabled={isSuggesting || !productTypeValue || !flavorValue}>get suggestions</button>.
+                        </FormDescription>
                         <FormMessage />
                     </FormItem>
                     )}
