@@ -7,7 +7,9 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { useRouter } from 'next/navigation';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { useFirestore } from '@/firebase';
+import { doc, setDoc } from 'firebase/firestore';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 import {
@@ -28,16 +30,19 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Loader2 } from 'lucide-react';
+import { errorEmitter } from '@/firebase/error-emitter';
+import { FirestorePermissionError } from '@/firebase/errors';
 
 const formSchema = z.object({
   email: z.string().email({ message: 'Please enter a valid email address.' }),
-  password: z.string().min(6, { message: 'Password must be at least 6 characters.' }),
+  password: z.string().min(8, { message: 'Password must be at least 8 characters.' }),
 });
 
-export default function LoginPage() {
+export default function RegisterPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
   const { toast } = useToast();
+  const firestore = useFirestore();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -50,17 +55,45 @@ export default function LoginPage() {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true);
     const auth = getAuth();
+    
+    if (!firestore) {
+        toast({
+            variant: "destructive",
+            title: "Error",
+            description: "Database service is not available. Please try again later.",
+        });
+        setIsSubmitting(false);
+        return;
+    }
+
     try {
-      await signInWithEmailAndPassword(auth, values.email, values.password);
+      const userCredential = await createUserWithEmailAndPassword(auth, values.email, values.password);
+      const user = userCredential.user;
+
+      // Grant admin role
+      const adminRoleRef = doc(firestore, 'roles_admin', user.uid);
+      
+      setDoc(adminRoleRef, { isAdmin: true })
+        .catch((serverError) => {
+            const permissionError = new FirestorePermissionError({
+                path: adminRoleRef.path,
+                operation: 'create',
+                requestResourceData: { isAdmin: true },
+            });
+            errorEmitter.emit('permission-error', permissionError);
+        });
+
+
       toast({
-        title: 'Login Successful',
-        description: "Welcome back! You're being redirected to the admin dashboard.",
+        title: 'Registration Successful',
+        description: "Admin user created. You're being redirected to the admin dashboard.",
       });
       router.push('/admin');
+
     } catch (error: any) {
       toast({
         variant: 'destructive',
-        title: 'Login Failed',
+        title: 'Registration Failed',
         description: error.message || 'An unexpected error occurred. Please try again.',
       });
     } finally {
@@ -72,9 +105,9 @@ export default function LoginPage() {
     <div className="container mx-auto flex min-h-screen items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
-          <CardTitle className="text-2xl font-headline">Admin Login</CardTitle>
+          <CardTitle className="text-2xl font-headline">Register Admin User</CardTitle>
           <CardDescription>
-            Enter your credentials to access the dashboard.
+            Create the primary administrative account.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -110,16 +143,16 @@ export default function LoginPage() {
                 {isSubmitting && (
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                 )}
-                Sign In
+                Register
               </Button>
             </form>
           </Form>
         </CardContent>
         <CardFooter className="text-center text-sm">
             <p className="w-full">
-              Need to create an admin account?{' '}
-              <Link href="/register" className="text-primary hover:underline">
-                Register here
+              Already have an account?{' '}
+              <Link href="/login" className="text-primary hover:underline">
+                Login here
               </Link>
             </p>
         </CardFooter>
