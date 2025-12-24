@@ -3,5 +3,6 @@
   "/custom-order/page": "app/custom-order/page.js",
   "/login/page": "app/login/page.js",
   "/page": "app/page.js",
-  "/products/page": "app/products/page.js"
+  "/products/page": "app/products/page.js",
+  "/register/page": "app/register/page.js"
 }
