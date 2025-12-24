@@ -8,6 +8,7 @@ import { Home, BarChart, Book, Settings, PanelLeft, LogOut } from 'lucide-react'
 import { SidebarProvider, Sidebar, SidebarTrigger, SidebarContent, SidebarHeader, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarFooter, SidebarInset, useSidebar } from '@/components/ui/sidebar';
 import { useFirebase } from '@/firebase';
 import { getAuth, signOut } from 'firebase/auth';
+import AdminBottomNav from './_components/admin-bottom-nav';
 
 function DesktopSidebarTrigger() {
     const { state, toggleSidebar } = useSidebar();
@@ -20,6 +21,12 @@ function DesktopSidebarTrigger() {
         </SidebarTrigger>
     )
 }
+
+export const navItems = [
+    { href: '/admin', icon: Home, label: 'Dashboard' },
+    { href: '/admin/analysis', icon: BarChart, label: 'Analysis' },
+    { href: '/admin/bookings', icon: Book, label: 'Bookings' },
+];
 
 export default function AdminLayout({
   children,
@@ -43,12 +50,6 @@ export default function AdminLayout({
     });
   };
   
-  const navItems = [
-    { href: '/admin', icon: Home, label: 'Dashboard' },
-    { href: '/admin/analysis', icon: BarChart, label: 'Analysis' },
-    { href: '/admin/bookings', icon: Book, label: 'Bookings' },
-  ];
-
   if (isUserLoading || !user) {
       return (
           <div className="flex h-screen items-center justify-center">
@@ -59,7 +60,7 @@ export default function AdminLayout({
 
   return (
     <SidebarProvider>
-        <Sidebar collapsible='icon' className='border-r'>
+        <Sidebar collapsible='icon' className='border-r hidden md:block'>
             <SidebarContent>
             <SidebarHeader>
                 <div className="flex items-center gap-2">
@@ -125,21 +126,17 @@ export default function AdminLayout({
         </Sidebar>
         <SidebarInset>
             <header className="flex h-14 items-center gap-4 border-b bg-background px-6">
-                <SidebarTrigger variant="ghost" size="icon" className='md:hidden'>
-                    <PanelLeft />
-                    <span className="sr-only">Toggle Sidebar</span>
-                </SidebarTrigger>
-                <DesktopSidebarTrigger />
                 <div className='flex-1'>
                     <h1 className="text-lg font-semibold uppercase">
                         {navItems.find(item => pathname.startsWith(item.href))?.label || 'Dashboard'}
                     </h1>
                 </div>
             </header>
-            <main className="flex-1 p-6">
+            <main className="flex-1 p-6 pb-24 md:pb-6">
                 {children}
             </main>
         </SidebarInset>
+        <AdminBottomNav />
     </SidebarProvider>
   );
 }

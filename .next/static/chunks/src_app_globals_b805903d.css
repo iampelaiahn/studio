@@ -4588,6 +4588,10 @@ body {
     padding-top: 8rem;
   }
 
+  .md\:pb-6 {
+    padding-bottom: 1.5rem;
+  }
+
   .md\:text-left {
     text-align: left;
   }
