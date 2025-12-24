@@ -12,6 +12,10 @@ export default function BottomNav() {
   const pathname = usePathname();
   const [availabilityOpen, setAvailabilityOpen] = React.useState(false);
 
+  if (pathname.startsWith('/admin') || pathname === '/login' || pathname === '/register') {
+    return null;
+  }
+
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
     link: NavLink
