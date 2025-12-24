@@ -227,30 +227,37 @@ function ProductCard({ product, onClick, showDetails = true }) {
                 lineNumber: 18,
                 columnNumber: 7
             }, this),
-            showDetails && product.name && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardContent"], {
-                className: "p-6 flex-grow flex flex-col justify-center",
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardTitle"], {
-                        className: "font-headline text-2xl mb-2",
-                        children: product.name
-                    }, void 0, false, {
-                        fileName: "[project]/src/app/products/_components/product-card.tsx",
-                        lineNumber: 32,
-                        columnNumber: 11
-                    }, this),
-                    product.description && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardDescription"], {
-                        className: "flex-grow",
-                        children: product.description
-                    }, void 0, false, {
-                        fileName: "[project]/src/app/products/_components/product-card.tsx",
-                        lineNumber: 33,
-                        columnNumber: 35
-                    }, this)
-                ]
-            }, void 0, true, {
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "hidden md:block",
+                children: showDetails && product.name && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardContent"], {
+                    className: "p-4 md:p-6 flex-grow flex flex-col justify-center",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardTitle"], {
+                            className: "font-headline text-lg md:text-2xl mb-2",
+                            children: product.name
+                        }, void 0, false, {
+                            fileName: "[project]/src/app/products/_components/product-card.tsx",
+                            lineNumber: 33,
+                            columnNumber: 13
+                        }, this),
+                        product.description && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardDescription"], {
+                            className: "flex-grow text-sm",
+                            children: product.description
+                        }, void 0, false, {
+                            fileName: "[project]/src/app/products/_components/product-card.tsx",
+                            lineNumber: 34,
+                            columnNumber: 37
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/src/app/products/_components/product-card.tsx",
+                    lineNumber: 32,
+                    columnNumber: 13
+                }, this)
+            }, void 0, false, {
                 fileName: "[project]/src/app/products/_components/product-card.tsx",
-                lineNumber: 31,
-                columnNumber: 9
+                lineNumber: 30,
+                columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
@@ -332,10 +339,11 @@ function ProductGrid({ products, onProductClick }) {
                     value: category,
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8",
+                            className: "grid grid-cols-3 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8",
                             children: products.filter((p)=>activeTab === 'All' || p.category === activeTab).map((product)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$products$2f$_components$2f$product$2d$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ProductCard"], {
                                     product: product,
-                                    onClick: onProductClick
+                                    onClick: onProductClick,
+                                    showDetails: false
                                 }, product.id, false, {
                                     fileName: "[project]/src/app/products/_components/product-grid.tsx",
                                     lineNumber: 36,
@@ -352,12 +360,12 @@ function ProductGrid({ products, onProductClick }) {
                                 children: "No products found in this category."
                             }, void 0, false, {
                                 fileName: "[project]/src/app/products/_components/product-grid.tsx",
-                                lineNumber: 45,
+                                lineNumber: 46,
                                 columnNumber: 21
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/app/products/_components/product-grid.tsx",
-                            lineNumber: 44,
+                            lineNumber: 45,
                             columnNumber: 17
                         }, this)
                     ]

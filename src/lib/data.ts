@@ -1,4 +1,14 @@
 
+import {
+  BookUser,
+  LayoutGrid,
+  Scissors,
+  MessageSquare,
+  Calendar,
+  type LucideIcon,
+} from 'lucide-react';
+
+
 export const products = [
   {
     id: "prod-1",
@@ -107,12 +117,20 @@ export const products = [
   },
 ];
 
-export const navLinks = [
-  { id: "about", href: "/about", label: "About Us" },
-  { id: "products", href: "/products", label: "Catalog" },
-  { id: "custom-order", href: "/custom-order", label: "Customize" },
-  { id: "feedback", href: "/feedback", label: "Feedback" },
-  { id: "availability", href: "#", label: "Availability" },
+export type NavLink = {
+  id: string;
+  href: string;
+  label: string;
+  icon: LucideIcon;
+};
+
+
+export const navLinks: NavLink[] = [
+  { id: "about", href: "/about", label: "About", icon: BookUser },
+  { id: "products", href: "/products", label: "Catalog", icon: LayoutGrid },
+  { id: "custom-order", href: "/custom-order", label: "Customize", icon: Scissors },
+  { id: "feedback", href: "/feedback", label: "Feedback", icon: MessageSquare },
+  { id: "availability", href: "#", label: "Book", icon: Calendar },
 ];
 
 export const productTypes = ["Cakes", "Desserts", "Donuts", "Vegan", "Drinks", "Cupcakes", "Muffins", "Cookies"];

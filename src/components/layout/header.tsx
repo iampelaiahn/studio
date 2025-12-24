@@ -3,20 +3,12 @@
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { Menu } from 'lucide-react';
 import React from 'react';
 import Image from 'next/image';
 
 import { cn } from '@/lib/utils';
 import { navLinks } from '@/lib/data';
 import { Button } from '@/components/ui/button';
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from '@/components/ui/sheet';
 import { ThemeToggle } from '@/components/theme-toggle';
 import AvailabilityModal from './availability-modal';
 
@@ -43,11 +35,10 @@ export default function Header() {
     setClickCount(prevCount => prevCount + 1);
   };
 
-  const renderNavLinks = (isMobile = false) => {
+  const renderNavLinks = () => {
     return navLinks.map(link => {
       const className = cn(
-        'font-medium transition-colors hover:text-primary whitespace-nowrap',
-        isMobile ? 'text-lg' : 'text-sm',
+        'font-medium transition-colors hover:text-primary whitespace-nowrap text-sm',
         pathname === link.href ? 'text-primary' : 'text-foreground/60'
       );
 
@@ -90,24 +81,6 @@ export default function Header() {
 
           <div className="flex items-center justify-end gap-2">
             <ThemeToggle />
-            <div className="lg:hidden">
-              <Sheet>
-                <SheetTrigger asChild>
-                  <Button variant="ghost" size="icon">
-                    <Menu className="h-5 w-5" />
-                    <span className="sr-only">Toggle Menu</span>
-                  </Button>
-                </SheetTrigger>
-                <SheetContent side="left" className="w-[120px] sm:w-[160px]">
-                  <SheetHeader>
-                    <SheetTitle className="sr-only">Mobile Menu</SheetTitle>
-                  </SheetHeader>
-                  <nav className="flex flex-col items-start gap-8 mt-8">
-                    {renderNavLinks(true)}
-                  </nav>
-                </SheetContent>
-              </Sheet>
-            </div>
           </div>
         </div>
       </header>

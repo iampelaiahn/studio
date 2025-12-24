@@ -1,3 +1,4 @@
+
 import type { Metadata } from 'next';
 import './globals.css';
 import { cn } from '@/lib/utils';
@@ -7,6 +8,7 @@ import Footer from '@/components/layout/footer';
 import { Toaster } from '@/components/ui/toaster';
 import { OrderProvider } from '@/context/order-context';
 import { FirebaseClientProvider } from '@/firebase/client-provider';
+import BottomNav from '@/components/layout/bottom-nav';
 
 export const metadata: Metadata = {
   title: "Rue's Delectables",
@@ -39,10 +41,11 @@ export default function RootLayout({
             <OrderProvider>
               <div className="relative flex min-h-dvh flex-col">
                 <Header />
-                <main className="flex-1">{children}</main>
+                <main className="flex-1 pb-24 lg:pb-0">{children}</main>
                 <div className="relative bg-background">
                   <Footer />
                 </div>
+                <BottomNav />
               </div>
               <Toaster />
             </OrderProvider>

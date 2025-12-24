@@ -1413,6 +1413,10 @@ body {
   top: 50%;
 }
 
+.bottom-4 {
+  bottom: 1rem;
+}
+
 .z-0 {
   z-index: 0;
 }
@@ -1817,6 +1821,10 @@ body {
   width: 100%;
 }
 
+.w-\[calc\(100\%-2rem\)\] {
+  width: calc(100% - 2rem);
+}
+
 .min-w-0 {
   min-width: 0;
 }
@@ -2109,6 +2117,10 @@ body {
 
 .justify-between {
   justify-content: space-between;
+}
+
+.justify-around {
+  justify-content: space-around;
 }
 
 .gap-1 {
@@ -2642,6 +2654,10 @@ body {
   padding-top: 2rem;
 }
 
+.pb-24 {
+  padding-bottom: 6rem;
+}
+
 .text-left {
   text-align: left;
 }
@@ -2713,6 +2729,10 @@ body {
 .text-xs {
   font-size: .75rem;
   line-height: 1rem;
+}
+
+.text-\[10px\] {
+  font-size: 10px;
 }
 
 .font-bold {
@@ -4730,6 +4750,10 @@ body {
 
   .lg\:pt-40 {
     padding-top: 10rem;
+  }
+
+  .lg\:pb-0 {
+    padding-bottom: 0;
   }
 
   .lg\:text-left {
