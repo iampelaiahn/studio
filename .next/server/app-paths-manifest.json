@@ -1,4 +1,5 @@
 {
+  "/admin/analysis/page": "app/admin/analysis/page.js",
   "/admin/page": "app/admin/page.js",
   "/custom-order/page": "app/custom-order/page.js",
   "/login/page": "app/login/page.js",

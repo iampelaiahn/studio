@@ -20,6 +20,7 @@
  * - Product catalogs (/cakes, /cupcakes) and gallery images (/galleryImages) are publicly readable.
  * - Admin privileges are determined by the existence of a document in the `/roles_admin/{userId}` collection.
  * - Strict ownership is enforced for customer profiles and custom orders.
+ * - A collection group query on `customOrders` is allowed for admins to enable dashboard features.
  *
  * Denormalization for Authorization:
  * - Admin privileges are checked by verifying the existence of a document in `/roles_admin/{userId}`, avoiding costly `get()` calls in other rules.
@@ -75,35 +76,41 @@ service cloud.firestore {
       allow update: if isAdmin() && resource != null;
       allow delete: if isAdmin() && resource != null;
     }
-
-    /**
-     * @description Stores custom orders for each customer. Secured by path-based ownership; accessible only by the customer who owns them or by an admin.
-     * @path /customers/{customerId}/customOrders/{customOrderId}
-     * @allow (create, get, update, delete, list): if isOwner(customerId) || isAdmin()
-     * @deny (create, get, update, delete, list): if !isOwner(customerId) && !isAdmin()
-     * @principle Enforces document ownership and admin access for all operations.
-     */
-    match /customers/{customerId}/customOrders/{customOrderId} {
-      allow get: if isOwner(customerId) || isAdmin();
-      allow list: if isOwner(customerId) || isAdmin();
-      allow create: if (isOwner(customerId) && request.resource.data.customerId == customerId) || isAdmin();
-      allow update: if (isExistingOwner(customerId) && request.resource.data.customerId == customerId) || isAdmin();
-      allow delete: if (isExistingOwner(customerId) && request.auth.uid == customerId) || isAdmin();
-    }
-
-    /**
-     * @description Stores customer profiles. Secured by path-based ownership: only the authenticated user can access their customer profile, or an admin.
-     * @path /customers/{customerId}
-     * @allow (create, get, update, delete, list): if isOwner(customerId) || isAdmin()
-     * @deny (create, get, update, delete, list): if !isOwner(customerId) && !isAdmin()
-     * @principle Enforces document ownership and admin access for all operations.
-     */
+    
     match /customers/{customerId} {
+      /**
+       * @description Secures the nested customOrders collection.
+       * @path /customers/{customerId}/customOrders/{customOrderId}
+       */
+      match /customOrders/{customOrderId} {
+        allow get: if isOwner(customerId) || isAdmin();
+        allow list: if isOwner(customerId) || isAdmin();
+        allow create: if (isOwner(customerId) && request.resource.data.customerId == customerId) || isAdmin();
+        allow update: if (isExistingOwner(customerId) && request.resource.data.customerId == customerId) || isAdmin();
+        allow delete: if (isExistingOwner(customerId) && request.auth.uid == customerId) || isAdmin();
+      }
+
+      /**
+       * @description Stores customer profiles. Secured by path-based ownership: only the authenticated user can access their customer profile, or an admin.
+       * @path /customers/{customerId}
+       * @allow (create, get, update, delete, list): if isOwner(customerId) || isAdmin()
+       * @deny (create, get, update, delete, list): if !isOwner(customerId) && !isAdmin()
+       * @principle Enforces document ownership and admin access for all operations.
+       */
       allow get: if isOwner(customerId) || isAdmin();
       allow list: if false;
       allow create: if isOwner(customerId) && request.auth.uid == customerId;
       allow update: if isExistingOwner(customerId) && request.auth.uid == customerId;
       allow delete: if isExistingOwner(customerId) && request.auth.uid == customerId;
+    }
+
+    /**
+     * @description Allows admin users to perform a collection group query on `customOrders`.
+     * This is necessary for the admin dashboard to fetch all orders across all customers.
+     * @path /customOrders/{customOrderId}
+     */
+    match /{path=**}/customOrders/{customOrderId} {
+        allow list: if isAdmin();
     }
 
     /**
@@ -123,6 +130,7 @@ service cloud.firestore {
 
     /**
      * @description Indicates admin role. The existence of a document grants admin privileges.
+     * The first user can be created if no admin roles exist.
      * @path /roles_admin/{userId}
      */
     match /roles_admin/{userId} {
@@ -147,7 +155,7 @@ service cloud.firestore {
     }
 
     function isAdmin() {
-        return exists(/databases/$(database)/documents/roles_admin/$(request.auth.uid));
+        return isSignedIn() && exists(/databases/$(database)/documents/roles_admin/$(request.auth.uid));
     }
   }
 }
