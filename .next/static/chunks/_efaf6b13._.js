@@ -203,7 +203,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$c
 ;
 ;
 ;
-function ProductCard({ product, onClick }) {
+function ProductCard({ product, onClick, showDetails = true }) {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
         className: "flex flex-col overflow-hidden h-full cursor-pointer group",
         onClick: ()=>onClick(product),
@@ -219,15 +219,15 @@ function ProductCard({ product, onClick }) {
                     "data-ai-hint": product.imageHint
                 }, void 0, false, {
                     fileName: "[project]/src/app/products/_components/product-card.tsx",
-                    lineNumber: 19,
+                    lineNumber: 20,
                     columnNumber: 13
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/products/_components/product-card.tsx",
-                lineNumber: 17,
+                lineNumber: 18,
                 columnNumber: 7
             }, this),
-            product.name && product.description && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardContent"], {
+            showDetails && product.name && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardContent"], {
                 className: "p-6 flex-grow flex flex-col justify-center",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardTitle"], {
@@ -235,27 +235,27 @@ function ProductCard({ product, onClick }) {
                         children: product.name
                     }, void 0, false, {
                         fileName: "[project]/src/app/products/_components/product-card.tsx",
-                        lineNumber: 31,
+                        lineNumber: 32,
                         columnNumber: 11
                     }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardDescription"], {
+                    product.description && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardDescription"], {
                         className: "flex-grow",
                         children: product.description
                     }, void 0, false, {
                         fileName: "[project]/src/app/products/_components/product-card.tsx",
-                        lineNumber: 32,
-                        columnNumber: 11
+                        lineNumber: 33,
+                        columnNumber: 35
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/products/_components/product-card.tsx",
-                lineNumber: 30,
+                lineNumber: 31,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/products/_components/product-card.tsx",
-        lineNumber: 13,
+        lineNumber: 14,
         columnNumber: 5
     }, this);
 }
@@ -290,7 +290,7 @@ function ProductGrid({ products, onProductClick }) {
         "ProductGrid.useMemo[categories]": ()=>{
             const uniqueCategories = Array.from(new Set(products.map({
                 "ProductGrid.useMemo[categories].uniqueCategories": (p)=>p.category
-            }["ProductGrid.useMemo[categories].uniqueCategories"])));
+            }["ProductGrid.useMemo[categories].uniqueCategories"]).filter(Boolean)));
             uniqueCategories.sort();
             return [
                 "All",
@@ -334,11 +334,7 @@ function ProductGrid({ products, onProductClick }) {
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8",
                             children: products.filter((p)=>activeTab === 'All' || p.category === activeTab).map((product)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$products$2f$_components$2f$product$2d$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ProductCard"], {
-                                    product: {
-                                        ...product,
-                                        name: '',
-                                        description: ''
-                                    },
+                                    product: product,
                                     onClick: onProductClick
                                 }, product.id, false, {
                                     fileName: "[project]/src/app/products/_components/product-grid.tsx",
@@ -886,41 +882,41 @@ var _s = __turbopack_context__.k.signature();
 ;
 function ProductsPage() {
     _s();
-    const [products, setProducts] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$data$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["products"]);
+    const [products, setProducts] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
+    const [isLoading, setIsLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "ProductsPage.useEffect": ()=>{
-            const savedProducts = localStorage.getItem('customProducts');
-            if (savedProducts) {
+            // Map static products to ProductWithImage format
+            const initialProducts = __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$data$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["products"].map({
+                "ProductsPage.useEffect.initialProducts": (product)=>{
+                    const image = __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$placeholder$2d$images$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["PlaceHolderImages"].find({
+                        "ProductsPage.useEffect.initialProducts.image": (img)=>img.id === product.imageId
+                    }["ProductsPage.useEffect.initialProducts.image"]);
+                    return {
+                        ...product,
+                        imageUrl: image?.imageUrl,
+                        imageHint: image?.imageHint
+                    };
+                }
+            }["ProductsPage.useEffect.initialProducts"]);
+            // Try to load custom products from localStorage
+            const savedProductsJSON = localStorage.getItem('customProducts');
+            let customProducts = [];
+            if (savedProductsJSON) {
                 try {
-                    const parsedProducts = JSON.parse(savedProducts);
-                    setProducts({
-                        "ProductsPage.useEffect": (prev)=>[
-                                ...__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$data$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["products"],
-                                ...parsedProducts
-                            ]
-                    }["ProductsPage.useEffect"]);
+                    // Ensure custom products also fit the ProductWithImage type
+                    customProducts = JSON.parse(savedProductsJSON);
                 } catch (error) {
                     console.error("Failed to parse custom products from localStorage", error);
-                    setProducts(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$data$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["products"]);
                 }
             }
+            setProducts([
+                ...initialProducts,
+                ...customProducts
+            ]);
+            setIsLoading(false);
         }
     }["ProductsPage.useEffect"], []);
-    const productsWithImages = products.map((product)=>{
-        if (product.imageUrl) {
-            return {
-                ...product,
-                imageUrl: product.imageUrl,
-                imageHint: product.name
-            };
-        }
-        const image = __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$placeholder$2d$images$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["PlaceHolderImages"].find((img)=>img.id === product.imageId);
-        return {
-            ...product,
-            imageUrl: image?.imageUrl,
-            imageHint: image?.imageHint
-        };
-    });
     const [isCarouselShowingDetail, setIsCarouselShowingDetail] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [selectedProduct, setSelectedProduct] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const handleProductClick = (product)=>{
@@ -929,23 +925,34 @@ function ProductsPage() {
     const handleCloseModal = ()=>{
         setSelectedProduct(null);
     };
+    if (isLoading) {
+        // Optional: you can add a loading skeleton here
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "container mx-auto py-12 px-4 sm:px-6 lg:px-8 text-center",
+            children: "Loading products..."
+        }, void 0, false, {
+            fileName: "[project]/src/app/products/page.tsx",
+            lineNumber: 56,
+            columnNumber: 16
+        }, this);
+    }
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "bg-background",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
                 className: "relative py-16 md:py-24 bg-background text-foreground overflow-hidden -mt-[5vh] z-0",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$shop$2f$_components$2f$product$2d$carousel$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                    products: productsWithImages,
+                    products: products,
                     isShowingDetail: isCarouselShowingDetail,
                     setIsShowingDetail: setIsCarouselShowingDetail
                 }, void 0, false, {
                     fileName: "[project]/src/app/products/page.tsx",
-                    lineNumber: 50,
+                    lineNumber: 62,
                     columnNumber: 17
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/products/page.tsx",
-                lineNumber: 49,
+                lineNumber: 61,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -959,7 +966,7 @@ function ProductsPage() {
                                 children: "Our Delectables"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/products/page.tsx",
-                                lineNumber: 58,
+                                lineNumber: 70,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -967,27 +974,27 @@ function ProductsPage() {
                                 children: "Browse our signature creations, each made with the finest ingredients and a sprinkle of love."
                             }, void 0, false, {
                                 fileName: "[project]/src/app/products/page.tsx",
-                                lineNumber: 59,
+                                lineNumber: 71,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/products/page.tsx",
-                        lineNumber: 57,
+                        lineNumber: 69,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$products$2f$_components$2f$product$2d$grid$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                        products: productsWithImages,
+                        products: products,
                         onProductClick: handleProductClick
                     }, void 0, false, {
                         fileName: "[project]/src/app/products/page.tsx",
-                        lineNumber: 63,
+                        lineNumber: 75,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/products/page.tsx",
-                lineNumber: 56,
+                lineNumber: 68,
                 columnNumber: 13
             }, this),
             selectedProduct && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$products$2f$_components$2f$product$2d$detail$2d$modal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -996,17 +1003,17 @@ function ProductsPage() {
                 onOpenChange: handleCloseModal
             }, void 0, false, {
                 fileName: "[project]/src/app/products/page.tsx",
-                lineNumber: 66,
+                lineNumber: 78,
                 columnNumber: 17
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/products/page.tsx",
-        lineNumber: 48,
+        lineNumber: 60,
         columnNumber: 9
     }, this);
 }
-_s(ProductsPage, "iMq0m/HYirIbjC9twqIkevRrpQs=");
+_s(ProductsPage, "G+aabY8kDbG4JllnIk3ILqEIWaw=");
 _c = ProductsPage;
 var _c;
 __turbopack_context__.k.register(_c, "ProductsPage");
