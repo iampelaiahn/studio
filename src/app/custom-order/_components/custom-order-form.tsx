@@ -41,6 +41,7 @@ const formSchema = z.object({
   icing: z.string().min(3, { message: 'Icing flavor must be at least 3 characters.' }),
   eventDate: z.date({ required_error: 'A date for your event is required.' }),
   servings: z.coerce.number().min(1, { message: 'Please enter a valid number of servings.' }),
+  sizeInInches: z.coerce.number().min(1, { message: 'Please enter a valid size.' }).optional(),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -65,6 +66,7 @@ export default function CustomOrderForm() {
       eventDate: bookingDate || undefined,
       designTheme: '',
       servings: undefined,
+      sizeInInches: undefined,
     },
   });
   
@@ -146,6 +148,7 @@ export default function CustomOrderForm() {
         icing: values.icing,
         pickupDeliveryDate: values.eventDate,
         servings: values.servings,
+        sizeInInches: values.sizeInInches,
         customerName: values.name,
         customerEmail: values.email,
         status: 'Pending',
@@ -290,19 +293,37 @@ export default function CustomOrderForm() {
                   </div>
               </div>
             )}
+             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <FormField
-                control={form.control}
-                name="servings"
-                render={({ field }) => (
-                <FormItem>
-                    <FormLabel>Number of Servings</FormLabel>
-                    <FormControl>
-                    <Input type="number" placeholder="e.g., 20" {...field} value={field.value ?? ''} />
-                    </FormControl>
-                    <FormMessage />
-                </FormItem>
-                )}
-            />
+                    control={form.control}
+                    name="servings"
+                    render={({ field }) => (
+                    <FormItem>
+                        <FormLabel>Number of Servings</FormLabel>
+                        <FormControl>
+                        <Input type="number" placeholder="e.g., 20" {...field} value={field.value ?? ''} />
+                        </FormControl>
+                        <FormMessage />
+                    </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="sizeInInches"
+                    render={({ field }) => (
+                    <FormItem>
+                        <FormLabel>Size (in inches)</FormLabel>
+                        <FormControl>
+                        <Input type="number" placeholder="e.g., 8" {...field} value={field.value ?? ''} />
+                        </FormControl>
+                        <FormDescription>
+                            Optional, for cakes.
+                        </FormDescription>
+                        <FormMessage />
+                    </FormItem>
+                    )}
+                />
+            </div>
         </section>
         
         <section className="space-y-8">
@@ -435,3 +456,5 @@ export default function CustomOrderForm() {
     </div>
   );
 }
+
+    
