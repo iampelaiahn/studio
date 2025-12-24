@@ -216,7 +216,9 @@
     }
   },
   "auth": {
-    "providers": []
+    "providers": [
+      "email-password"
+    ]
   },
   "firestore": {
     "structure": [
