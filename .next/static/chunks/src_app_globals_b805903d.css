@@ -1345,6 +1345,10 @@ body {
   bottom: 0;
 }
 
+.bottom-4 {
+  bottom: 1rem;
+}
+
 .left-0 {
   left: 0;
 }
@@ -1411,10 +1415,6 @@ body {
 
 .top-\[50\%\] {
   top: 50%;
-}
-
-.bottom-4 {
-  bottom: 1rem;
 }
 
 .z-0 {
@@ -1801,10 +1801,6 @@ body {
   width: 100px;
 }
 
-.w-\[120px\] {
-  width: 120px;
-}
-
 .w-\[150px\] {
   width: 150px;
 }
@@ -1813,16 +1809,16 @@ body {
   width: 1px;
 }
 
+.w-\[calc\(100\%-2rem\)\] {
+  width: calc(100% - 2rem);
+}
+
 .w-auto {
   width: auto;
 }
 
 .w-full {
   width: 100%;
-}
-
-.w-\[calc\(100\%-2rem\)\] {
-  width: calc(100% - 2rem);
 }
 
 .min-w-0 {
@@ -2586,6 +2582,10 @@ body {
   padding-bottom: .5rem;
 }
 
+.pb-24 {
+  padding-bottom: 6rem;
+}
+
 .pb-3 {
   padding-bottom: .75rem;
 }
@@ -2654,10 +2654,6 @@ body {
   padding-top: 2rem;
 }
 
-.pb-24 {
-  padding-bottom: 6rem;
-}
-
 .text-left {
   text-align: left;
 }
@@ -2706,6 +2702,10 @@ body {
   font-size: .8rem;
 }
 
+.text-\[10px\] {
+  font-size: 10px;
+}
+
 .text-base {
   font-size: 1rem;
   line-height: 1.5rem;
@@ -2729,10 +2729,6 @@ body {
 .text-xs {
   font-size: .75rem;
   line-height: 1rem;
-}
-
-.text-\[10px\] {
-  font-size: 10px;
 }
 
 .font-bold {
@@ -4427,10 +4423,6 @@ body {
     display: flex;
   }
 
-  .sm\:w-\[160px\] {
-    width: 160px;
-  }
-
   .sm\:max-w-3xl {
     max-width: 48rem;
   }
@@ -4584,16 +4576,21 @@ body {
     padding-bottom: 8rem;
   }
 
-  .md\:pt-32 {
-    padding-top: 8rem;
-  }
-
   .md\:pb-6 {
     padding-bottom: 1.5rem;
   }
 
+  .md\:pt-32 {
+    padding-top: 8rem;
+  }
+
   .md\:text-left {
     text-align: left;
+  }
+
+  .md\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
   }
 
   .md\:text-5xl {
@@ -4609,11 +4606,6 @@ body {
   .md\:text-sm {
     font-size: .875rem;
     line-height: 1.25rem;
-  }
-
-  .md\:text-2xl {
-    font-size: 1.5rem;
-    line-height: 2rem;
   }
 
   .md\:opacity-0 {
@@ -4752,12 +4744,12 @@ body {
     padding-bottom: 10rem;
   }
 
-  .lg\:pt-40 {
-    padding-top: 10rem;
-  }
-
   .lg\:pb-0 {
     padding-bottom: 0;
+  }
+
+  .lg\:pt-40 {
+    padding-top: 10rem;
   }
 
   .lg\:text-left {

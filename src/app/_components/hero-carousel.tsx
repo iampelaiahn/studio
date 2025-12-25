@@ -129,7 +129,7 @@ export default function HeroCarousel() {
                  <Card className="bg-card text-card-foreground border-border/50">
                     <CardContent className="p-4">
                         <div className="flex items-center justify-between">
-                            <span className="text-base font-bold">Cake "{currentCake.name}"</span>
+                            <span className="text-base font-bold">Cake</span>
                             <Link href="/custom-order">
                                 <button className="bg-primary/20 text-primary-foreground rounded-full p-1 hover:bg-primary/30"><Plus className="w-4 h-4" /></button>
                             </Link>
@@ -137,10 +137,6 @@ export default function HeroCarousel() {
                     </CardContent>
                 </Card>
                 <div className="flex flex-col gap-4 text-foreground">
-                    <div>
-                        <p className="text-muted-foreground">Cake description</p>
-                        <p>{currentCake.description}</p>
-                    </div>
                     <div className="grid grid-cols-2 gap-4">
                         <div>
                             <p className="text-muted-foreground">Cake weight</p>
