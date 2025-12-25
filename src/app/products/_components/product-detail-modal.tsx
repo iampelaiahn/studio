@@ -45,7 +45,7 @@ export default function ProductDetailModal({ product, isOpen, onOpenChange }: Pr
             </div>
             <div className="flex flex-col">
                 <DialogHeader className="p-6">
-                    <DialogTitle className="font-headline text-3xl">{product.name}</DialogTitle>
+                    
                     <DialogDescription className="pt-2 text-base">
                         <span className="text-muted-foreground">{product.category}</span>
                     </DialogDescription>
