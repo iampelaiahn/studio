@@ -33,16 +33,18 @@ export default function ProductDetailModal({ product, isOpen, onOpenChange }: Pr
       <DialogContent className="sm:max-w-2xl p-0 max-h-[70vh] flex flex-col">
         <DialogTitle className="sr-only">{product.name}</DialogTitle>
         
-        <div className="relative flex-grow">
-            {product.imageUrl && (
-                <Image
-                src={product.imageUrl}
-                alt={product.name}
-                fill
-                className="object-contain rounded-t-lg"
-                data-ai-hint={product.imageHint}
-                />
-            )}
+        <div className="flex-grow flex items-center justify-center p-4">
+          <div className="relative aspect-[4/3] w-full">
+              {product.imageUrl && (
+                  <Image
+                  src={product.imageUrl}
+                  alt={product.name}
+                  fill
+                  className="object-contain rounded-t-lg"
+                  data-ai-hint={product.imageHint}
+                  />
+              )}
+          </div>
         </div>
         
         <div className="flex-shrink-0 p-4 border-t">
