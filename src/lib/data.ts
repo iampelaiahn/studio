@@ -32,13 +32,6 @@ export const products = [
     imageId: "cake-3",
   },
   {
-    id: "prod-4",
-    name: "Sweet Swirl",
-    description: "A classic vanilla cupcake with a beautiful rose frosting swirl.",
-    category: "Cupcakes",
-    imageId: "cupcake-1",
-  },
-  {
     id: "prod-5",
     name: "Watercolor Wonder",
     description: "A stunning cake with a watercolor-effect buttercream frosting.",
