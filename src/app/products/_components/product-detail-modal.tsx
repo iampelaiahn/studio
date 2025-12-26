@@ -44,10 +44,7 @@ export default function ProductDetailModal({ product, isOpen, onOpenChange }: Pr
                     />
                 )}
             </div>
-            <div className="flex flex-col">
-                <div className="p-6 flex-grow overflow-y-auto">
-                    <p className='text-foreground'>{product.description}</p>
-                </div>
+            <div className="flex flex-col justify-end">
                 <div className="p-6 border-t">
                     <Button asChild size="lg" className='w-full' onClick={handleRequestOrder}>
                         <Link href="/custom-order">Request a Custom Order</Link>
