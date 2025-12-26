@@ -36,7 +36,10 @@ export default function ProductsPage() {
             }
         }
         
-        setProducts([...initialProducts, ...customProducts]);
+        const allProducts = [...initialProducts, ...customProducts];
+        const filteredProducts = allProducts.filter(p => p.category !== 'Muffins');
+
+        setProducts(filteredProducts);
         setIsLoading(false);
     }, []);
 
