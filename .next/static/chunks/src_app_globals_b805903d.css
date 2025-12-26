@@ -1893,6 +1893,10 @@ body {
   max-width: 36rem;
 }
 
+.max-w-\[256px\] {
+  max-width: 256px;
+}
+
 .flex-1 {
   flex: 1;
 }
