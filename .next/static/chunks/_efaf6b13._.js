@@ -230,26 +230,8 @@ function ProductCard({ product, onClick, showDetails = true }) {
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "hidden md:block",
                 children: showDetails && product.name && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardContent"], {
-                    className: "p-4 md:p-6 flex-grow flex flex-col justify-center",
-                    children: [
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardTitle"], {
-                            className: "font-headline text-lg md:text-2xl mb-2",
-                            children: product.name
-                        }, void 0, false, {
-                            fileName: "[project]/src/app/products/_components/product-card.tsx",
-                            lineNumber: 33,
-                            columnNumber: 13
-                        }, this),
-                        product.description && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardDescription"], {
-                            className: "flex-grow text-sm",
-                            children: product.description
-                        }, void 0, false, {
-                            fileName: "[project]/src/app/products/_components/product-card.tsx",
-                            lineNumber: 34,
-                            columnNumber: 37
-                        }, this)
-                    ]
-                }, void 0, true, {
+                    className: "p-4 md:p-6 flex-grow flex flex-col justify-center"
+                }, void 0, false, {
                     fileName: "[project]/src/app/products/_components/product-card.tsx",
                     lineNumber: 32,
                     columnNumber: 13
@@ -890,10 +872,14 @@ function ProductsPage() {
                     console.error("Failed to parse custom products from localStorage", error);
                 }
             }
-            setProducts([
+            const allProducts = [
                 ...initialProducts,
                 ...customProducts
-            ]);
+            ];
+            const filteredProducts = allProducts.filter({
+                "ProductsPage.useEffect.filteredProducts": (p)=>p.category !== 'Muffins'
+            }["ProductsPage.useEffect.filteredProducts"]);
+            setProducts(filteredProducts);
             setIsLoading(false);
         }
     }["ProductsPage.useEffect"], []);
@@ -912,7 +898,7 @@ function ProductsPage() {
             children: "Loading products..."
         }, void 0, false, {
             fileName: "[project]/src/app/products/page.tsx",
-            lineNumber: 56,
+            lineNumber: 59,
             columnNumber: 16
         }, this);
     }
@@ -927,12 +913,12 @@ function ProductsPage() {
                     setIsShowingDetail: setIsCarouselShowingDetail
                 }, void 0, false, {
                     fileName: "[project]/src/app/products/page.tsx",
-                    lineNumber: 62,
+                    lineNumber: 65,
                     columnNumber: 17
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/products/page.tsx",
-                lineNumber: 61,
+                lineNumber: 64,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -946,7 +932,7 @@ function ProductsPage() {
                                 children: "Our Delectables"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/products/page.tsx",
-                                lineNumber: 70,
+                                lineNumber: 73,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -954,13 +940,13 @@ function ProductsPage() {
                                 children: "Browse our signature creations, each made with the finest ingredients and a sprinkle of love."
                             }, void 0, false, {
                                 fileName: "[project]/src/app/products/page.tsx",
-                                lineNumber: 71,
+                                lineNumber: 74,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/products/page.tsx",
-                        lineNumber: 69,
+                        lineNumber: 72,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$products$2f$_components$2f$product$2d$grid$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -968,13 +954,13 @@ function ProductsPage() {
                         onProductClick: handleProductClick
                     }, void 0, false, {
                         fileName: "[project]/src/app/products/page.tsx",
-                        lineNumber: 75,
+                        lineNumber: 78,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/products/page.tsx",
-                lineNumber: 68,
+                lineNumber: 71,
                 columnNumber: 13
             }, this),
             selectedProduct && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$products$2f$_components$2f$product$2d$detail$2d$modal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -983,13 +969,13 @@ function ProductsPage() {
                 onOpenChange: handleCloseModal
             }, void 0, false, {
                 fileName: "[project]/src/app/products/page.tsx",
-                lineNumber: 78,
+                lineNumber: 81,
                 columnNumber: 17
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/products/page.tsx",
-        lineNumber: 60,
+        lineNumber: 63,
         columnNumber: 9
     }, this);
 }

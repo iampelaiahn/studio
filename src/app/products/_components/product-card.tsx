@@ -30,8 +30,7 @@ export function ProductCard({ product, onClick, showDetails = true }: ProductCar
       <div className="hidden md:block">
         {showDetails && product.name && (
             <CardContent className="p-4 md:p-6 flex-grow flex flex-col justify-center">
-            <CardTitle className="font-headline text-lg md:text-2xl mb-2">{product.name}</CardTitle>
-            {product.description && <CardDescription className="flex-grow text-sm">{product.description}</CardDescription>}
+            
             </CardContent>
         )}
       </div>
