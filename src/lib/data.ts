@@ -25,13 +25,6 @@ export const products = [
     imageId: "cake-2",
   },
   {
-    id: "prod-3",
-    name: "Rainbow Delight",
-    description: "A vibrant six-layered rainbow cake with vanilla frosting.",
-    category: "Cakes",
-    imageId: "cake-3",
-  },
-  {
     id: "prod-5",
     name: "Watercolor Wonder",
     description: "A stunning cake with a watercolor-effect buttercream frosting.",
