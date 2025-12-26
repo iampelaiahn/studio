@@ -74,20 +74,6 @@ export const products = [
     imageId: "cake-4",
   },
   {
-    id: "prod-10",
-    name: "Blueberry Muffin",
-    description: "A classic blueberry muffin, bursting with juicy berries.",
-    category: "Muffins",
-    imageId: "muffin-1",
-  },
-  {
-    id: "prod-11",
-    name: "Chocolate Chip Cookie",
-    description: "A warm, gooey chocolate chip cookie, fresh from the oven.",
-    category: "Cookies",
-    imageId: "cookie-1",
-  },
-  {
     id: "prod-12",
     name: "Lemon & Strawberry",
     description: "A delightful stack of lemon and strawberry cake with complementary fillings.",
@@ -133,7 +119,7 @@ export const navLinks: NavLink[] = [
   { id: "availability", href: "#", label: "Book", icon: Calendar },
 ];
 
-export const productTypes = ["Cakes", "Desserts", "Donuts", "Vegan", "Drinks", "Cupcakes", "Muffins", "Cookies"];
+export const productTypes = ["Cakes", "Desserts", "Donuts", "Vegan", "Drinks", "Cupcakes"];
 
 export const availableTimes = [
     { time: "10:00 AM", available: true },

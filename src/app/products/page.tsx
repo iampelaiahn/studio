@@ -37,9 +37,8 @@ export default function ProductsPage() {
         }
         
         const allProducts = [...initialProducts, ...customProducts];
-        const filteredProducts = allProducts.filter(p => p.category !== 'Muffins');
 
-        setProducts(filteredProducts);
+        setProducts(allProducts);
         setIsLoading(false);
     }, []);
 
