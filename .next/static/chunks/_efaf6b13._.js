@@ -750,7 +750,7 @@ function ProductDetailModal({ product, isOpen, onOpenChange }) {
                             src: product.imageUrl,
                             alt: product.name,
                             fill: true,
-                            className: "object-contain rounded-t-lg",
+                            className: "object-contain",
                             "data-ai-hint": product.imageHint
                         }, void 0, false, {
                             fileName: "[project]/src/app/products/_components/product-detail-modal.tsx",
