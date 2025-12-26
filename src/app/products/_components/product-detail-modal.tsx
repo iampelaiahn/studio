@@ -30,10 +30,10 @@ export default function ProductDetailModal({ product, isOpen, onOpenChange }: Pr
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-3xl p-0 max-h-[90vh] flex flex-col">
+      <DialogContent className="sm:max-w-3xl grid-rows-[1fr,auto] p-0 max-h-[90vh]">
         <DialogTitle className="sr-only">{product.name}</DialogTitle>
         
-        <div className="relative h-[90%] w-full">
+        <div className="relative aspect-square w-full">
             {product.imageUrl && (
                 <Image
                 src={product.imageUrl}
@@ -45,7 +45,7 @@ export default function ProductDetailModal({ product, isOpen, onOpenChange }: Pr
             )}
         </div>
         
-        <div className="h-[10%] p-4 flex items-center justify-center border-t">
+        <div className="p-4 border-t">
             <Button asChild size="lg" className='w-full' onClick={handleRequestOrder}>
                 <Link href="/custom-order">Request a Custom Order</Link>
             </Button>

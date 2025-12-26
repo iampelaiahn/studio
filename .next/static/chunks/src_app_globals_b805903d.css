@@ -2079,6 +2079,10 @@ body {
   grid-template-rows: auto 1fr;
 }
 
+.grid-rows-\[1fr\,auto\] {
+  grid-template-rows: 1fr auto;
+}
+
 .flex-row {
   flex-direction: row;
 }
