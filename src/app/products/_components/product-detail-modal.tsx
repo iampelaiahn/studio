@@ -30,28 +30,27 @@ export default function ProductDetailModal({ product, isOpen, onOpenChange }: Pr
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-3xl grid-rows-[auto,1fr,auto] p-0 max-h-[90vh]">
+      <DialogContent className="sm:max-w-3xl p-0 max-h-[90vh] flex flex-col">
         <DialogTitle className="sr-only">{product.name}</DialogTitle>
-        <div className="grid md:grid-cols-2">
-            <div className="relative aspect-square md:aspect-auto">
-                {product.imageUrl && (
-                    <Image
-                    src={product.imageUrl}
-                    alt={product.name}
-                    fill
-                    className="object-contain rounded-t-lg md:rounded-l-lg md:rounded-t-none"
-                    data-ai-hint={product.imageHint}
-                    />
-                )}
-            </div>
-            <div className="flex flex-col justify-end">
-                <div className="p-6 border-t">
-                    <Button asChild size="lg" className='w-full' onClick={handleRequestOrder}>
-                        <Link href="/custom-order">Request a Custom Order</Link>
-                    </Button>
-                </div>
-            </div>
+        
+        <div className="relative h-[90%] w-full">
+            {product.imageUrl && (
+                <Image
+                src={product.imageUrl}
+                alt={product.name}
+                fill
+                className="object-contain rounded-t-lg"
+                data-ai-hint={product.imageHint}
+                />
+            )}
         </div>
+        
+        <div className="h-[10%] p-4 flex items-center justify-center border-t">
+            <Button asChild size="lg" className='w-full' onClick={handleRequestOrder}>
+                <Link href="/custom-order">Request a Custom Order</Link>
+            </Button>
+        </div>
+
       </DialogContent>
     </Dialog>
   );
