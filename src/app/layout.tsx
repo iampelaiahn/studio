@@ -9,6 +9,7 @@ import { Toaster } from '@/components/ui/toaster';
 import { OrderProvider } from '@/context/order-context';
 import { FirebaseClientProvider } from '@/firebase/client-provider';
 import BottomNav from '@/components/layout/bottom-nav';
+import { Analytics } from "@vercel/analytics/next"
 
 export const metadata: Metadata = {
   title: "Rue's Delectables",
@@ -51,6 +52,7 @@ export default function RootLayout({
             </OrderProvider>
           </FirebaseClientProvider>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
