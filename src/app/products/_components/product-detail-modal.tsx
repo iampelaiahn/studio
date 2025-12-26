@@ -3,7 +3,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import { type ProductWithImage } from '@/lib/types';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -31,6 +31,7 @@ export default function ProductDetailModal({ product, isOpen, onOpenChange }: Pr
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-3xl grid-rows-[auto,1fr,auto] p-0 max-h-[90vh]">
+        <DialogTitle className="sr-only">{product.name}</DialogTitle>
         <div className="grid md:grid-cols-2">
             <div className="relative aspect-square md:aspect-auto">
                 {product.imageUrl && (
@@ -44,13 +45,7 @@ export default function ProductDetailModal({ product, isOpen, onOpenChange }: Pr
                 )}
             </div>
             <div className="flex flex-col">
-                <DialogHeader className="p-6">
-                    <DialogTitle className="sr-only">{product.name}</DialogTitle>
-                    <DialogDescription className="pt-2 text-base">
-                        <span className="text-muted-foreground">{product.category}</span>
-                    </DialogDescription>
-                </DialogHeader>
-                <div className="px-6 pb-6 flex-grow overflow-y-auto">
+                <div className="p-6 flex-grow overflow-y-auto">
                     <p className='text-foreground'>{product.description}</p>
                 </div>
                 <div className="p-6 border-t">
