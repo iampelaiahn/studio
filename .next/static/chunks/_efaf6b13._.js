@@ -732,7 +732,7 @@ function ProductDetailModal({ product, isOpen, onOpenChange }) {
         open: isOpen,
         onOpenChange: onOpenChange,
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogContent"], {
-            className: "sm:max-w-2xl p-0 max-h-[70vh] flex flex-col",
+            className: "sm:max-w-2xl max-h-[70vh] flex flex-col p-4 md:p-6",
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogTitle"], {
                     className: "sr-only",
@@ -743,19 +743,20 @@ function ProductDetailModal({ product, isOpen, onOpenChange }) {
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "flex-grow flex items-center justify-center p-4",
+                    className: "flex-grow flex flex-col justify-center items-center gap-4",
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "relative aspect-[4/3] w-full",
+                        className: "relative w-full aspect-[4/3]",
                         children: product.imageUrl && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                             src: product.imageUrl,
-                            alt: product.name,
+                            alt: product.name || 'A cake from Rue\'s Delectables',
                             fill: true,
                             className: "object-contain",
+                            sizes: "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw",
                             "data-ai-hint": product.imageHint
                         }, void 0, false, {
                             fileName: "[project]/src/app/products/_components/product-detail-modal.tsx",
                             lineNumber: 39,
-                            columnNumber: 19
+                            columnNumber: 17
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/products/_components/product-detail-modal.tsx",
@@ -768,7 +769,7 @@ function ProductDetailModal({ product, isOpen, onOpenChange }) {
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "flex-shrink-0 p-4 border-t",
+                    className: "flex-shrink-0 pt-4",
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
                         asChild: true,
                         size: "lg",
@@ -779,17 +780,17 @@ function ProductDetailModal({ product, isOpen, onOpenChange }) {
                             children: "Request a Custom Order"
                         }, void 0, false, {
                             fileName: "[project]/src/app/products/_components/product-detail-modal.tsx",
-                            lineNumber: 52,
+                            lineNumber: 53,
                             columnNumber: 17
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/products/_components/product-detail-modal.tsx",
-                        lineNumber: 51,
+                        lineNumber: 52,
                         columnNumber: 13
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/src/app/products/_components/product-detail-modal.tsx",
-                    lineNumber: 50,
+                    lineNumber: 51,
                     columnNumber: 9
                 }, this)
             ]
