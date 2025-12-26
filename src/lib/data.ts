@@ -25,13 +25,6 @@ export const products = [
     imageId: "cake-2",
   },
   {
-    id: "prod-5",
-    name: "Watercolor Wonder",
-    description: "A stunning cake with a watercolor-effect buttercream frosting.",
-    category: "Cakes",
-    imageId: "cupcake-2",
-  },
-  {
     id: "prod-6",
     name: "Pink & Purple Dream",
     description: "A beautiful two-tiered cake with pink and purple ombre frosting.",

@@ -23,16 +23,8 @@ function WhatsappIcon(props: React.SVGProps<SVGSVGElement>) {
 export default function AboutPage() {
   return (
     <div className="bg-background text-foreground">
-      <header className="relative h-[40vh] md:h-[50vh] w-full">
-        <Image
-          src="https://images.unsplash.com/photo-1579882390235-a0d729359ds9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          alt="Bakery storefront"
-          fill
-          className="object-cover"
-          data-ai-hint="bakery storefront"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
-        <div className="absolute bottom-0 w-full text-center p-8">
+      <header className="relative pt-24 pb-12 md:pt-32 md:pb-16 text-center">
+        <div className="container mx-auto px-4">
           <h1 className="text-4xl md:text-6xl font-headline text-foreground">About Rue's Delectables</h1>
         </div>
       </header>
